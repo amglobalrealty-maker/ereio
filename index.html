@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ereio</title>
+<meta name="description" content="Caderno de obra: sistemas em que errar custa caro, e as decisoes que os sustentam.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F1F2EE'/%3E%3Crect x='6' y='5' width='2' height='22' fill='%239E2B1C'/%3E%3Crect x='12' y='9' width='14' height='1.5' fill='%2316181A'/%3E%3Crect x='12' y='15' width='14' height='1.5' fill='%2316181A'/%3E%3Crect x='12' y='21' width='9' height='1.5' fill='%2316181A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<style>
+/* ---------------------------------------------------------------
+   Caderno de obra.
+   A pagina e construida como um registro de decisoes: margem a
+   esquerda com data e rotulo, raciocinio a direita. A unica cor
+   alem de papel e tinta e a marca de margem -- e ela so marca,
+   nunca preenche.
+   --------------------------------------------------------------- */
+
+:root {
+  /* papel frio, nao creme: creme com serifa e o visual padrao de
+     pagina gerada por IA, e este caderno nao deve parecer um */
+  --papel:        #F1F2EE;
+  --papel-fundo:  #E7E8E2;
+  --tinta:        #16181A;
+  --tinta-media:  #565B5F;
+  --tinta-fraca:  #8D9397;
+  --marca:        #9E2B1C;
+  --filete:       #D2D3CC;
+
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --prosa: "Spectral", Georgia, "Times New Roman", serif;
+
+  /* tres curvas, cada uma com um trabalho. Nenhuma declarada sem uso. */
+  --entra:    cubic-bezier(0.16, 0.84, 0.44, 1);
+  --toque:    cubic-bezier(0.22, 0, 0.10, 1);
+  --ambiente: cubic-bezier(0.40, 0, 0.18, 1);
+
+  --margem: clamp(1.25rem, 5vw, 4rem);
+  --trilho: 13rem;
+}
+
+:root:not([data-theme="light"]) {
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --papel:        #141518;
+    --papel-fundo:  #1C1E22;
+    --tinta:        #E8E7E1;
+    --tinta-media:  #A0A49F;
+    --tinta-fraca:  #6D7276;
+    --marca:        #D9604A;
+    --filete:       #2E3135;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --papel:        #141518;
+  --papel-fundo:  #1C1E22;
+  --tinta:        #E8E7E1;
+  --tinta-media:  #A0A49F;
+  --tinta-fraca:  #6D7276;
+  --marca:        #D9604A;
+  --filete:       #2E3135;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--prosa);
+  font-weight: 400;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+}
+
+.folha {
+  position: relative;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 var(--margem) 0 calc(var(--margem) + 1.5rem);
+}
+
+/* a margem desenhada percorre a folha inteira, de cima a baixo, como
+   num papel pautado. Fica DENTRO da folha de proposito: presa a janela
+   ela se desgarrava do texto em tela larga. */
+.folha::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--margem);
+  background: var(--papel-fundo);
+  border-right: 1px solid var(--filete);
+  pointer-events: none;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--filete);
+  transition: text-decoration-color 0.22s var(--toque);
+}
+a:hover { text-decoration-color: var(--marca); }
+
+:focus-visible {
+  outline: 2px solid var(--marca);
+  outline-offset: 3px;
+}
+
+/* ----------------------------- topo ----------------------------- */
+
+.topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.marca-nome {
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--tinta);
+}
+
+/* ----------------------------- tese ----------------------------- */
+
+.tese {
+  padding: clamp(4rem, 14vh, 9rem) 0 clamp(3rem, 8vh, 5rem);
+  max-width: 24ch;
+}
+
+.tese h1 {
+  margin: 0;
+  font-family: var(--prosa);
+  font-weight: 300;
+  font-style: normal;
+  font-size: clamp(2.1rem, 1.2rem + 4.2vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.tese em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.tese-nota {
+  margin: 2.25rem 0 0;
+  max-width: 48ch;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  color: var(--tinta-media);
+}
+
+/* a regra sob a tese e o primeiro traco do caderno */
+.regra {
+  width: 4.5rem;
+  height: 2px;
+  margin: 2.5rem 0 0;
+  background: var(--marca);
+}
+
+/* --------------------------- o caderno --------------------------- */
+
+.caderno {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: entrada;
+}
+
+.entrada {
+  counter-increment: entrada;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: clamp(2.75rem, 7vh, 4.5rem) 0;
+  border-top: 1px solid var(--filete);
+}
+
+.entrada:first-child { border-top: none; }
+
+@media (min-width: 62rem) {
+  .entrada {
+    grid-template-columns: var(--trilho) minmax(0, 1fr);
+    gap: 3.5rem;
+  }
+}
+
+/* ------------------------- trilho da margem ------------------------- */
+
+.trilho {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+}
+
+@media (min-width: 62rem) {
+  .trilho {
+    display: block;
+    padding-left: 1.25rem;
+  }
+  /* a marca de margem: o traco que se desenha quando a entrada chega */
+  .trilho::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.3em;
+    width: 2px;
+    height: 3.25rem;
+    background: var(--marca);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.7s var(--entra);
+  }
+  .vista .trilho::before { transform: scaleY(1); }
+}
+
+.indice {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--marca);
+}
+
+.trilho time {
+  display: block;
+  color: var(--tinta-media);
+}
+
+.rotulo { display: block; }
+
+@media (min-width: 62rem) {
+  .indice, .trilho time { margin-bottom: 0.45rem; }
+}
+
+/* --------------------------- o raciocinio --------------------------- */
+
+.corpo { max-width: 68ch; }
+
+.entrada h2 {
+  margin: 0 0 1.1rem;
+  font-family: var(--prosa);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 1.05rem + 1.3vw, 2.05rem);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.corpo p {
+  margin: 0 0 1.05rem;
+}
+
+.corpo p:last-child { margin-bottom: 0; }
+
+.corpo strong {
+  font-weight: 600;
+}
+
+/* a lista de decisoes: cada linha e uma escolha, nao um recurso */
+.decisoes {
+  list-style: none;
+  margin: 1.6rem 0;
+  padding: 0;
+}
+
+.decisoes li {
+  position: relative;
+  padding: 0.55rem 0 0.55rem 1.6rem;
+  border-bottom: 1px solid var(--filete);
+}
+
+.decisoes li:first-child { border-top: 1px solid var(--filete); }
+
+.decisoes li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.33em;
+  width: 0.65rem;
+  height: 1px;
+  background: var(--marca);
+}
+
+/* ---------------------------- os numeros ---------------------------- */
+
+.numeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem 2.75rem;
+  margin: 1.9rem 0 0;
+}
+
+.numeros div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.numeros b {
+  font-family: var(--mono);
+  font-size: clamp(1.25rem, 1.05rem + 0.75vw, 1.6rem);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--tinta);
+}
+
+.numeros span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+}
+
+/* ------------------------------ rodape ------------------------------ */
+
+.rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 3rem 0 4rem;
+  border-top: 1px solid var(--filete);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+}
+
+/* ------------------------------ chegada ------------------------------ */
+
+.entrada {
+  opacity: 0;
+  transform: translateY(1.1rem);
+  transition:
+    opacity   0.75s var(--ambiente),
+    transform 0.75s var(--entra);
+}
+
+.entrada.vista {
+  opacity: 1;
+  transform: none;
+}
+
+/* sem script, ou com o motor de chegada ausente, tudo aparece */
+.sem-js .entrada { opacity: 1; transform: none; }
+.sem-js .trilho::before { transform: scaleY(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .entrada,
+  .entrada.vista { opacity: 1; transform: none; transition: none; }
+  .trilho::before { transform: scaleY(1); transition: none; }
+  a { transition: none; }
+}
+</style>
+</head>
+<body class="sem-js">
+
+<div class="folha">
+
+  <header class="topo">
+    <span class="marca-nome">ereio</span>
+    <span>caderno de obra</span>
+  </header>
+
+  <section class="tese">
+    <h1>Eu construo sistemas em que <em>errar custa caro</em>.</h1>
+    <div class="regra"></div>
+    <p class="tese-nota">
+      Cada entrada abaixo e uma decisao real, com o problema que a
+      exigiu e o que ela passou a impedir. Os numeros foram contados
+      no repositorio, nao estimados.
+    </p>
+  </section>
+
+  <ol class="caderno">
+
+    <li class="entrada">
+      <div class="trilho">
+        <span class="indice">01</span>
+        <time datetime="2026-04">abr 2026 &ndash; hoje</time>
+        <span class="rotulo">e-commerce, saude regulada</span>
+      </div>
+      <div class="corpo">
+        <h2>O catalogo e diferente para cada cliente, porque quem decide e a receita medica dele.</h2>
+        <p>
+          Numa loja comum, qualquer pessoa compra qualquer produto. Nesta,
+          o sistema precisa ler a receita, entender a que grupos de produto
+          aquele cliente tem direito, liberar somente esses, exigir a
+          documentacao legal correspondente e bloquear a venda sempre que
+          faltar amparo. Errar nao custa uma venda: custa a licenca da
+          operacao.
+        </p>
+        <p>
+          Isso muda onde as decisoes podem morar. Nada que importa pode ser
+          decidido no navegador, porque o navegador e do cliente.
+        </p>
+        <ul class="decisoes">
+          <li>Toda trava roda no servidor, e roda <strong>duas vezes</strong>: ao fechar o carrinho e de novo no pagamento.</li>
+          <li>O preco nunca chega do navegador. Ele e ancorado no catalogo, o que elimina o pedido de quinhentos reais pago com um centavo.</li>
+          <li>A permissao e revalidada contra o estado de agora, nao contra o retrato guardado na sessao &mdash; que dura sete dias, tempo suficiente para uma receita vencer.</li>
+          <li>O valor do pedido e reconstruido item por item, em vez de aceito como total.</li>
+          <li>A liberacao falha fechada: produto com grupo definido libera so por grupo, nunca por codigo solto.</li>
+          <li>Confirmacao de pagamento chega por tres caminhos que podem correr juntos. Os tres passam por uma reivindicacao atomica, entao o efeito acontece uma vez so.</li>
+        </ul>
+        <p>
+          O sistema era um arquivo de 3.914 linhas. Hoje sao 163 modulos com
+          fronteira dura: a camada de regra nunca fala com servico externo,
+          e so uma camada tem permissao de fazer chamada de rede. A
+          separacao foi feita movendo codigo sem alterar comportamento, aos
+          poucos, com a loja vendendo o tempo inteiro.
+        </p>
+        <div class="numeros">
+          <div><b>1.200+</b><span>casos de teste</span></div>
+          <div><b>163</b><span>modulos</span></div>
+          <div><b>25</b><span>tabelas</span></div>
+          <div><b>68.641</b><span>linhas de js</span></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="entrada">
+      <div class="trilho">
+        <span class="indice">02</span>
+        <time datetime="2026">2026</time>
+        <span class="rotulo">teste</span>
+      </div>
+      <div class="corpo">
+        <h2>Mais de mil e duzentos testes, e o que eu mais gosto protege contra gente, nao contra bug.</h2>
+        <p>
+          A suite roda a cada envio de codigo, sem nenhuma dependencia de
+          framework: e so a biblioteca de testes que ja vem com a
+          plataforma. Num sistema onde a trava errada tem consequencia
+          legal, teste nao e capricho, e a rede.
+        </p>
+        <p>
+          Mas o teste que melhor explica como eu trabalho e outro. Ele
+          compara <strong>todas as rotas registradas no servidor</strong>
+          contra uma lista gravada, e quebra de proposito nos dois sentidos:
+          se uma rota sumiu durante uma refatoracao, e tambem se alguem
+          criou rota nova sem registrar.
+        </p>
+        <p>
+          Ele nao protege contra erro de logica. Protege contra o esquecimento
+          de quem mexer no codigo depois &mdash; inclusive eu, daqui a seis
+          meses. Esse tipo de teste so e escrito por quem ja perdeu producao
+          para uma regressao silenciosa.
+        </p>
+      </div>
+    </li>
+
+    <li class="entrada">
+      <div class="trilho">
+        <span class="indice">03</span>
+        <time datetime="2026">2026</time>
+        <span class="rotulo">seguranca</span>
+      </div>
+      <div class="corpo">
+        <h2>Assumi a seguranca de um sistema que guardava documento medico, e encontrei tres portas abertas.</h2>
+        <p>
+          A autenticacao aceitava o CPF como se fosse senha. O backend era
+          chamado direto do navegador com a chave de acesso embutida no
+          codigo que qualquer pessoa podia ler. E o atendimento entrava na
+          conta do cliente passando a senha dele na propria URL, que fica no
+          historico do navegador e nos registros do servidor.
+        </p>
+        <p>
+          Trocar os tres sem derrubar ninguem foi o trabalho de verdade,
+          porque a base de clientes ja existia e estava usando o sistema.
+        </p>
+        <ul class="decisoes">
+          <li>Senha propria, com verificacao dupla durante a transicao: o segredo novo passou a valer sem invalidar o que ja estava gravado, entao a troca nao trancou ninguem para fora.</li>
+          <li>Backend movido para o servidor, com o segredo falhando fechado: sem a chave configurada, ninguem entra &mdash; em vez de todo mundo entrar.</li>
+          <li>Entrar na conta do cliente virou token opaco de uso unico, valido por dois minutos, que abre uma sessao de trinta e dispara alerta de auditoria a cada uso. O segredo sozinho nao basta: quem pede precisa estar numa lista, para que a auditoria registre uma pessoa real.</li>
+          <li>Comparacoes de segredo em tempo constante, documento de cliente em endereco assinado de validade curta, e registro forense duravel do que antes so existia no log efemero.</li>
+        </ul>
+        <p>
+          A parte menos obvia foi escolher, caso a caso, o que falha aberto e
+          o que falha fechado. Limite de tentativas falha aberto, porque
+          trancar um cliente legitimo custa mais que o abuso. Autorizacao e
+          acesso a conta alheia falham fechados, sempre. Essa escolha esta
+          escrita no codigo, com o motivo.
+        </p>
+      </div>
+    </li>
+
+    <li class="entrada">
+      <div class="trilho">
+        <span class="indice">04</span>
+        <time datetime="2026">2026</time>
+        <span class="rotulo">duas marcas, uma base</span>
+      </div>
+      <div class="corpo">
+        <h2>Duas empresas no mesmo sistema, resolvidas de tres jeitos diferentes de proposito.</h2>
+        <p>
+          Duas lojas, separadas pelo dominio, cada uma com catalogo, funil,
+          cores, tipografia, icone e portal de CRM proprios. O problema
+          aparece em tres lugares do sistema, e em cada um a resposta certa
+          foi outra.
+        </p>
+        <ul class="decisoes">
+          <li>Na loja, a segunda pagina nao e mantida a mao: ela e <strong>gerada</strong> a partir da primeira, trocando blocos marcados, e a suite reclama se alguem esquecer de regerar.</li>
+          <li>Na pagina de rastreio, eu escolhi <strong>duplicar</strong>, porque a segunda marca nao era so troca de cor: era serifa no titulo, cantos arredondados, logo maior e treze valores de transparencia que nao aceitam variavel.</li>
+          <li>No painel de atendimento, nenhum dos dois: o sistema simplesmente nao sabe em qual loja o cliente esta, porque o CRM marca a loja no pedido e nao na pessoa. Entao quem atende escolhe, e o sistema para de adivinhar.</li>
+        </ul>
+        <p>
+          A do meio e a que eu mais defendo. Nao abstrair tambem e uma
+          decisao, e ela so vale se vier escrita: o arquivo registra por que
+          duplicar foi certo ali, o que a unificacao exigiria, e qual e o
+          sinal de quando vale desfazer.
+        </p>
+        <p>
+          O preco dessa escolha tambem esta registrado. Dois ajustes foram
+          levados de uma marca para a outra porque o texto so acrescentava
+          linhas, sem remover nenhuma, o que passou a impressao de serem
+          neutros. Nao eram: a linha nova ja nascera com o telefone de ajuda
+          da outra empresa, e cliente de uma caia no atendimento da outra.
+          A licao ficou escrita em caixa alta no proprio arquivo:
+          <strong>acrescentar tambem carrega marca</strong>.
+        </p>
+      </div>
+    </li>
+
+    <li class="entrada">
+      <div class="trilho">
+        <span class="indice">05</span>
+        <time datetime="2026">2026</time>
+        <span class="rotulo">software interno</span>
+      </div>
+      <div class="corpo">
+        <h2>Um login, quatro paineis, e o navegador de quem atende nunca ve segredo do sistema.</h2>
+        <p>
+          Atendimento, descontos, design e tecnologia, sob um unico acesso:
+          a pessoa entra uma vez e enxerga apenas o que lhe cabe. Cada painel
+          guarda o segredo no proprio servidor e repassa a chamada, o oposto
+          exato do desenho que eu tinha acabado de desmontar.
+        </p>
+        <p>
+          Software interno costuma ser onde a seguranca relaxa, porque
+          &ldquo;e so o time&rdquo;. Aqui o CPF aparece mascarado na tela, a
+          senha de quem atende saiu de uma planilha em texto puro para
+          derivacao com sal no banco, e cada acesso a conta de cliente gera
+          alerta.
+        </p>
+        <p>
+          Desse projeto saiu a anotacao de operacao que eu mais releio: nunca
+          aponte uma integracao para um endereco que redireciona. O cliente
+          HTTP da plataforma nao completa um envio atraves de um salto entre
+          origens, e o cabecalho de autorizacao seria descartado no caminho.
+          O sintoma e um erro generico de gateway que nao diz nada disso.
+        </p>
+      </div>
+    </li>
+
+    <li class="entrada">
+      <div class="trilho">
+        <span class="indice">06</span>
+        <time datetime="2026-09">set 2026</time>
+        <span class="rotulo">privacidade por desenho</span>
+      </div>
+      <div class="corpo">
+        <h2>Um mapa de calor que nao identifica ninguem, porque foi decidido assim antes da primeira linha.</h2>
+        <p>
+          Em vez de contratar ferramenta, construi o coletor: ele registra
+          onde as pessoas clicam, por onde passam o mouse e ate onde rolam,
+          e desenha o calor por cima da pagina real do site.
+        </p>
+        <p>
+          Nao grava endereco de rede, nome, e-mail nem nada que identifique
+          uma pessoa. Isso nao sobrou do projeto, foi a primeira decisao
+          dele. O navegador do visitante tambem nunca fala com o servico de
+          armazenamento: tudo passa pelo servidor, que valida formato,
+          tamanho do lote e origem antes de repassar.
+        </p>
+        <p>
+          E enquanto a planilha do cliente nao estava conectada, o painel
+          funcionava com dados inventados, com aviso na tela e marcacao na
+          resposta da interface &mdash; para a cliente ver como ficaria sem
+          que ninguem confundisse demonstracao com medicao.
+        </p>
+      </div>
+    </li>
+
+    <li class="entrada">
+      <div class="trilho">
+        <span class="indice">07</span>
+        <time datetime="2026">2026</time>
+        <span class="rotulo">tres clientes, tres linguagens</span>
+      </div>
+      <div class="corpo">
+        <h2>Respeitar manual de marca ao ponto de versionar as palavras proibidas.</h2>
+        <p>
+          Para uma imobiliaria internacional, uma pagina unica e estatica,
+          construida a partir do manual de identidade da cliente. O manual
+          nao virou inspiracao: virou regra escrita no codigo, com o motivo
+          ao lado.
+        </p>
+        <ul class="decisoes">
+          <li>A cor de destaque nunca em area grande nem em texto de leitura. Sobre o fundo claro ela nao passa no contraste minimo de acessibilidade, entao ali o rotulo troca de cor.</li>
+          <li>Linha de leitura limitada a 68 caracteres. Numeros tabulares, para alinharem em coluna.</li>
+          <li>Uma lista de palavras que o manual proibe, e que nao aparecem em lugar nenhum do site.</li>
+        </ul>
+        <p>
+          Para uma construtora, um site por empreendimento, com documento de
+          lancamento e selo de programa habitacional. Tres clientes de setores
+          que nao conversam, cada um com uma linguagem visual propria, e
+          nenhum parecido com os outros.
+        </p>
+      </div>
+    </li>
+
+  </ol>
+
+  <footer class="rodape">
+    <span>ereio</span>
+    <span>2026</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var corpo = document.body;
+  corpo.classList.remove('sem-js');
+
+  var entradas = document.querySelectorAll('.entrada');
+
+  // Sem IntersectionObserver, ou com movimento reduzido, tudo ja chega
+  // visivel: a animacao e um acabamento, nunca a condicao de ler a pagina.
+  var reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduzido || typeof IntersectionObserver !== 'function') {
+    for (var i = 0; i < entradas.length; i++) entradas[i].classList.add('vista');
+    return;
+  }
+
+  var observador = new IntersectionObserver(function (registros) {
+    for (var i = 0; i < registros.length; i++) {
+      if (!registros[i].isIntersecting) continue;
+      registros[i].target.classList.add('vista');
+      observador.unobserve(registros[i].target);
+    }
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+
+  for (var j = 0; j < entradas.length; j++) observador.observe(entradas[j]);
+})();
+</script>
+
+</body>
+</html>
