@@ -311,8 +311,21 @@
     }
 
     // a primeira nasce aberta; as outras fecham aqui, pelo mesmo motivo
-    // dos trabalhos
-    Array.prototype.forEach.call(frentes, function (g, i) { definirFrente(g, i === 0); });
+    // dos trabalhos. Se o endereço traz a âncora de uma frente
+    // (trabalhos.html#g-logos, vindo do rodapé), essa é a que abre.
+    function frentePeloEndereco() {
+      var alvo = null;
+      try { alvo = location.hash.length > 1 ? document.querySelector(location.hash) : null; } catch (e) { alvo = null; }
+      return alvo && alvo.closest ? alvo.closest('.grupo') : null;
+    }
+    var inicial = frentePeloEndereco() || frentes[0];
+    Array.prototype.forEach.call(frentes, function (g) { definirFrente(g, g === inicial); });
+
+    window.addEventListener('hashchange', function () {
+      var g = frentePeloEndereco();
+      if (!g) return;
+      Array.prototype.forEach.call(frentes, function (outra) { definirFrente(outra, outra === g); });
+    });
 
     caixaFrentes.addEventListener('click', function (ev) {
       var cabeca = ev.target.closest ? ev.target.closest('.grupo-cabeca') : null;

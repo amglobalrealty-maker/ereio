@@ -645,6 +645,10 @@ body.travada { overflow: hidden; }
 .abertura-slide .dentro {
   max-width: var(--max);
   display: grid;
+  /* minmax(0, 1fr), e não 1fr: com 1fr a coluna cresce até o conteúdo
+     mais largo (a legenda do slide, que não quebra) e a página vaza pela
+     direita no celular */
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(2.25rem, 5vw, 4rem);
   align-items: center;
 }
@@ -852,9 +856,10 @@ body.travada { overflow: hidden; }
 
 .slide-pe {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.6rem 1rem;
   margin-top: 0.9rem;
 }
 
@@ -961,6 +966,48 @@ body.travada { overflow: hidden; }
 /* sem script: a primeira tela fica, parada, e os controles somem */
 .sem-js .slide-controles,
 .sem-js .slide-progresso { display: none; }
+
+/* o resumo das frentes na abertura de trabalhos: número grande, rótulo em
+   mono, cada um levando à frente certa */
+.resumo-frentes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: clamp(1.5rem, 4vh, 2.25rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resumo-frentes a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid var(--linha-viva);
+  border-radius: 999px;
+  color: var(--texto-fraco);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.2s var(--sai), color 0.2s var(--sai), background 0.2s var(--sai);
+}
+
+.resumo-frentes a b {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--texto);
+}
+
+.resumo-frentes a:hover {
+  border-color: var(--realce);
+  background: rgba(132, 104, 255, 0.1);
+  color: var(--texto);
+  transition: border-color 0.3s var(--toque), color 0.3s var(--toque), background 0.3s var(--toque);
+}
 
 /* =============================== prova =============================== */
 
@@ -1142,10 +1189,11 @@ body.travada { overflow: hidden; }
 
 .passos {
   display: grid;
-  gap: clamp(1.1rem, 2.5vw, 1.75rem);
+  /* mais espaço entre linhas: o número fica ACIMA da linha de cada passo */
+  gap: clamp(2.6rem, 5vh, 3.25rem) clamp(1.1rem, 2.5vw, 1.75rem);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
   list-style: none;
-  margin: 0;
+  margin: 1.75rem 0 0;
   padding: 0;
   counter-reset: passo;
 }
@@ -1157,13 +1205,13 @@ body.travada { overflow: hidden; }
   border-top: 2px solid var(--linha);
 }
 
+/* o número é uma etiqueta acima da linha. Antes ficava NA linha, e o
+   filete laranja (desenhado depois) passava por cima dele. */
 .passo::before {
   content: "0" counter(passo);
   position: absolute;
-  top: -0.8rem;
+  top: -1.55rem;
   left: 0;
-  padding-right: 0.6rem;
-  background: var(--fundo);
   font-family: var(--mono);
   font-size: 0.7rem;
   font-weight: 500;
@@ -1850,16 +1898,82 @@ body.travada { overflow: hidden; }
 .rodape {
   background: var(--preto);
   color: var(--branco);
-  padding: clamp(2.25rem, 5vh, 3.25rem) var(--gut);
+  padding: clamp(3rem, 7vh, 4.5rem) var(--gut) clamp(1.5rem, 3vh, 2rem);
 }
 
-.rodape .dentro {
+/* quatro colunas: a marca com a frase, a navegação, os trabalhos por
+   frente e a chamada com as redes. No celular, empilhadas. */
+.rodape-grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4vh, 3rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 40rem) { .rodape-grade { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 64rem) { .rodape-grade { grid-template-columns: 1.6fr 1fr 1fr 1.3fr; } }
+
+.rodape-frase {
+  margin: 1rem 0 0;
+  max-width: 30ch;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #ADA8CE;
+}
+
+.rodape-titulo {
+  margin: 0 0 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--violeta-alto);
+}
+
+.rodape-coluna ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rodape-coluna li a {
+  color: #ADA8CE;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: color 0.2s var(--sai);
+}
+
+.rodape-coluna li a:hover { color: var(--branco); transition: color 0.3s var(--toque); }
+
+.rodape-falar .botao { margin-bottom: 1.1rem; }
+/* display explícito: a regra ".rodape-coluna ul" (grid) é mais específica
+   que ".redes" (flex) e empilhava os ícones em coluna */
+.rodape-falar .redes { display: flex; gap: 0.3rem; }
+.rodape-falar .redes a { background: rgba(255, 255, 255, 0.06); }
+
+.rodape-pe {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 1.75rem;
+  gap: 0.75rem 1.5rem;
+  padding-top: 1.25rem;
 }
+
+.rodape-topo {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8B86B0;
+  text-decoration: none;
+  transition: color 0.2s var(--sai);
+}
+
+.rodape-topo:hover { color: var(--branco); }
 
 .rodape .enorme {
   margin: 0;
