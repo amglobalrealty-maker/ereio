@@ -64,6 +64,13 @@
     }
   }
 
+  // um elemento dentro de uma frente fechada não está à vista: carrossel ali
+  // não roda. Fora de qualquer frente (na home, por exemplo), conta como aberto.
+  function frenteAberta(el) {
+    var g = el.closest ? el.closest('.grupo') : null;
+    return !g || g.classList.contains('aberto');
+  }
+
   /* ------------------------- o carrossel de telas -------------------------
 
      Mesma mecânica do carrossel da AMGlobal: o script só escreve `data-pos`
@@ -157,15 +164,18 @@
     // ligar e desligar o rodízio quando o trabalho abre e fecha
     palco.controleCarrossel = { agendar: agendar, parar: parar };
 
-    // carrossel dentro de um trabalho fechado não roda: seria trabalho
-    // de pintura para ninguém ver
+    // carrossel dentro de um trabalho fechado, ou de uma frente fechada,
+    // não roda: seria trabalho de pintura para ninguém ver
     var dentroDeItem = palco.closest ? palco.closest('.item') : null;
-    if (!dentroDeItem || dentroDeItem.classList.contains('aberto')) agendar();
+    function aVista() {
+      return (!dentroDeItem || dentroDeItem.classList.contains('aberto')) && frenteAberta(palco);
+    }
+    if (aVista()) agendar();
 
     // não gastar bateria com a aba escondida
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) parar();
-      else if (!dentroDeItem || dentroDeItem.classList.contains('aberto')) agendar();
+      else if (aVista()) agendar();
     });
   });
 
@@ -189,7 +199,7 @@
       if (cabeca) cabeca.setAttribute('aria-expanded', abrir ? 'true' : 'false');
       var palco = item.querySelector('[data-carrossel]');
       if (palco && palco.controleCarrossel) {
-        if (abrir) palco.controleCarrossel.agendar();
+        if (abrir && frenteAberta(item)) palco.controleCarrossel.agendar();
         else palco.controleCarrossel.parar();
       }
     }
@@ -276,6 +286,52 @@
     });
   }
 
+  /* ---------------------------- as frentes ----------------------------
+
+     Sites, automações e sistemas, key visual e logos: quatro frentes, uma
+     aberta de cada vez, e dentro de cada uma a lista que abre um por um.
+     Abrir uma frente liga o carrossel do trabalho que estiver aberto nela;
+     fechar desliga todos os dela. */
+  var caixaFrentes = document.querySelector('[data-grupos]');
+
+  if (caixaFrentes) {
+    var frentes = caixaFrentes.querySelectorAll('.grupo');
+
+    function definirFrente(grupo, abrir) {
+      grupo.classList.toggle('aberto', abrir);
+      var cabeca = grupo.querySelector('.grupo-cabeca');
+      if (cabeca) cabeca.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      var palcos = grupo.querySelectorAll('[data-carrossel]');
+      Array.prototype.forEach.call(palcos, function (palco) {
+        if (!palco.controleCarrossel) return;
+        var item = palco.closest('.item');
+        if (abrir && item && item.classList.contains('aberto')) palco.controleCarrossel.agendar();
+        else palco.controleCarrossel.parar();
+      });
+    }
+
+    // a primeira nasce aberta; as outras fecham aqui, pelo mesmo motivo
+    // dos trabalhos
+    Array.prototype.forEach.call(frentes, function (g, i) { definirFrente(g, i === 0); });
+
+    caixaFrentes.addEventListener('click', function (ev) {
+      var cabeca = ev.target.closest ? ev.target.closest('.grupo-cabeca') : null;
+      if (!cabeca) return;
+      var grupo = cabeca.closest('.grupo');
+      var abrindo = !grupo.classList.contains('aberto');
+      Array.prototype.forEach.call(frentes, function (outra) {
+        definirFrente(outra, outra === grupo && abrindo);
+      });
+      // a frente de cima acabou de fechar e a página encolheu: a que abriu
+      // sobe para o topo da tela, senão a pessoa fica olhando um vazio
+      if (abrindo && !reduzido && grupo.scrollIntoView) {
+        grupo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      var pv = document.querySelector('[data-previa]');
+      if (pv) pv.classList.remove('vendo');
+    });
+  }
+
   /* ----------------- a prévia que segue o cursor na lista -----------------
 
      Num site que vende SITE, uma lista de nomes sem imagem não mostra nada.
@@ -286,7 +342,9 @@
      da distância que falta): seguir o cursor na régua exata fica duro e
      parece defeito. E a conta roda num quadro só, não a cada movimento do
      mouse, senão o navegador reposiciona dezenas de vezes por segundo. */
-  var listaPrevia = document.querySelector('[data-lista-trabalhos]');
+  // a prévia escuta a caixa das frentes (que contém as quatro listas); sem
+  // frentes, a lista única
+  var listaPrevia = document.querySelector('[data-grupos]') || document.querySelector('[data-lista-trabalhos]');
   var previa = document.querySelector('[data-previa]');
   var podeApontar = window.matchMedia && window.matchMedia('(hover: hover)').matches;
 

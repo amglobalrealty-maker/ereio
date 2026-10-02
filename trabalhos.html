@@ -16,9 +16,9 @@
   <!-- Sem JavaScript a lista não abre, então ela já nasce toda aberta e o
        sinal de mais some. O conteúdo nunca fica preso atrás do script. -->
   <style>
-    .detalhe { grid-template-rows: 1fr !important; }
-    .item-mais { display: none !important; }
-    .item-cabeca { cursor: default; }
+    .detalhe, .grupo-corpo { grid-template-rows: 1fr !important; }
+    .item-mais, .grupo-mais { display: none !important; }
+    .item-cabeca, .grupo-cabeca { cursor: default; }
   </style>
 </noscript>
 </head>
@@ -118,20 +118,32 @@
 
       <div class="cabeca sobe">
         <p class="olho">Um por um</p>
-        <h2>Treze trabalhos, do site institucional ao sistema que sustenta a venda</h2>
+        <h2>Dezenove trabalhos em quatro frentes: sites, automações, key visual e logos</h2>
+        <p>Clique numa frente para abrir a lista; dentro dela, clique no nome. Os estudos de key visual e logo são para marcas fictícias, e dizem isso.</p>
       </div>
 
-      <ol class="itens" data-lista-trabalhos>
+      <div class="grupos" data-grupos>
 
+        <section class="grupo aberto" data-grupo="sites">
+          <h3 class="grupo-titulo">
+            <button class="grupo-cabeca" type="button" aria-expanded="true" aria-controls="g-sites">
+              <span class="grupo-nome">Sites</span>
+              <span class="grupo-conta">7 trabalhos</span>
+              <span class="grupo-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="grupo-corpo" id="g-sites">
+            <div>
+      <ol class="itens" data-lista-trabalhos>
         <li class="item sobe" data-previa="hz-tela-1.webp">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="true" aria-controls="t1">
               <span class="item-num">01</span>
               <span class="item-nome">Houzze Imobiliária</span>
               <span class="item-tag">Site de imobiliária</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t1" role="region" aria-label="Houzze Imobiliária">
             <div>
               <div class="detalhe-dentro">
@@ -218,14 +230,14 @@
         </li>
 
         <li class="item sobe" data-previa="dpr-tela-1.webp">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t2">
               <span class="item-num">02</span>
               <span class="item-nome">DPR Construtora</span>
               <span class="item-tag">Site institucional</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t2" role="region" aria-label="DPR Construtora">
             <div>
               <div class="detalhe-dentro">
@@ -312,14 +324,14 @@
         </li>
 
         <li class="item sobe" data-previa="an-tela-1.webp">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t3">
               <span class="item-num">03</span>
               <span class="item-nome">ANOVA</span>
               <span class="item-tag">Site institucional</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t3" role="region" aria-label="ANOVA">
             <div>
               <div class="detalhe-dentro">
@@ -396,14 +408,14 @@
         </li>
 
         <li class="item sobe" data-previa="km-tela-1.webp">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t4">
               <span class="item-num">04</span>
               <span class="item-nome">Karmani</span>
               <span class="item-tag">Loja de moda</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t4" role="region" aria-label="Karmani">
             <div>
               <div class="detalhe-dentro">
@@ -479,14 +491,14 @@
         </li>
 
         <li class="item sobe" data-previa="fd-tela-1.webp">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t5">
               <span class="item-num">05</span>
               <span class="item-nome">Fidelity Translations</span>
               <span class="item-tag">Site institucional</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t5" role="region" aria-label="Fidelity Translations">
             <div>
               <div class="detalhe-dentro">
@@ -562,14 +574,14 @@
         </li>
 
         <li class="item sobe" data-previa="pm-tela-1.webp">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t6">
               <span class="item-num">06</span>
               <span class="item-nome">Primeiro Minuto</span>
               <span class="item-tag">Site de fotografia</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t6" role="region" aria-label="Primeiro Minuto">
             <div>
               <div class="detalhe-dentro">
@@ -645,14 +657,14 @@
         </li>
 
         <li class="item sobe" data-previa="en-tela-1.webp">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t7">
               <span class="item-num">07</span>
               <span class="item-nome">Clínica Entourage</span>
               <span class="item-tag">Site de clínica</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t7" role="region" aria-label="Clínica Entourage">
             <div>
               <div class="detalhe-dentro">
@@ -732,15 +744,31 @@
           </div>
         </li>
 
+      </ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="grupo" data-grupo="automacoes">
+          <h3 class="grupo-titulo">
+            <button class="grupo-cabeca" type="button" aria-expanded="false" aria-controls="g-automacoes">
+              <span class="grupo-nome">Automações e sistemas</span>
+              <span class="grupo-conta">6 trabalhos</span>
+              <span class="grupo-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="grupo-corpo" id="g-automacoes">
+            <div>
+      <ol class="itens" data-lista-trabalhos>
         <li class="item sobe">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t8">
-              <span class="item-num">08</span>
+              <span class="item-num">01</span>
               <span class="item-nome">Loja em setor regulado</span>
               <span class="item-tag">E-commerce</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t8" role="region" aria-label="Loja em setor regulado">
             <div>
               <div class="detalhe-dentro">
@@ -776,14 +804,14 @@
         </li>
 
         <li class="item sobe">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t9">
-              <span class="item-num">09</span>
+              <span class="item-num">02</span>
               <span class="item-nome">Três portas abertas numa base em uso</span>
               <span class="item-tag">Segurança</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t9" role="region" aria-label="Três portas abertas numa base em uso">
             <div>
               <div class="detalhe-dentro">
@@ -819,14 +847,14 @@
         </li>
 
         <li class="item sobe">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t10">
-              <span class="item-num">10</span>
+              <span class="item-num">03</span>
               <span class="item-nome">De um arquivo de 3.914 linhas a 163 módulos</span>
               <span class="item-tag">Refatoração</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t10" role="region" aria-label="Refatoração em produção">
             <div>
               <div class="detalhe-dentro">
@@ -859,14 +887,14 @@
         </li>
 
         <li class="item sobe">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t11">
-              <span class="item-num">11</span>
+              <span class="item-num">04</span>
               <span class="item-nome">Duas empresas no mesmo sistema</span>
               <span class="item-tag">Multimarca</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t11" role="region" aria-label="Duas empresas no mesmo sistema">
             <div>
               <div class="detalhe-dentro">
@@ -899,14 +927,14 @@
         </li>
 
         <li class="item sobe">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t12">
-              <span class="item-num">12</span>
+              <span class="item-num">05</span>
               <span class="item-nome">Mapa de calor que não identifica ninguém</span>
               <span class="item-tag">Medição</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t12" role="region" aria-label="Mapa de calor">
             <div>
               <div class="detalhe-dentro">
@@ -940,14 +968,14 @@
         </li>
 
         <li class="item sobe">
-          <h3>
+          <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t13">
-              <span class="item-num">13</span>
+              <span class="item-num">06</span>
               <span class="item-nome">Um acesso, quatro painéis</span>
               <span class="item-tag">Software interno</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
-          </h3>
+          </h4>
           <div class="detalhe" id="t13" role="region" aria-label="Software interno">
             <div>
               <div class="detalhe-dentro">
@@ -979,6 +1007,305 @@
         </li>
 
       </ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="grupo" data-grupo="key-visual">
+          <h3 class="grupo-titulo">
+            <button class="grupo-cabeca" type="button" aria-expanded="false" aria-controls="g-key-visual">
+              <span class="grupo-nome">Key visual</span>
+              <span class="grupo-conta">3 estudos</span>
+              <span class="grupo-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="grupo-corpo" id="g-key-visual">
+            <div>
+      <ol class="itens" data-lista-trabalhos>
+        <li class="item sobe" data-previa="estudo-kv-1.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t14">
+              <span class="item-num">01</span>
+              <span class="item-nome">Varanda Café</span>
+              <span class="item-tag">Estudo · Key visual</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t14" role="region" aria-label="Varanda Café">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="estudo-kv-1.webp" alt="Prancha do key visual Varanda Café: a frase Acorda devagar em serifa fina ao lado de um grão de café enorme, em terracota sobre creme, com os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing imaginado</p>
+                    <p>
+                      Uma cafeteria de bairro lança o primeiro blend próprio e quer anunciar sem parecer rede: a peça precisa ter calma e cheiro de manhã.
+                    </p>
+                    <p>
+                      <b>Um grão só, enorme, cortado pela borda</b>, e uma frase que pede devagar o que o café costuma pedir rápido. Paleta terra e creme tirada da xícara, não de tendência.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Fraunces</b> light e itálico nos títulos</li>
+                      <li><b>Manrope</b> no texto</li>
+                      <li>Paleta <b>terra e creme</b></li>
+                      <li>O grão como <b>forma única</b></li>
+                      <li>Uma composição, <b>três formatos</b></li>
+                    </ul>
+                    <p class="nota-estudo">Marca fictícia, criada para mostrar o processo. Nenhum cliente encomendou esta peça.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="estudo-kv-2.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t15">
+              <span class="item-num">02</span>
+              <span class="item-nome">Travessa Pilates</span>
+              <span class="item-tag">Estudo · Key visual</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t15" role="region" aria-label="Travessa Pilates">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="estudo-kv-2.webp" alt="Prancha do key visual Travessa Pilates: a frase Volte a caber no seu corpo em tipo pesado, com arcos verde-água sobre grafite, e os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing imaginado</p>
+                    <p>
+                      Um estúdio pequeno abre turmas novas e compete com academias grandes. Não dá para competir em foto de corpo perfeito; dá para competir em voz.
+                    </p>
+                    <p>
+                      <b>Nenhuma foto.</b> Os arcos são o movimento do aparelho; uma cor de destaque sobre grafite; e a promessa é caber no próprio corpo, não no de outra pessoa.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Red Hat Display</b> em um peso só</li>
+                      <li><b>1</b> cor de destaque</li>
+                      <li>Arcos como <b>movimento</b></li>
+                      <li><b>Sem</b> foto de banco</li>
+                      <li>Uma composição, <b>três formatos</b></li>
+                    </ul>
+                    <p class="nota-estudo">Marca fictícia, criada para mostrar o processo. Nenhum cliente encomendou esta peça.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="estudo-kv-3.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t16">
+              <span class="item-num">03</span>
+              <span class="item-nome">Noite Aberta</span>
+              <span class="item-tag">Estudo · Key visual</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t16" role="region" aria-label="Noite Aberta">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="estudo-kv-3.webp" alt="Prancha do key visual do festival Noite Aberta: o nome em tipo condensado enorme e fora do eixo, blocos laranja e magenta inclinados sobre preto, datas e line-up, com os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing imaginado</p>
+                    <p>
+                      Festival de música independente, três dias, orçamento curto: a identidade tem que render em lambe, story e outdoor sem depender de foto de artista.
+                    </p>
+                    <p>
+                      <b>O nome enorme e fora do eixo</b>, em tipo condensado, com dois blocos de cor inclinados que nunca se alinham. O resto é monoespaçado, como programa impresso.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Anton</b> no título</li>
+                      <li><b>IBM Plex Mono</b> no resto</li>
+                      <li>Laranja e magenta sobre <b>preto</b></li>
+                      <li>Grade <b>quebrada</b></li>
+                      <li>O título é a <b>imagem</b></li>
+                    </ul>
+                    <p class="nota-estudo">Marca fictícia, criada para mostrar o processo. Nenhum cliente encomendou esta peça.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="grupo" data-grupo="logos">
+          <h3 class="grupo-titulo">
+            <button class="grupo-cabeca" type="button" aria-expanded="false" aria-controls="g-logos">
+              <span class="grupo-nome">Logos</span>
+              <span class="grupo-conta">3 estudos</span>
+              <span class="grupo-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="grupo-corpo" id="g-logos">
+            <div>
+      <ol class="itens" data-lista-trabalhos>
+        <li class="item sobe" data-previa="estudo-logo-1.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t17">
+              <span class="item-num">01</span>
+              <span class="item-nome">Quintal Orgânico</span>
+              <span class="item-tag">Estudo · Logo</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t17" role="region" aria-label="Quintal Orgânico">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="estudo-logo-1.webp" alt="Prancha do logo Quintal Orgânico: um cesto cuja alça termina em folha, em verde sobre creme, com as versões positiva, negativa e monocromática e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing imaginado</p>
+                    <p>
+                      Feira semanal de produtores pede uma marca que funcione em carimbo, sacola de pano e placa de madeira: traço grosso, uma cor, sem degradê.
+                    </p>
+                    <p>
+                      <b>Cesto e folha num traço só.</b> A alça do cesto vira a folha; o símbolo aguenta 1 cm de largura e impressão ruim.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Lora</b> no nome</li>
+                      <li><b>Manrope</b> no apoio</li>
+                      <li><b>1</b> traço, <b>1</b> cor</li>
+                      <li>Positivo, negativo e <b>mono</b></li>
+                      <li>Grade de <b>construção</b></li>
+                    </ul>
+                    <p class="nota-estudo">Marca fictícia, criada para mostrar o processo. Nenhum cliente encomendou esta peça.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="estudo-logo-2.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t18">
+              <span class="item-num">02</span>
+              <span class="item-nome">Rua Oito Marcenaria</span>
+              <span class="item-tag">Estudo · Logo</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t18" role="region" aria-label="Rua Oito Marcenaria">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="estudo-logo-2.webp" alt="Prancha do logo Rua Oito Marcenaria: um 8 feito de dois elos que se atravessam, em marrom escuro sobre bege, com as versões positiva, negativa e monocromática e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing imaginado</p>
+                    <p>
+                      Marcenaria sob medida que leva o número da rua no nome. O pedido: parecer ofício, não design.
+                    </p>
+                    <p>
+                      <b>O 8 são dois elos que se atravessam</b>: por cima de um lado, por baixo do outro, como uma junta de madeira. Serifa com peso e as cores da madeira clara e escura.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Bitter</b> no nome</li>
+                      <li><b>Manrope</b> no apoio</li>
+                      <li>O símbolo é um <b>encaixe</b></li>
+                      <li>Positivo, negativo e <b>mono</b></li>
+                      <li>Grade de <b>construção</b></li>
+                    </ul>
+                    <p class="nota-estudo">Marca fictícia, criada para mostrar o processo. Nenhum cliente encomendou esta peça.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="estudo-logo-3.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t19">
+              <span class="item-num">03</span>
+              <span class="item-nome">Boreal Óptica</span>
+              <span class="item-tag">Estudo · Logo</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t19" role="region" aria-label="Boreal Óptica">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="estudo-logo-3.webp" alt="Prancha do logo Boreal Óptica: um o que é íris e lente, com anel, íris em gradiente verde-água para índigo e brilho no canto, sobre azul-noite, com as versões e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing imaginado</p>
+                    <p>
+                      Óptica nova num bairro com três concorrentes antigas. Precisa parecer mais técnica e mais jovem que elas, sem cair em clínica.
+                    </p>
+                    <p>
+                      <b>O "o" é íris e lente ao mesmo tempo</b>: anel, íris em gradiente e o brilho no canto. No nome, esse "o" ganha peso maior: o símbolo está escrito dentro da palavra.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Jost</b> leve e semibold</li>
+                      <li>Gradiente só na <b>versão principal</b></li>
+                      <li>Versões <b>chapadas</b> para o resto</li>
+                      <li>Positivo, sobre a cor e <b>mono</b></li>
+                      <li>Grade de <b>construção</b></li>
+                    </ul>
+                    <p class="nota-estudo">Marca fictícia, criada para mostrar o processo. Nenhum cliente encomendou esta peça.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+            </div>
+          </div>
+        </section>
+
+      </div>
 
       <div class="convite sobe">
         <p>Quer um site assim, com o endereço no ar em semanas e não em meses?</p>

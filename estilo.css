@@ -1203,6 +1203,108 @@ body.travada { overflow: hidden; }
    altura automática sem medir nada no script.
    ====================================================================== */
 
+/* ============================ as frentes ============================
+
+   Quatro frentes (sites, automações e sistemas, key visual, logos), uma
+   aberta de cada vez. A linha da frente é a mesma ideia da linha do
+   trabalho, só maior: nome grande, contagem em mono, o sinal de mais que
+   vira menos. Fechada, só a linha; aberta, a lista inteira abaixo dela.
+   ==================================================================== */
+
+.grupos { border-top: 2px solid var(--texto); }
+
+.grupo { border-bottom: 1px solid var(--linha); }
+
+.grupo-titulo { margin: 0; font-size: inherit; font-weight: inherit; }
+
+.grupo-cabeca {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+  width: 100%;
+  padding: clamp(1.1rem, 2.6vh, 1.6rem) clamp(0.5rem, 1.5vw, 1rem);
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.grupo-nome {
+  flex: 1;
+  font-size: clamp(1.5rem, 1rem + 2.4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  color: var(--texto);
+  transition: color 0.25s var(--toque);
+}
+
+@media (hover: hover) { .grupo-cabeca:hover .grupo-nome { color: var(--realce); } }
+
+.grupo.aberto .grupo-nome { color: var(--realce); }
+
+.grupo-conta {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+/* o mesmo sinal de mais dos itens, um pouco maior */
+.grupo-mais {
+  position: relative;
+  flex: none;
+  align-self: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--linha-viva);
+  border-radius: 50%;
+  transition: background 0.25s var(--sai), border-color 0.25s var(--sai);
+}
+
+.grupo-cabeca:hover .grupo-mais,
+.grupo.aberto .grupo-mais { background: var(--realce); border-color: var(--realce); }
+
+.grupo-mais::before,
+.grupo-mais::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.8rem;
+  height: 2px;
+  margin: -1px 0 0 -0.4rem;
+  border-radius: 2px;
+  background: var(--realce);
+  transition: transform 0.4s var(--entra), background 0.25s var(--sai);
+}
+
+.grupo-cabeca:hover .grupo-mais::before,
+.grupo-cabeca:hover .grupo-mais::after,
+.grupo.aberto .grupo-mais::before,
+.grupo.aberto .grupo-mais::after { background: var(--branco); }
+
+.grupo-mais::after { transform: rotate(90deg); }
+.grupo.aberto .grupo-mais::after { transform: rotate(0deg); }
+
+/* a lista da frente abre e fecha como o detalhe de um trabalho */
+.grupo-corpo {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s var(--ambiente);
+}
+
+.grupo.aberto .grupo-corpo { grid-template-rows: 1fr; }
+.grupo-corpo > div { overflow: hidden; }
+.grupo-corpo .itens { border-top: 1px solid var(--linha); margin-bottom: clamp(1rem, 2.5vh, 1.5rem); }
+.grupo-corpo .itens .item:last-child { border-bottom: 0; }
+
+.sem-js .grupo-corpo { grid-template-rows: 1fr; }
+
 /* NADA DE CARTÕES. Uma lista de nomes, grande, separada por filete — o
    índice de uma agência, e não seis caixinhas iguais. O trabalho aparece
    ao passar o mouse: a tela do site flutua junto do cursor. */
@@ -1222,7 +1324,7 @@ body.travada { overflow: hidden; }
 
 .item.aberto { background: var(--cartao); }
 
-.item h3 { margin: 0; font-size: inherit; font-weight: inherit; }
+.item h4 { margin: 0; font-size: inherit; font-weight: inherit; }
 
 .item-cabeca {
   position: relative;
@@ -1386,10 +1488,45 @@ body.travada { overflow: hidden; }
 .detalhe-grade { display: grid; gap: clamp(1.1rem, 2.5vw, 2rem); }
 
 @media (min-width: 60rem) {
-  .detalhe-grade.com-fotos {
+  .detalhe-grade.com-fotos,
+  .detalhe-grade.com-peca {
     grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
     align-items: start;
   }
+}
+
+/* A PRANCHA ÚNICA dos estudos: uma imagem só, com moldura fina e legenda,
+   no lugar do carrossel. */
+.peca {
+  margin: 0;
+  min-width: 0;
+}
+
+.peca img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--linha-viva);
+  border-radius: 0.6rem;
+  box-shadow: 0 1.5rem 3rem -1.5rem rgba(16, 16, 32, 0.35);
+}
+
+.peca figcaption {
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+/* a nota de honestidade dos estudos: pequena, mas sempre presente */
+.nota-estudo {
+  margin-top: 1rem !important;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--linha-viva);
+  font-size: 0.78rem !important;
+  color: var(--texto-fraco);
 }
 
 .detalhe-sobre p {
@@ -1770,4 +1907,5 @@ body.travada { overflow: hidden; }
   /* o slide troca sem deslizar, e nada roda sozinho (o script não agenda) */
   .topo, .marca img, .tela-slide, .ambiente img, .slide-seta, .slide-pontos button { transition: none; }
   .slide.rodando .tela-slide.ativa img, .slide.rodando .slide-progresso i { animation: none; }
+  .grupo-corpo, .grupo-mais, .grupo-mais::before, .grupo-mais::after { transition: none; }
 }
