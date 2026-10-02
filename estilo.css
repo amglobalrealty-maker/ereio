@@ -2077,6 +2077,30 @@ body.travada { overflow: hidden; }
 
 .fecho .acoes { justify-content: center; }
 
+/* o numero e o instagram escritos, para quem prefere copiar a clicar */
+.fecho-canal {
+  margin-top: 1.5rem !important;
+  font-family: var(--mono);
+  font-size: 0.68rem !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #E2DBFC !important;
+}
+
+.fecho-canal a { color: var(--branco); text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
+.fecho-canal a:hover { border-bottom-color: var(--branco); }
+
+.rodape-canal {
+  margin: -0.4rem 0 1rem;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: #8B86B0;
+}
+
+.rodape-canal a { color: #ADA8CE; text-decoration: none; }
+.rodape-canal a:hover { color: var(--branco); }
+
 /* =============================== rodapé =============================== */
 
 .rodape {
