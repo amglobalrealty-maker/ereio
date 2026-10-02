@@ -3,683 +3,1139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ereio</title>
-<meta name="description" content="Caderno de obra: sistemas em que errar custa caro, e as decisoes que os sustentam.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F1F2EE'/%3E%3Crect x='6' y='5' width='2' height='22' fill='%239E2B1C'/%3E%3Crect x='12' y='9' width='14' height='1.5' fill='%2316181A'/%3E%3Crect x='12' y='15' width='14' height='1.5' fill='%2316181A'/%3E%3Crect x='12' y='21' width='9' height='1.5' fill='%2316181A'/%3E%3C/svg%3E">
+<title>ereio.co</title>
+<meta name="description" content="Software sob medida para operacao que nao pode parar: plataformas, sistemas internos, integracoes e resgate de sistema legado.">
+<meta name="theme-color" content="#5838D8">
+<link rel="icon" type="image/png" href="icone-ereio.png">
+<link rel="apple-touch-icon" href="icone-ereio.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* ---------------------------------------------------------------
-   Caderno de obra.
-   A pagina e construida como um registro de decisoes: margem a
-   esquerda com data e rotulo, raciocinio a direita. A unica cor
-   alem de papel e tinta e a marca de margem -- e ela so marca,
-   nunca preenche.
-   --------------------------------------------------------------- */
+/* =================================================================
+   ereio.co
+
+   Cores lidas dos pixels do logo, nao estimadas:
+     violeta #5838D8   o símbolo
+     laranja #FF7C01   o ponto, e o ponto do .co
+     tinta   #101020   a palavra
+
+   A tinta é um quase-preto puxado para o violeta (matiz 240, mesma
+   família do símbolo). Todo cinza da página herda esse desvio — é o
+   que faz a paleta parecer uma coisa só, e não cores soltas.
+
+   Ritmo comercial: abertura clara → prova em violeta → serviços →
+   processo → trabalho em tinta → chamada → rodapé. O botão de
+   contato aparece quatro vezes, porque site de venda não pede uma
+   vez só.
+   ================================================================= */
 
 :root {
-  /* papel frio, nao creme: creme com serifa e o visual padrao de
-     pagina gerada por IA, e este caderno nao deve parecer um */
-  --papel:        #F1F2EE;
-  --papel-fundo:  #E7E8E2;
-  --tinta:        #16181A;
-  --tinta-media:  #565B5F;
-  --tinta-fraca:  #8D9397;
-  --marca:        #9E2B1C;
-  --filete:       #D2D3CC;
+  --tinta:         #101020;
+  --tinta-alta:    #1A1932;
+  --tinta-topo:    #242244;
+  --violeta:       #5838D8;
+  --violeta-alto:  #7A5CEC;
+  --violeta-claro: #EFEBFD;
+  --laranja:       #FF7C01;
+  --laranja-alto:  #FF9733;
+  --branco:        #FFFFFF;
+  --nevoa:         #F6F5FB;
+  --nevoa-funda:   #ECEAF7;
+  --borda:         #E3E1F0;
+  --cinza:         #56546E;
+  --cinza-claro:   #9C99B8;
 
+  --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --prosa: "Spectral", Georgia, "Times New Roman", serif;
 
-  /* tres curvas, cada uma com um trabalho. Nenhuma declarada sem uso. */
-  --entra:    cubic-bezier(0.16, 0.84, 0.44, 1);
-  --toque:    cubic-bezier(0.22, 0, 0.10, 1);
-  --ambiente: cubic-bezier(0.40, 0, 0.18, 1);
+  /* quatro curvas, cada uma com um trabalho. Nenhuma declarada sem uso. */
+  --entra:    cubic-bezier(0.16, 1, 0.3, 1);
+  --sai:      cubic-bezier(0.55, 0, 0.9, 0.3);
+  --ambiente: cubic-bezier(0.4, 0, 0.18, 1);
+  --toque:    cubic-bezier(0.22, 0, 0.1, 1);
 
-  --margem: clamp(1.25rem, 5vw, 4rem);
-  --trilho: 13rem;
-}
+  --gut: clamp(1.25rem, 5vw, 4.5rem);
+  --max: 80rem;
 
-:root:not([data-theme="light"]) {
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --papel:        #141518;
-    --papel-fundo:  #1C1E22;
-    --tinta:        #E8E7E1;
-    --tinta-media:  #A0A49F;
-    --tinta-fraca:  #6D7276;
-    --marca:        #D9604A;
-    --filete:       #2E3135;
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme="dark"] {
-  --papel:        #141518;
-  --papel-fundo:  #1C1E22;
-  --tinta:        #E8E7E1;
-  --tinta-media:  #A0A49F;
-  --tinta-fraca:  #6D7276;
-  --marca:        #D9604A;
-  --filete:       #2E3135;
-  color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
-
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  background: var(--papel);
+  background: var(--branco);
   color: var(--tinta);
-  font-family: var(--prosa);
-  font-weight: 400;
-  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
-  line-height: 1.68;
+  font-family: var(--sans);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.08rem);
+  line-height: 1.6;
+  letter-spacing: -0.006em;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.folha {
-  position: relative;
-  max-width: 68rem;
-  margin: 0 auto;
-  padding: 0 var(--margem) 0 calc(var(--margem) + 1.5rem);
+.dentro { max-width: var(--max); margin-inline: auto; }
+:focus-visible { outline: 3px solid var(--violeta); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3 { text-wrap: balance; }
+
+.olho {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--violeta);
 }
 
-/* a margem desenhada percorre a folha inteira, de cima a baixo, como
-   num papel pautado. Fica DENTRO da folha de proposito: presa a janela
-   ela se desgarrava do texto em tela larga. */
-.folha::before {
+.olho::before {
   content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: var(--margem);
-  background: var(--papel-fundo);
-  border-right: 1px solid var(--filete);
-  pointer-events: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--laranja);
+  flex: none;
 }
 
-a {
-  color: inherit;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  text-decoration-color: var(--filete);
-  transition: text-decoration-color 0.22s var(--toque);
-}
-a:hover { text-decoration-color: var(--marca); }
+/* ============================= botões ============================= */
 
-:focus-visible {
-  outline: 2px solid var(--marca);
-  outline-offset: 3px;
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.65rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.97rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  /* volta curta: retorno que demora parece travamento */
+  transition:
+    transform  0.22s var(--sai),
+    background 0.22s var(--toque),
+    box-shadow 0.22s var(--sai),
+    color      0.22s var(--toque);
 }
 
-/* ----------------------------- topo ----------------------------- */
+.botao:hover {
+  transform: translateY(-2px);
+  transition:
+    transform  0.45s var(--entra),
+    background 0.3s  var(--toque),
+    box-shadow 0.45s var(--ambiente),
+    color      0.3s  var(--toque);
+}
+
+.botao-cheio {
+  background: var(--violeta);
+  color: var(--branco);
+  box-shadow: 0 0.6rem 1.4rem -0.6rem rgba(88, 56, 216, 0.6);
+}
+.botao-cheio:hover { background: #4A2DC4; box-shadow: 0 1rem 2rem -0.6rem rgba(88, 56, 216, 0.72); }
+
+.botao-laranja {
+  background: var(--laranja);
+  color: var(--tinta);
+  box-shadow: 0 0.6rem 1.4rem -0.6rem rgba(255, 124, 1, 0.65);
+}
+.botao-laranja:hover { background: var(--laranja-alto); box-shadow: 0 1rem 2rem -0.6rem rgba(255, 124, 1, 0.75); }
+
+.botao-vazio {
+  background: transparent;
+  color: var(--tinta);
+  border-color: var(--borda);
+}
+.botao-vazio:hover { border-color: var(--violeta); color: var(--violeta); }
+
+.botao-claro {
+  background: var(--branco);
+  color: var(--tinta);
+}
+.botao-claro:hover { background: var(--violeta-claro); }
+
+/* ============================= cabeçalho ============================= */
 
 .topo {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 2rem 0 0;
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--tinta-media);
+  padding: 0.9rem var(--gut);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--toque), background 0.3s var(--toque);
 }
 
-.marca-nome {
+.topo.preso {
+  border-bottom-color: var(--borda);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.topo .logo { display: block; line-height: 0; flex: none; }
+.topo .logo img { width: clamp(6.5rem, 13vw, 8.5rem); height: auto; }
+
+.menu {
+  display: none;
+  gap: 2rem;
+  font-size: 0.94rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
-  color: var(--tinta);
 }
 
-/* ----------------------------- tese ----------------------------- */
-
-.tese {
-  padding: clamp(4rem, 14vh, 9rem) 0 clamp(3rem, 8vh, 5rem);
-  max-width: 24ch;
-}
-
-.tese h1 {
-  margin: 0;
-  font-family: var(--prosa);
-  font-weight: 300;
-  font-style: normal;
-  font-size: clamp(2.1rem, 1.2rem + 4.2vw, 4.2rem);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
-
-.tese em {
-  font-style: italic;
-  font-weight: 400;
-}
-
-.tese-nota {
-  margin: 2.25rem 0 0;
-  max-width: 48ch;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  line-height: 1.75;
-  letter-spacing: 0.02em;
-  color: var(--tinta-media);
-}
-
-/* a regra sob a tese e o primeiro traco do caderno */
-.regra {
-  width: 4.5rem;
-  height: 2px;
-  margin: 2.5rem 0 0;
-  background: var(--marca);
-}
-
-/* --------------------------- o caderno --------------------------- */
-
-.caderno {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  counter-reset: entrada;
-}
-
-.entrada {
-  counter-increment: entrada;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-  padding: clamp(2.75rem, 7vh, 4.5rem) 0;
-  border-top: 1px solid var(--filete);
-}
-
-.entrada:first-child { border-top: none; }
-
-@media (min-width: 62rem) {
-  .entrada {
-    grid-template-columns: var(--trilho) minmax(0, 1fr);
-    gap: 3.5rem;
-  }
-}
-
-/* ------------------------- trilho da margem ------------------------- */
-
-.trilho {
+.menu a {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem 1.25rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--tinta-fraca);
+  color: var(--cinza);
+  text-decoration: none;
+  transition: color 0.2s var(--toque);
 }
 
-@media (min-width: 62rem) {
-  .trilho {
-    display: block;
-    padding-left: 1.25rem;
-  }
-  /* a marca de margem: o traco que se desenha quando a entrada chega */
-  .trilho::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.3em;
-    width: 2px;
-    height: 3.25rem;
-    background: var(--marca);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.7s var(--entra);
-  }
-  .vista .trilho::before { transform: scaleY(1); }
-}
-
-.indice {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--marca);
-}
-
-.trilho time {
-  display: block;
-  color: var(--tinta-media);
-}
-
-.rotulo { display: block; }
-
-@media (min-width: 62rem) {
-  .indice, .trilho time { margin-bottom: 0.45rem; }
-}
-
-/* --------------------------- o raciocinio --------------------------- */
-
-.corpo { max-width: 68ch; }
-
-.entrada h2 {
-  margin: 0 0 1.1rem;
-  font-family: var(--prosa);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 1.05rem + 1.3vw, 2.05rem);
-  line-height: 1.22;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-
-.corpo p {
-  margin: 0 0 1.05rem;
-}
-
-.corpo p:last-child { margin-bottom: 0; }
-
-.corpo strong {
-  font-weight: 600;
-}
-
-/* a lista de decisoes: cada linha e uma escolha, nao um recurso */
-.decisoes {
-  list-style: none;
-  margin: 1.6rem 0;
-  padding: 0;
-}
-
-.decisoes li {
-  position: relative;
-  padding: 0.55rem 0 0.55rem 1.6rem;
-  border-bottom: 1px solid var(--filete);
-}
-
-.decisoes li:first-child { border-top: 1px solid var(--filete); }
-
-.decisoes li::before {
+.menu a::after {
   content: "";
   position: absolute;
   left: 0;
-  top: 1.33em;
-  width: 0.65rem;
-  height: 1px;
-  background: var(--marca);
+  bottom: -0.35rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--laranja);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--sai);
 }
 
-/* ---------------------------- os numeros ---------------------------- */
+.menu a:hover { color: var(--tinta); }
+.menu a:hover::after { transform: scaleX(1); transition: transform 0.45s var(--entra); }
 
-.numeros {
+@media (min-width: 60rem) { .menu { display: flex; } }
+
+.topo .botao { padding: 0.72rem 1.3rem; font-size: 0.9rem; }
+
+/* ============================== abertura ============================== */
+
+.abertura {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(3.5rem, 9vh, 7rem) var(--gut) clamp(4rem, 10vh, 7.5rem);
+  background:
+    radial-gradient(ellipse 55% 50% at 86% 38%, rgba(122, 92, 236, 0.18), transparent 72%),
+    radial-gradient(ellipse 40% 45% at 72% 78%, rgba(255, 124, 1, 0.10), transparent 70%),
+    linear-gradient(180deg, var(--branco) 0%, var(--nevoa) 100%);
+  overflow: hidden;
+}
+
+/* o símbolo dela, em tamanho de cartaz, sangrando pela direita */
+.simbolo {
+  position: absolute;
+  z-index: -1;
+  right: clamp(-8rem, -9vw, -2rem);
+  top: 46%;
+  width: clamp(15rem, 40vw, 32rem);
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+  animation: boiar 15s var(--ambiente) infinite alternate;
+}
+
+@keyframes boiar {
+  from { transform: translateY(-50%) scale(1)    rotate(0deg); }
+  to   { transform: translateY(-53%) scale(1.04) rotate(-1.6deg); }
+}
+
+@media (max-width: 62rem) {
+  .simbolo { opacity: 0.12; right: -16%; width: 26rem; }
+}
+
+.abertura .dentro { position: relative; max-width: 68rem; }
+
+.abertura h1 {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(2.6rem, 1rem + 6.6vw, 5.9rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.abertura h1 .destaque { color: var(--violeta); }
+
+/* o ponto do logo, agora como pontuação da frase */
+.ponto {
+  display: inline-block;
+  width: 0.19em;
+  height: 0.19em;
+  margin-left: 0.08em;
+  border-radius: 50%;
+  background: var(--laranja);
+  vertical-align: baseline;
+  animation: pulsar 3.6s var(--ambiente) infinite;
+}
+
+@keyframes pulsar {
+  0%, 70%, 100% { transform: scale(1);    opacity: 1; }
+  84%           { transform: scale(1.35); opacity: 0.78; }
+}
+
+.abertura .chamada {
+  margin: clamp(1.5rem, 3.5vh, 2.25rem) 0 0;
+  max-width: 48ch;
+  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.28rem);
+  font-weight: 400;
+  line-height: 1.58;
+  color: #3F3D59;
+}
+
+.abertura .chamada b { font-weight: 700; color: var(--tinta); }
+
+.acoes {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.75rem 2.75rem;
-  margin: 1.9rem 0 0;
+  gap: 0.85rem;
+  margin-top: clamp(2rem, 4.5vh, 2.75rem);
 }
 
-.numeros div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.numeros b {
-  font-family: var(--mono);
-  font-size: clamp(1.25rem, 1.05rem + 0.75vw, 1.6rem);
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid var(--tinta);
-}
-
-.numeros span {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--tinta-fraca);
-}
-
-/* ------------------------------ rodape ------------------------------ */
-
-.rodape {
+.abertura .selos {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 3rem 0 4rem;
-  border-top: 1px solid var(--filete);
+  gap: 0.6rem 2rem;
+  margin: clamp(2.5rem, 6vh, 4rem) 0 0;
+  padding: 0;
+  list-style: none;
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--tinta-fraca);
+  color: var(--cinza);
 }
 
-/* ------------------------------ chegada ------------------------------ */
+.abertura .selos li { display: flex; align-items: center; gap: 0.5rem; }
 
-.entrada {
+.abertura .selos li::before {
+  content: "";
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--violeta);
+  flex: none;
+}
+
+/* =============================== prova =============================== */
+
+.prova {
+  background: var(--violeta);
+  color: var(--branco);
+  padding: clamp(2.75rem, 7vh, 4.5rem) var(--gut);
+}
+
+.prova .dentro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.75rem, 5vw, 3rem);
+}
+
+@media (min-width: 54rem) { .prova .dentro { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.prova b {
+  display: block;
+  font-size: clamp(2.1rem, 1.3rem + 2.9vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.prova .risco {
+  display: block;
+  width: 2.1rem;
+  height: 4px;
+  margin: 0.95rem 0 0.8rem;
+  border-radius: 2px;
+  background: var(--laranja);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s var(--entra);
+}
+
+.prova .vista .risco { transform: scaleX(1); }
+
+.prova span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #D6CEFB;
+}
+
+/* ============================== seções ============================== */
+
+.secao { padding: clamp(4.5rem, 11vh, 8rem) var(--gut); }
+.secao-clara { background: var(--branco); }
+.secao-nevoa { background: var(--nevoa); }
+
+.cabeca { max-width: 44rem; margin-bottom: clamp(2.5rem, 6vh, 4rem); }
+
+.cabeca h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.042em;
+}
+
+.cabeca p {
+  margin: 1.1rem 0 0;
+  max-width: 52ch;
+  font-size: clamp(1.02rem, 0.97rem + 0.3vw, 1.15rem);
+  color: var(--cinza);
+}
+
+/* ============================= serviços ============================= */
+
+.grade-servicos {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.servico {
+  position: relative;
+  overflow: hidden;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 1.25rem;
+  padding: clamp(1.6rem, 3vw, 2.25rem);
+  transition:
+    transform    0.26s var(--sai),
+    box-shadow   0.26s var(--sai),
+    border-color 0.22s var(--toque);
+}
+
+@media (hover: hover) {
+  .servico:hover {
+    transform: translateY(-5px);
+    border-color: #CCC5EE;
+    box-shadow: 0 1.5rem 3rem -1.4rem rgba(16, 16, 32, 0.22);
+    transition:
+      transform    0.5s var(--entra),
+      box-shadow   0.5s var(--ambiente),
+      border-color 0.35s var(--toque);
+  }
+}
+
+.servico::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--violeta), var(--violeta-alto) 58%, var(--laranja));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.85s var(--entra) 0.1s;
+}
+
+.servico.vista::before { transform: scaleX(1); }
+
+.servico .num {
+  display: inline-grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  margin-bottom: 1.15rem;
+  border-radius: 0.7rem;
+  background: var(--violeta-claro);
+  color: var(--violeta);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.servico h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.028em;
+}
+
+.servico p {
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.58;
+  color: var(--cinza);
+}
+
+/* ------- a chamada que reaparece no meio da rolagem ------- */
+
+.convite {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--borda);
+  border-radius: 1.25rem;
+  background: var(--violeta-claro);
+}
+
+.convite.escuro {
+  background: var(--tinta-alta);
+  border-color: #2B2950;
+}
+
+.convite p {
+  margin: 0;
+  max-width: 44ch;
+  font-size: clamp(1.02rem, 0.97rem + 0.3vw, 1.18rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.convite.escuro p { color: var(--branco); }
+
+/* ============================= processo ============================= */
+
+.passos {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: passo;
+}
+
+.passo {
+  position: relative;
+  counter-increment: passo;
+  padding-top: 2.25rem;
+  border-top: 2px solid var(--borda);
+}
+
+.passo::before {
+  content: "0" counter(passo);
+  position: absolute;
+  top: -0.95rem;
+  left: 0;
+  padding-right: 0.7rem;
+  background: var(--nevoa);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--violeta);
+}
+
+.passo::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 2.5rem;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--laranja);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s var(--entra) 0.15s;
+}
+
+.passo.vista::after { transform: scaleX(1); }
+
+.passo h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.16rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.passo p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.58;
+  color: var(--cinza);
+}
+
+/* ============================== trabalho ============================== */
+
+.trabalho {
+  background: var(--tinta);
+  color: var(--branco);
+  padding: clamp(4.5rem, 11vh, 8rem) var(--gut);
+}
+
+.trabalho .cabeca h2 { color: var(--branco); }
+.trabalho .cabeca p { color: #A6A2C8; }
+.trabalho .olho { color: var(--laranja-alto); }
+
+.grade-casos {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.caso {
+  position: relative;
+  overflow: hidden;
+  background: var(--tinta-alta);
+  border: 1px solid #2B2950;
+  border-radius: 1.25rem;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  transition:
+    transform    0.26s var(--sai),
+    background   0.26s var(--sai),
+    border-color 0.22s var(--toque);
+}
+
+@media (hover: hover) {
+  .caso:hover {
+    transform: translateY(-5px);
+    background: var(--tinta-topo);
+    border-color: var(--violeta);
+    transition:
+      transform    0.5s var(--entra),
+      background   0.5s var(--ambiente),
+      border-color 0.35s var(--toque);
+  }
+}
+
+.caso .tag {
+  display: inline-block;
+  margin-bottom: 1.1rem;
+  padding: 0.33rem 0.72rem;
+  border: 1px solid #343163;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #B9B4E4;
+}
+
+.caso h3 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+}
+
+.caso p {
+  margin: 0;
+  font-size: 0.99rem;
+  line-height: 1.6;
+  color: #A6A2C8;
+}
+
+.caso p b { font-weight: 600; color: var(--branco); }
+
+.caso .marcas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid #2B2950;
+}
+
+.caso .marcas div { display: flex; flex-direction: column; gap: 0.3rem; }
+
+.caso .marcas b {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--laranja-alto);
+}
+
+.caso .marcas span {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8B86B8;
+}
+
+/* ============================== chamada ============================== */
+
+.fecho {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--violeta);
+  color: var(--branco);
+  padding: clamp(4.5rem, 11vh, 7.5rem) var(--gut);
+  text-align: center;
+}
+
+.fecho::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  width: min(120vw, 58rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, rgba(255, 124, 1, 0.34), transparent 70%);
+}
+
+.fecho h2 {
+  margin: 0 auto;
+  max-width: 18ch;
+  font-size: clamp(2.1rem, 1.2rem + 3.6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.fecho p {
+  margin: 1.4rem auto 0;
+  max-width: 46ch;
+  font-size: clamp(1.02rem, 0.97rem + 0.35vw, 1.2rem);
+  color: #E2DBFC;
+}
+
+.fecho .acoes { justify-content: center; }
+
+/* =============================== rodapé =============================== */
+
+.rodape {
+  background: var(--tinta);
+  color: var(--branco);
+  padding: clamp(3rem, 7vh, 5rem) var(--gut) clamp(2rem, 4vh, 3rem);
+}
+
+.rodape .dentro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.rodape .enorme {
+  margin: 0;
+  font-size: clamp(2.4rem, 1.2rem + 5.6vw, 5rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.052em;
+}
+
+.rodape .enorme .pt { color: var(--laranja); }
+.rodape .enorme .co { color: var(--violeta-alto); }
+
+.rodape .assinatura {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--cinza-claro);
+}
+
+/* ============================== chegada ============================== */
+
+.sobe {
   opacity: 0;
-  transform: translateY(1.1rem);
+  transform: translateY(1.4rem);
   transition:
     opacity   0.75s var(--ambiente),
     transform 0.75s var(--entra);
 }
 
-.entrada.vista {
-  opacity: 1;
-  transform: none;
-}
+.sobe.vista { opacity: 1; transform: none; }
 
-/* sem script, ou com o motor de chegada ausente, tudo aparece */
-.sem-js .entrada { opacity: 1; transform: none; }
-.sem-js .trilho::before { transform: scaleY(1); }
+.sem-js .sobe { opacity: 1; transform: none; }
+.sem-js .risco,
+.sem-js .servico::before,
+.sem-js .passo::after { transform: scaleX(1); }
 
 @media (prefers-reduced-motion: reduce) {
-  .entrada,
-  .entrada.vista { opacity: 1; transform: none; transition: none; }
-  .trilho::before { transform: scaleY(1); transition: none; }
-  a { transition: none; }
+  .sobe, .sobe.vista { opacity: 1; transform: none; transition: none; }
+  .risco, .servico::before, .passo::after { transform: scaleX(1); transition: none; }
+  .simbolo, .ponto { animation: none; }
+  .servico, .caso, .botao { transition: none; }
+  .botao:hover, .servico:hover, .caso:hover { transform: none; }
 }
 </style>
 </head>
 <body class="sem-js">
 
-<div class="folha">
+<header class="topo" id="topo">
+  <a class="logo" href="#inicio" aria-label="ereio.co, início">
+    <img src="logo-ereio-web.png" alt="ereio.co" width="720" height="237">
+  </a>
+  <nav class="menu" aria-label="Seções do site">
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Como trabalhamos</a>
+    <a href="#trabalho">Trabalho</a>
+  </nav>
+  <a class="botao botao-cheio" href="#contato">Falar com a gente</a>
+</header>
 
-  <header class="topo">
-    <span class="marca-nome">ereio</span>
-    <span>caderno de obra</span>
-  </header>
+<main id="inicio">
 
-  <section class="tese">
-    <h1>Eu construo sistemas em que <em>errar custa caro</em>.</h1>
-    <div class="regra"></div>
-    <p class="tese-nota">
-      Cada entrada abaixo e uma decisao real, com o problema que a
-      exigiu e o que ela passou a impedir. Os numeros foram contados
-      no repositorio, nao estimados.
-    </p>
+  <section class="abertura">
+    <img class="simbolo" src="icone-ereio.png" alt="" aria-hidden="true" width="512" height="512">
+    <div class="dentro">
+      <h1 class="sobe">Software sob medida para <span class="destaque">operação que não pode parar</span><span class="ponto" aria-hidden="true"></span></h1>
+      <p class="chamada sobe">
+        Plataformas de venda, sistemas internos e integrações para empresas que
+        já faturam e não têm o luxo de recomeçar do zero.
+        <b>A gente entra no sistema que existe, com ele no ar.</b>
+      </p>
+      <div class="acoes sobe">
+        <a class="botao botao-cheio" href="#contato">Conta o seu problema</a>
+        <a class="botao botao-vazio" href="#trabalho">Ver o trabalho</a>
+      </div>
+      <ul class="selos sobe">
+        <li>Setor regulado</li>
+        <li>Pagamento e estoque</li>
+        <li>Integração com CRM</li>
+        <li>Segurança e LGPD</li>
+      </ul>
+    </div>
   </section>
 
-  <ol class="caderno">
+  <section class="prova" aria-label="Números do trabalho">
+    <div class="dentro">
+      <div class="sobe"><b data-conta="1200" data-sufixo="+">0</b><i class="risco"></i><span>casos de teste</span></div>
+      <div class="sobe"><b data-conta="163">0</b><i class="risco"></i><span>módulos em produção</span></div>
+      <div class="sobe"><b data-conta="25">0</b><i class="risco"></i><span>tabelas de banco</span></div>
+      <div class="sobe"><b data-conta="13">0</b><i class="risco"></i><span>projetos entregues</span></div>
+    </div>
+  </section>
 
-    <li class="entrada">
-      <div class="trilho">
-        <span class="indice">01</span>
-        <time datetime="2026-04">abr 2026 &ndash; hoje</time>
-        <span class="rotulo">e-commerce, saude regulada</span>
+  <section class="secao secao-clara" id="servicos">
+    <div class="dentro">
+      <div class="cabeca sobe">
+        <p class="olho">Serviços</p>
+        <h2>O que a gente constrói</h2>
+        <p>
+          Tudo abaixo já está rodando em produção, com cliente real usando e
+          dinheiro passando por dentro. Não é lista de tecnologia: é lista de
+          problema resolvido.
+        </p>
       </div>
-      <div class="corpo">
-        <h2>O catalogo e diferente para cada cliente, porque quem decide e a receita medica dele.</h2>
-        <p>
-          Numa loja comum, qualquer pessoa compra qualquer produto. Nesta,
-          o sistema precisa ler a receita, entender a que grupos de produto
-          aquele cliente tem direito, liberar somente esses, exigir a
-          documentacao legal correspondente e bloquear a venda sempre que
-          faltar amparo. Errar nao custa uma venda: custa a licenca da
-          operacao.
-        </p>
-        <p>
-          Isso muda onde as decisoes podem morar. Nada que importa pode ser
-          decidido no navegador, porque o navegador e do cliente.
-        </p>
-        <ul class="decisoes">
-          <li>Toda trava roda no servidor, e roda <strong>duas vezes</strong>: ao fechar o carrinho e de novo no pagamento.</li>
-          <li>O preco nunca chega do navegador. Ele e ancorado no catalogo, o que elimina o pedido de quinhentos reais pago com um centavo.</li>
-          <li>A permissao e revalidada contra o estado de agora, nao contra o retrato guardado na sessao &mdash; que dura sete dias, tempo suficiente para uma receita vencer.</li>
-          <li>O valor do pedido e reconstruido item por item, em vez de aceito como total.</li>
-          <li>A liberacao falha fechada: produto com grupo definido libera so por grupo, nunca por codigo solto.</li>
-          <li>Confirmacao de pagamento chega por tres caminhos que podem correr juntos. Os tres passam por uma reivindicacao atomica, entao o efeito acontece uma vez so.</li>
-        </ul>
-        <p>
-          O sistema era um arquivo de 3.914 linhas. Hoje sao 163 modulos com
-          fronteira dura: a camada de regra nunca fala com servico externo,
-          e so uma camada tem permissao de fazer chamada de rede. A
-          separacao foi feita movendo codigo sem alterar comportamento, aos
-          poucos, com a loja vendendo o tempo inteiro.
-        </p>
-        <div class="numeros">
-          <div><b>1.200+</b><span>casos de teste</span></div>
-          <div><b>163</b><span>modulos</span></div>
-          <div><b>25</b><span>tabelas</span></div>
-          <div><b>68.641</b><span>linhas de js</span></div>
-        </div>
-      </div>
-    </li>
 
-    <li class="entrada">
-      <div class="trilho">
-        <span class="indice">02</span>
-        <time datetime="2026">2026</time>
-        <span class="rotulo">teste</span>
-      </div>
-      <div class="corpo">
-        <h2>Mais de mil e duzentos testes, e o que eu mais gosto protege contra gente, nao contra bug.</h2>
-        <p>
-          A suite roda a cada envio de codigo, sem nenhuma dependencia de
-          framework: e so a biblioteca de testes que ja vem com a
-          plataforma. Num sistema onde a trava errada tem consequencia
-          legal, teste nao e capricho, e a rede.
-        </p>
-        <p>
-          Mas o teste que melhor explica como eu trabalho e outro. Ele
-          compara <strong>todas as rotas registradas no servidor</strong>
-          contra uma lista gravada, e quebra de proposito nos dois sentidos:
-          se uma rota sumiu durante uma refatoracao, e tambem se alguem
-          criou rota nova sem registrar.
-        </p>
-        <p>
-          Ele nao protege contra erro de logica. Protege contra o esquecimento
-          de quem mexer no codigo depois &mdash; inclusive eu, daqui a seis
-          meses. Esse tipo de teste so e escrito por quem ja perdeu producao
-          para uma regressao silenciosa.
-        </p>
-      </div>
-    </li>
+      <ul class="grade-servicos">
+        <li class="servico sobe">
+          <span class="num">01</span>
+          <h3>Plataformas de venda</h3>
+          <p>
+            Loja, catálogo, carrinho e checkout, com pagamento, reserva de
+            estoque e o pedido nascendo direto no CRM. Inclusive quando a regra
+            de quem pode comprar o quê é complicada.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">02</span>
+          <h3>Sistemas internos</h3>
+          <p>
+            Painel de atendimento, de operação e de gestão. Um acesso só, cada
+            pessoa vendo o que lhe cabe, com trilha de auditoria de quem fez o
+            quê e quando.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">03</span>
+          <h3>Integrações e automação</h3>
+          <p>
+            Conectar o que já existe: CRM, meio de pagamento, assinatura
+            eletrônica, WhatsApp, planilha, agenda. Com repetição segura, para
+            que reenvio não vire cobrança em dobro.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">04</span>
+          <h3>Resgate de sistema</h3>
+          <p>
+            O sistema é antigo, ninguém entende, mexer dá medo. A gente abre,
+            separa em partes, cobre com teste e deixa seguro de alterar — sem
+            parar a operação e sem reescrever do zero.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">05</span>
+          <h3>Segurança e LGPD</h3>
+          <p>
+            Autenticação, controle de acesso, dado sensível e registro forense.
+            Trocar o que está aberto sem trancar para fora quem já é cliente.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">06</span>
+          <h3>Sites e medição</h3>
+          <p>
+            Site institucional e página de campanha, rápidos e sem plugin. Com
+            medição própria do que as pessoas fazem ali, sem coletar dado que
+            identifique ninguém.
+          </p>
+        </li>
+      </ul>
 
-    <li class="entrada">
-      <div class="trilho">
-        <span class="indice">03</span>
-        <time datetime="2026">2026</time>
-        <span class="rotulo">seguranca</span>
+      <div class="convite sobe">
+        <p>Não sabe em qual desses o seu problema se encaixa? Também serve.</p>
+        <a class="botao botao-cheio" href="#contato">Falar com a gente</a>
       </div>
-      <div class="corpo">
-        <h2>Assumi a seguranca de um sistema que guardava documento medico, e encontrei tres portas abertas.</h2>
-        <p>
-          A autenticacao aceitava o CPF como se fosse senha. O backend era
-          chamado direto do navegador com a chave de acesso embutida no
-          codigo que qualquer pessoa podia ler. E o atendimento entrava na
-          conta do cliente passando a senha dele na propria URL, que fica no
-          historico do navegador e nos registros do servidor.
-        </p>
-        <p>
-          Trocar os tres sem derrubar ninguem foi o trabalho de verdade,
-          porque a base de clientes ja existia e estava usando o sistema.
-        </p>
-        <ul class="decisoes">
-          <li>Senha propria, com verificacao dupla durante a transicao: o segredo novo passou a valer sem invalidar o que ja estava gravado, entao a troca nao trancou ninguem para fora.</li>
-          <li>Backend movido para o servidor, com o segredo falhando fechado: sem a chave configurada, ninguem entra &mdash; em vez de todo mundo entrar.</li>
-          <li>Entrar na conta do cliente virou token opaco de uso unico, valido por dois minutos, que abre uma sessao de trinta e dispara alerta de auditoria a cada uso. O segredo sozinho nao basta: quem pede precisa estar numa lista, para que a auditoria registre uma pessoa real.</li>
-          <li>Comparacoes de segredo em tempo constante, documento de cliente em endereco assinado de validade curta, e registro forense duravel do que antes so existia no log efemero.</li>
-        </ul>
-        <p>
-          A parte menos obvia foi escolher, caso a caso, o que falha aberto e
-          o que falha fechado. Limite de tentativas falha aberto, porque
-          trancar um cliente legitimo custa mais que o abuso. Autorizacao e
-          acesso a conta alheia falham fechados, sempre. Essa escolha esta
-          escrita no codigo, com o motivo.
-        </p>
-      </div>
-    </li>
+    </div>
+  </section>
 
-    <li class="entrada">
-      <div class="trilho">
-        <span class="indice">04</span>
-        <time datetime="2026">2026</time>
-        <span class="rotulo">duas marcas, uma base</span>
-      </div>
-      <div class="corpo">
-        <h2>Duas empresas no mesmo sistema, resolvidas de tres jeitos diferentes de proposito.</h2>
+  <section class="secao secao-nevoa" id="processo">
+    <div class="dentro">
+      <div class="cabeca sobe">
+        <p class="olho">Como trabalhamos</p>
+        <h2>Quatro passos, e nenhum deles é "confia"</h2>
         <p>
-          Duas lojas, separadas pelo dominio, cada uma com catalogo, funil,
-          cores, tipografia, icone e portal de CRM proprios. O problema
-          aparece em tres lugares do sistema, e em cada um a resposta certa
-          foi outra.
-        </p>
-        <ul class="decisoes">
-          <li>Na loja, a segunda pagina nao e mantida a mao: ela e <strong>gerada</strong> a partir da primeira, trocando blocos marcados, e a suite reclama se alguem esquecer de regerar.</li>
-          <li>Na pagina de rastreio, eu escolhi <strong>duplicar</strong>, porque a segunda marca nao era so troca de cor: era serifa no titulo, cantos arredondados, logo maior e treze valores de transparencia que nao aceitam variavel.</li>
-          <li>No painel de atendimento, nenhum dos dois: o sistema simplesmente nao sabe em qual loja o cliente esta, porque o CRM marca a loja no pedido e nao na pessoa. Entao quem atende escolhe, e o sistema para de adivinhar.</li>
-        </ul>
-        <p>
-          A do meio e a que eu mais defendo. Nao abstrair tambem e uma
-          decisao, e ela so vale se vier escrita: o arquivo registra por que
-          duplicar foi certo ali, o que a unificacao exigiria, e qual e o
-          sinal de quando vale desfazer.
-        </p>
-        <p>
-          O preco dessa escolha tambem esta registrado. Dois ajustes foram
-          levados de uma marca para a outra porque o texto so acrescentava
-          linhas, sem remover nenhuma, o que passou a impressao de serem
-          neutros. Nao eram: a linha nova ja nascera com o telefone de ajuda
-          da outra empresa, e cliente de uma caia no atendimento da outra.
-          A licao ficou escrita em caixa alta no proprio arquivo:
-          <strong>acrescentar tambem carrega marca</strong>.
+          O jeito de trabalhar é a parte que mais importa quando o sistema já
+          está no ar e tem gente dependendo dele.
         </p>
       </div>
-    </li>
 
-    <li class="entrada">
-      <div class="trilho">
-        <span class="indice">05</span>
-        <time datetime="2026">2026</time>
-        <span class="rotulo">software interno</span>
-      </div>
-      <div class="corpo">
-        <h2>Um login, quatro paineis, e o navegador de quem atende nunca ve segredo do sistema.</h2>
-        <p>
-          Atendimento, descontos, design e tecnologia, sob um unico acesso:
-          a pessoa entra uma vez e enxerga apenas o que lhe cabe. Cada painel
-          guarda o segredo no proprio servidor e repassa a chamada, o oposto
-          exato do desenho que eu tinha acabado de desmontar.
-        </p>
-        <p>
-          Software interno costuma ser onde a seguranca relaxa, porque
-          &ldquo;e so o time&rdquo;. Aqui o CPF aparece mascarado na tela, a
-          senha de quem atende saiu de uma planilha em texto puro para
-          derivacao com sal no banco, e cada acesso a conta de cliente gera
-          alerta.
-        </p>
-        <p>
-          Desse projeto saiu a anotacao de operacao que eu mais releio: nunca
-          aponte uma integracao para um endereco que redireciona. O cliente
-          HTTP da plataforma nao completa um envio atraves de um salto entre
-          origens, e o cabecalho de autorizacao seria descartado no caminho.
-          O sintoma e um erro generico de gateway que nao diz nada disso.
-        </p>
-      </div>
-    </li>
+      <ol class="passos">
+        <li class="passo sobe">
+          <h3>Entender a operação</h3>
+          <p>
+            Antes do código, o fluxo real: quem faz o quê, onde trava, o que
+            custa caro quando dá errado. Software bom começa com pergunta de
+            negócio, não de tecnologia.
+          </p>
+        </li>
+        <li class="passo sobe">
+          <h3>Decidir e escrever o porquê</h3>
+          <p>
+            Cada decisão fica registrada com o motivo e o caso que a exigiu.
+            Seis meses depois, ninguém precisa adivinhar por que está daquele
+            jeito — nem a gente.
+          </p>
+        </li>
+        <li class="passo sobe">
+          <h3>Construir com rede</h3>
+          <p>
+            Comportamento novo nasce desligado, atrás de uma chave, com teste
+            automatizado. Ligar é uma configuração; desfazer também. Publicar
+            nunca muda nada sozinho.
+          </p>
+        </li>
+        <li class="passo sobe">
+          <h3>Entregar e sustentar</h3>
+          <p>
+            Ambiente de teste antes do ar, verificação depois de publicar, e
+            documentação que permite outra pessoa assumir. Você não fica
+            dependente da gente.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-    <li class="entrada">
-      <div class="trilho">
-        <span class="indice">06</span>
-        <time datetime="2026-09">set 2026</time>
-        <span class="rotulo">privacidade por desenho</span>
-      </div>
-      <div class="corpo">
-        <h2>Um mapa de calor que nao identifica ninguem, porque foi decidido assim antes da primeira linha.</h2>
+  <section class="trabalho" id="trabalho">
+    <div class="dentro">
+      <div class="cabeca sobe">
+        <p class="olho">Trabalho</p>
+        <h2>Problemas de verdade, com a decisão que os resolveu</h2>
         <p>
-          Em vez de contratar ferramenta, construi o coletor: ele registra
-          onde as pessoas clicam, por onde passam o mouse e ate onde rolam,
-          e desenha o calor por cima da pagina real do site.
-        </p>
-        <p>
-          Nao grava endereco de rede, nome, e-mail nem nada que identifique
-          uma pessoa. Isso nao sobrou do projeto, foi a primeira decisao
-          dele. O navegador do visitante tambem nunca fala com o servico de
-          armazenamento: tudo passa pelo servidor, que valida formato,
-          tamanho do lote e origem antes de repassar.
-        </p>
-        <p>
-          E enquanto a planilha do cliente nao estava conectada, o painel
-          funcionava com dados inventados, com aviso na tela e marcacao na
-          resposta da interface &mdash; para a cliente ver como ficaria sem
-          que ninguem confundisse demonstracao com medicao.
+          Nomes de cliente ficam de fora por sigilo. O problema e a solução,
+          não.
         </p>
       </div>
-    </li>
 
-    <li class="entrada">
-      <div class="trilho">
-        <span class="indice">07</span>
-        <time datetime="2026">2026</time>
-        <span class="rotulo">tres clientes, tres linguagens</span>
+      <ul class="grade-casos">
+        <li class="caso sobe">
+          <span class="tag">E-commerce em setor regulado</span>
+          <h3>Um catálogo diferente para cada cliente, decidido por documento médico</h3>
+          <p>
+            Numa loja comum qualquer pessoa compra qualquer produto. Nesta, o que
+            cada cliente pode comprar depende da receita dele, e vender errado
+            custa a licença da operação. <b>Toda trava roda no servidor e roda
+            duas vezes</b>: ao fechar o carrinho e de novo no pagamento. O preço
+            nunca vem do navegador, e o valor do pedido é reconstruído item por
+            item.
+          </p>
+          <div class="marcas">
+            <div><b>163</b><span>módulos</span></div>
+            <div><b>25</b><span>tabelas</span></div>
+            <div><b>0</b><span>venda indevida</span></div>
+          </div>
+        </li>
+
+        <li class="caso sobe">
+          <span class="tag">Segurança</span>
+          <h3>Três portas abertas numa base de clientes que já estava usando o sistema</h3>
+          <p>
+            A autenticação aceitava o CPF como senha, o backend era chamado
+            direto do navegador com a chave à vista, e o atendimento entrava na
+            conta do cliente passando a senha dele na URL.
+            <b>Trocar os três sem derrubar ninguém foi o trabalho de verdade.</b>
+            Hoje o acesso de suporte é um código de uso único, válido por dois
+            minutos, com alerta de auditoria a cada uso.
+          </p>
+          <div class="marcas">
+            <div><b>3</b><span>brechas fechadas</span></div>
+            <div><b>120s</b><span>validade do acesso</span></div>
+            <div><b>0</b><span>cliente trancado fora</span></div>
+          </div>
+        </li>
+
+        <li class="caso sobe">
+          <span class="tag">Refatoração em produção</span>
+          <h3>Um arquivo de 3.914 linhas virou 163 módulos, com a loja vendendo</h3>
+          <p>
+            Reescrever do zero é quase sempre a resposta errada quando tem
+            faturamento passando pelo código. A separação foi feita movendo
+            código <b>sem alterar comportamento</b>, aos poucos, com fronteira
+            dura entre regra de negócio e serviço externo — e com mais de mil e
+            duzentos testes cobrindo a travessia.
+          </p>
+          <div class="marcas">
+            <div><b data-conta="1200" data-sufixo="+">0</b><span>testes</span></div>
+            <div><b>0</b><span>parada programada</span></div>
+          </div>
+        </li>
+
+        <li class="caso sobe">
+          <span class="tag">Duas marcas, uma base</span>
+          <h3>Duas empresas no mesmo sistema, sem manter dois sistemas</h3>
+          <p>
+            Catálogo, funil, cores, tipografia e CRM próprios para cada marca,
+            separadas pelo domínio. A segunda loja não é mantida à mão: ela é
+            <b>gerada</b> a partir da primeira, e o teste reclama se alguém
+            esquecer de regerar.
+          </p>
+          <div class="marcas">
+            <div><b>2</b><span>marcas</span></div>
+            <div><b>1</b><span>base de código</span></div>
+            <div><b>1</b><span>publicação</span></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="convite escuro sobe">
+        <p>O seu caso provavelmente tem alguma coisa dos quatro acima.</p>
+        <a class="botao botao-laranja" href="#contato">Conta o seu problema</a>
       </div>
-      <div class="corpo">
-        <h2>Respeitar manual de marca ao ponto de versionar as palavras proibidas.</h2>
-        <p>
-          Para uma imobiliaria internacional, uma pagina unica e estatica,
-          construida a partir do manual de identidade da cliente. O manual
-          nao virou inspiracao: virou regra escrita no codigo, com o motivo
-          ao lado.
-        </p>
-        <ul class="decisoes">
-          <li>A cor de destaque nunca em area grande nem em texto de leitura. Sobre o fundo claro ela nao passa no contraste minimo de acessibilidade, entao ali o rotulo troca de cor.</li>
-          <li>Linha de leitura limitada a 68 caracteres. Numeros tabulares, para alinharem em coluna.</li>
-          <li>Uma lista de palavras que o manual proibe, e que nao aparecem em lugar nenhum do site.</li>
-        </ul>
-        <p>
-          Para uma construtora, um site por empreendimento, com documento de
-          lancamento e selo de programa habitacional. Tres clientes de setores
-          que nao conversam, cada um com uma linguagem visual propria, e
-          nenhum parecido com os outros.
-        </p>
+    </div>
+  </section>
+
+  <section class="fecho" id="contato">
+    <div class="dentro">
+      <h2 class="sobe">Tem um sistema que trava a sua operação?</h2>
+      <p class="sobe">
+        Conta o que está acontecendo. A gente responde dizendo se é problema
+        para a gente ou não — e, quando não é, aponta para quem resolve.
+      </p>
+      <!-- O destino deste botão fica para quando ela passar o canal de contato.
+           Nenhum endereço inventado entra aqui. -->
+      <div class="acoes sobe">
+        <a class="botao botao-laranja" href="#contato">Começar uma conversa</a>
+        <a class="botao botao-claro" href="#servicos">Ver os serviços</a>
       </div>
-    </li>
+    </div>
+  </section>
 
-  </ol>
+</main>
 
-  <footer class="rodape">
-    <span>ereio</span>
-    <span>2026</span>
-  </footer>
-
-</div>
+<footer class="rodape">
+  <div class="dentro">
+    <p class="enorme">ereio<span class="pt">.</span><span class="co">co</span></p>
+    <span class="assinatura">2026</span>
+  </div>
+</footer>
 
 <script>
 (function () {
   'use strict';
 
-  var corpo = document.body;
-  corpo.classList.remove('sem-js');
+  document.body.classList.remove('sem-js');
 
-  var entradas = document.querySelectorAll('.entrada');
-
-  // Sem IntersectionObserver, ou com movimento reduzido, tudo ja chega
-  // visivel: a animacao e um acabamento, nunca a condicao de ler a pagina.
   var reduzido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var alvos = document.querySelectorAll('.sobe');
+  var i;
 
-  if (reduzido || typeof IntersectionObserver !== 'function') {
-    for (var i = 0; i < entradas.length; i++) entradas[i].classList.add('vista');
-    return;
+  function contar(el) {
+    var destino = parseInt(el.getAttribute('data-conta'), 10);
+    var sufixo = el.getAttribute('data-sufixo') || '';
+    if (!destino) return;
+    if (reduzido) { el.textContent = destino.toLocaleString('pt-BR') + sufixo; return; }
+
+    var inicio = null;
+    var duracao = 1100;
+    function passo(agora) {
+      if (inicio === null) inicio = agora;
+      var t = Math.min((agora - inicio) / duracao, 1);
+      // desacelera no fim: o número assenta em vez de parar seco
+      var e = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(destino * e).toLocaleString('pt-BR') + (t === 1 ? sufixo : '');
+      if (t < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
   }
 
-  var observador = new IntersectionObserver(function (registros) {
-    for (var i = 0; i < registros.length; i++) {
-      if (!registros[i].isIntersecting) continue;
-      registros[i].target.classList.add('vista');
-      observador.unobserve(registros[i].target);
-    }
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  function revelar(el) {
+    el.classList.add('vista');
+    var n = el.matches('[data-conta]') ? [el] : el.querySelectorAll('[data-conta]');
+    for (var k = 0; k < n.length; k++) contar(n[k]);
+  }
 
-  for (var j = 0; j < entradas.length; j++) observador.observe(entradas[j]);
+  // Sem observador, ou com movimento reduzido, tudo já chega visível:
+  // a animação é acabamento, nunca condição de ler a página.
+  if (reduzido || typeof IntersectionObserver !== 'function') {
+    for (i = 0; i < alvos.length; i++) revelar(alvos[i]);
+  } else {
+    var observador = new IntersectionObserver(function (registros) {
+      for (var j = 0; j < registros.length; j++) {
+        if (!registros[j].isIntersecting) continue;
+        revelar(registros[j].target);
+        observador.unobserve(registros[j].target);
+      }
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+
+    for (i = 0; i < alvos.length; i++) observador.observe(alvos[i]);
+
+    // a abertura não espera rolagem: ela já está na tela
+    var naAbertura = document.querySelectorAll('.abertura .sobe');
+    for (i = 0; i < naAbertura.length; i++) {
+      (function (el, atraso) {
+        setTimeout(function () { revelar(el); observador.unobserve(el); }, atraso);
+      })(naAbertura[i], 80 + i * 120);
+    }
+  }
+
+  // o cabeçalho ganha borda quando sai do topo, para descolar do conteúdo
+  var topo = document.getElementById('topo');
+  var preso = false;
+  function conferirTopo() {
+    var deve = window.scrollY > 8;
+    if (deve === preso) return;
+    preso = deve;
+    topo.classList.toggle('preso', deve);
+  }
+  conferirTopo();
+  window.addEventListener('scroll', conferirTopo, { passive: true });
 })();
 </script>
 
