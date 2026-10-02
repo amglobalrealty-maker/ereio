@@ -204,8 +204,9 @@
       }
     }
 
-    // o primeiro fica aberto; os outros fecham agora, e não no HTML
-    Array.prototype.forEach.call(itens, function (item, i) { definir(item, i === 0); });
+    // todos nascem fechados (pedido dela): só abre o que a pessoa clicar.
+    // Fecham aqui, e não no HTML, para sem script continuarem abertos.
+    Array.prototype.forEach.call(itens, function (item) { definir(item, false); });
 
     lista.addEventListener('click', function (ev) {
       var cabeca = ev.target.closest ? ev.target.closest('.item-cabeca') : null;
@@ -318,15 +319,15 @@
       });
     }
 
-    // a primeira nasce aberta; as outras fecham aqui, pelo mesmo motivo
-    // dos trabalhos. Se o endereço traz a âncora de uma frente
-    // (trabalhos.html#g-logos, vindo do rodapé), essa é a que abre.
+    // todas nascem fechadas (pedido dela): a página abre com as quatro
+    // linhas e nada mais. A única exceção é o endereço trazer a âncora de
+    // uma frente (trabalhos.html#g-logos, vindo do rodapé): essa abre.
     function frentePeloEndereco() {
       var alvo = null;
       try { alvo = location.hash.length > 1 ? document.querySelector(location.hash) : null; } catch (e) { alvo = null; }
       return alvo && alvo.closest ? alvo.closest('.grupo') : null;
     }
-    var inicial = frentePeloEndereco() || frentes[0];
+    var inicial = frentePeloEndereco();
     Array.prototype.forEach.call(frentes, function (g) { definirFrente(g, g === inicial); });
 
     window.addEventListener('hashchange', function () {
