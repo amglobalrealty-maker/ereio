@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trabalhos — ereio.co</title>
+<meta name="description" content="Sites, lojas e sistemas no ar: o problema de cada cliente e a decisão que o resolveu.">
+<meta name="theme-color" content="#08080F">
+<link rel="icon" type="image/png" href="icone-ereio.png">
+<link rel="apple-touch-icon" href="icone-ereio.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="estilo.css">
+<noscript>
+  <!-- Sem JavaScript a lista não abre, então ela já nasce toda aberta e o
+       sinal de mais some. O conteúdo nunca fica preso atrás do script. -->
+  <style>
+    .detalhe { grid-template-rows: 1fr !important; }
+    .item-mais { display: none !important; }
+    .item-cabeca { cursor: default; }
+  </style>
+</noscript>
+</head>
+<body class="sem-js">
+
+<!-- Os desenhos dos ícones, definidos UMA vez e reaproveitados por <use>.
+     Sem isto o mesmo caminho SVG apareceria oito vezes por página. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-instagram" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.05 1.8.25 2.2.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.4.37 1 .42 2.2.07 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.05 1.2-.25 1.8-.42 2.2a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.4.17-1 .37-2.2.42-1.2.07-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.05-1.8-.25-2.2-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.05-1.2.25-1.8.42-2.2.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.02-4.73.09-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.07 1.23-.09 1.59-.09 4.73s.02 3.5.09 4.73c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.23.07 1.59.09 4.73.09s3.5-.02 4.73-.09c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.07-1.23.09-1.59.09-4.73s-.02-3.5-.09-4.73c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.02 15.14 4 12 4zm0 3.06a4.94 4.94 0 1 1 0 9.88 4.94 4.94 0 0 1 0-9.88zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zm5.14-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zm6.5 0h3.8v1.7h.05c.53-.95 1.82-1.95 3.75-1.95 4 0 4.75 2.5 4.75 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.36-1.4a9.8 9.8 0 0 0 4.58 1.16c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.77 9.77 0 0 0 12.04 2zm0 1.8c2.15 0 4.17.84 5.69 2.36a7.99 7.99 0 0 1 2.36 5.69c0 4.44-3.61 8.04-8.05 8.04a8.1 8.1 0 0 1-4.1-1.12l-.3-.17-3.05.8.81-2.98-.19-.31a8 8 0 0 1-1.23-4.27c0-4.44 3.61-8.04 8.06-8.04zm-3.1 4.3c-.15 0-.4.06-.6.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.36c.11.15 1.6 2.44 3.88 3.42.54.23.97.37 1.3.48.55.17 1.05.15 1.44.09.44-.07 1.35-.55 1.54-1.09.19-.54.19-1 .13-1.1-.05-.1-.2-.15-.42-.26-.22-.11-1.35-.66-1.56-.74-.21-.08-.36-.11-.5.11-.16.22-.59.74-.72.89-.13.15-.26.17-.49.06-.22-.11-.94-.35-1.8-1.11a6.7 6.7 0 0 1-1.24-1.54c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.14-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.42z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+</svg>
+
+<!-- O CABEÇALHO: o mesmo da home. Barra fixa no topo, transparente sobre
+     a abertura escura; ao rolar ganha fundo, desfoque e linha (classe
+     "preso", posta pelo script). Em tela estreita os links e as redes vão
+     para a gaveta, aberta pelo gatilho de três pontos. -->
+<header class="topo" id="topo">
+  <div class="topo-dentro">
+    <a class="marca" href="index.html" aria-label="ereio.co, início">
+      <img src="logo-ereio-claro.png" alt="ereio.co" width="720" height="237">
+    </a>
+    <nav class="navega" aria-label="Navegação principal">
+      <ul class="links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#servicos">Serviços</a></li>
+        <li><a href="trabalhos.html" aria-current="page">Trabalhos</a></li>
+        <li><a href="index.html#processo">Processo</a></li>
+      </ul>
+      <span class="filete" aria-hidden="true"></span>
+      <!-- ATENÇÃO: os endereços das redes estão como "#" porque ela ainda não
+           passou os perfis. O teste marca cada um como pendente e lista todos,
+           para nenhum ir ao ar morto. -->
+      <ul class="redes">
+        <li><a href="#" data-pendente="instagram" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+        <li><a href="#" data-pendente="linkedin" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+        <li><a href="#" data-pendente="whatsapp" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a></li>
+        <li><a href="#" data-pendente="github" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a></li>
+      </ul>
+    </nav>
+    <a class="botao botao-laranja topo-falar" href="index.html#contato">Falar</a>
+    <button class="gatilho" type="button" data-gatilho aria-expanded="false" aria-controls="menu">
+      Menu
+      <span class="gatilho-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<!-- a prévia que segue o cursor quando o mouse passa num nome da lista -->
+<div class="previa" data-previa aria-hidden="true">
+  <img src="hz-tela-1.webp" alt="" width="1280" height="800">
+</div>
+
+<div class="veu" data-veu hidden></div>
+
+<aside class="painel" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="painel-dentro">
+    <p class="olho">Navegação</p>
+    <ul class="painel-links">
+      <li><a href="index.html"><span class="n">01</span><span class="t">Início</span></a></li>
+      <li><a href="index.html#servicos"><span class="n">02</span><span class="t">Serviços</span></a></li>
+      <li><a href="trabalhos.html" aria-current="page"><span class="n">03</span><span class="t">Trabalhos</span></a></li>
+      <li><a href="index.html#processo"><span class="n">04</span><span class="t">Como trabalhamos</span></a></li>
+    </ul>
+    <div class="painel-pe">
+      <p class="dito">Sites, UX e UI sem template e sem plugin</p>
+      <a class="botao botao-laranja" href="index.html#contato">Falar com a gente</a>
+      <ul class="redes">
+        <li><a href="#" data-pendente="instagram" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+        <li><a href="#" data-pendente="linkedin" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+        <li><a href="#" data-pendente="whatsapp" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a></li>
+        <li><a href="#" data-pendente="github" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<main id="inicio">
+
+  <section class="abertura abertura-curta escuro">
+    <img class="simbolo" src="icone-ereio.png" alt="" aria-hidden="true" width="512" height="512">
+    <div class="dentro">
+      <p class="olho sobe">Trabalhos</p>
+      <h1 class="sobe">Clique no nome e o trabalho abre<span class="ponto" aria-hidden="true"></span></h1>
+      <p class="chamada sobe">
+        As telas de cada site ficam num carrossel, e o sobre fica ao lado.
+        Alguns clientes autorizam aparecer e você pode entrar no site agora;
+        outros não, e aí fica o problema e a solução, sem o nome.
+        <b>Nada aqui é exercício: tudo está no ar, com gente usando.</b>
+      </p>
+    </div>
+  </section>
+
+  <section class="secao claro">
+    <div class="dentro">
+
+      <div class="cabeca sobe">
+        <p class="olho">Um por um</p>
+        <h2>Treze trabalhos, do site institucional ao sistema que sustenta a venda</h2>
+      </div>
+
+      <ol class="itens" data-lista-trabalhos>
+
+        <li class="item sobe" data-previa="hz-tela-1.webp">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="true" aria-controls="t1">
+              <span class="item-num">01</span>
+              <span class="item-nome">Houzze Imobiliária</span>
+              <span class="item-tag">Site de imobiliária</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t1" role="region" aria-label="Houzze Imobiliária">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-fotos">
+
+                  <div class="vitrine" data-carrossel="houzze">
+                    <div class="palco">
+                      <div class="telas">
+                        <button class="tela" type="button" data-rotulo="Início">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">houzzeimobiliaria.com</span></span>
+                          <img src="hz-tela-1.webp" alt="Tela inicial do site da Houzze Imobiliária, com busca de imóveis sobre fotografia de interior" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Imóveis">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">houzzeimobiliaria.com/imoveis</span></span>
+                          <img src="hz-tela-2.webp" alt="Página de listagem de imóveis" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Sobre">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">houzzeimobiliaria.com/sobre</span></span>
+                          <img src="hz-tela-3.webp" alt="Página sobre a imobiliária" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Simulação">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">houzzeimobiliaria.com/simulacao</span></span>
+                          <img src="hz-tela-4.webp" alt="Página de simulação de financiamento" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Trabalhe conosco">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">houzzeimobiliaria.com/trabalhe</span></span>
+                          <img src="hz-tela-5.webp" alt="Página de trabalhe conosco" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Contato">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">houzzeimobiliaria.com/contato</span></span>
+                          <img src="hz-tela-6.webp" alt="Página de contato" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="palco-pe">
+                      <p class="legenda"><span class="contagem" data-contagem>1 / 6</span><span data-legenda>Início</span></p>
+                      <div class="controles">
+                        <div class="pontos">
+                          <button type="button" data-ponto="0" aria-label="Ir para a tela 1"></button>
+                          <button type="button" data-ponto="1" aria-label="Ir para a tela 2"></button>
+                          <button type="button" data-ponto="2" aria-label="Ir para a tela 3"></button>
+                          <button type="button" data-ponto="3" aria-label="Ir para a tela 4"></button>
+                          <button type="button" data-ponto="4" aria-label="Ir para a tela 5"></button>
+                          <button type="button" data-ponto="5" aria-label="Ir para a tela 6"></button>
+                        </div>
+                        <button class="seta" type="button" data-seta="esq" aria-label="Tela anterior">&larr;</button>
+                        <button class="seta" type="button" data-seta="dir" aria-label="Próxima tela">&rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Site de imobiliária com busca por localização e objetivo,
+                      listagem de imóveis, simulação de financiamento e trabalhe
+                      conosco.
+                    </p>
+                    <p>
+                      <b>Seis páginas, três famílias tipográficas e nenhuma
+                      biblioteca de terceiro.</b> O site carrega dois arquivos de
+                      script, e os dois são nossos — um deles é o próprio mapa de
+                      calor, instalado ali para a cliente saber o que acontece
+                      nas páginas dela.
+                    </p>
+                    <p class="olho">O que usamos</p>
+                    <ul class="pilha">
+                      <li>HTML, CSS e <b>JavaScript à mão</b></li>
+                      <li><b>Zero</b> biblioteca de terceiro</li>
+                      <li><b>Syne + Hanken Grotesk + Instrument Serif</b></li>
+                      <li>Mapa de calor <b>próprio</b></li>
+                      <li><b>Sem</b> etapa de build</li>
+                      <li><b>6</b> páginas</li>
+                    </ul>
+                    <a class="ir" href="https://houzzeimobiliaria.com/" target="_blank" rel="noopener">
+                      Abrir o site <span class="seta-ir" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="dpr-tela-1.webp">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t2">
+              <span class="item-num">02</span>
+              <span class="item-nome">DPR Construtora</span>
+              <span class="item-tag">Site institucional</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t2" role="region" aria-label="DPR Construtora">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-fotos">
+
+                  <div class="vitrine" data-carrossel="dpr">
+                    <div class="palco">
+                      <div class="telas">
+                        <button class="tela" type="button" data-rotulo="Início">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">construtoradpr.com.br</span></span>
+                          <img src="dpr-tela-1.webp" alt="Tela inicial do site da DPR, com a frase Casa própria sobre o vídeo da obra" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Empreendimentos">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">construtoradpr.com.br/empreendimento</span></span>
+                          <img src="dpr-tela-2.webp" alt="Página de empreendimentos, com o índice numerado dos cinco projetos" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Villagio Caucaia II">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">construtoradpr.com.br/caucaia2</span></span>
+                          <img src="dpr-tela-3.webp" alt="Página do empreendimento Villagio Caucaia II" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Lotes Itatinga">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">construtoradpr.com.br/lotes</span></span>
+                          <img src="dpr-tela-4.webp" alt="Página do loteamento Itatinga" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Conceito">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">construtoradpr.com.br/conceito</span></span>
+                          <img src="dpr-tela-5.webp" alt="Página de conceito da construtora" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Contato">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">construtoradpr.com.br/contato</span></span>
+                          <img src="dpr-tela-6.webp" alt="Página de contato, com formulário e canais de atendimento" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="palco-pe">
+                      <p class="legenda"><span class="contagem" data-contagem>1 / 6</span><span data-legenda>Início</span></p>
+                      <div class="controles">
+                        <div class="pontos">
+                          <button type="button" data-ponto="0" aria-label="Ir para a tela 1"></button>
+                          <button type="button" data-ponto="1" aria-label="Ir para a tela 2"></button>
+                          <button type="button" data-ponto="2" aria-label="Ir para a tela 3"></button>
+                          <button type="button" data-ponto="3" aria-label="Ir para a tela 4"></button>
+                          <button type="button" data-ponto="4" aria-label="Ir para a tela 5"></button>
+                          <button type="button" data-ponto="5" aria-label="Ir para a tela 6"></button>
+                        </div>
+                        <button class="seta" type="button" data-seta="esq" aria-label="Tela anterior">&larr;</button>
+                        <button class="seta" type="button" data-seta="dir" aria-label="Próxima tela">&rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Site institucional de construtora, com uma página dedicada
+                      a cada empreendimento, o programa habitacional explicado
+                      numa página própria (no lugar de um PDF de 4 MB) e selo
+                      do programa no destaque.
+                    </p>
+                    <p>
+                      <b>Estático, sem etapa de compilação e sem plugin.</b> É o
+                      que faz a página abrir rápido no celular de quem está
+                      procurando imóvel, e o que impede o site de quebrar sozinho
+                      quando um complemento de terceiro se atualiza.
+                    </p>
+                    <p class="olho">O que usamos</p>
+                    <ul class="pilha">
+                      <li>HTML, CSS e <b>JavaScript à mão</b></li>
+                      <li><b>Zero</b> biblioteca de terceiro</li>
+                      <li><b>Syncopate + Archivo</b></li>
+                      <li>Imagem em <b>formato automático</b></li>
+                      <li><b>Sem</b> etapa de build</li>
+                      <li><b>11</b> páginas</li>
+                    </ul>
+                    <a class="ir" href="https://www.construtoradpr.com.br/" target="_blank" rel="noopener">
+                      Abrir o site <span class="seta-ir" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="an-tela-1.webp">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t3">
+              <span class="item-num">03</span>
+              <span class="item-nome">ANOVA</span>
+              <span class="item-tag">Site institucional</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t3" role="region" aria-label="ANOVA">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-fotos">
+
+                  <div class="vitrine" data-carrossel="anova">
+                    <div class="palco">
+                      <div class="telas">
+                        <button class="tela" type="button" data-rotulo="Início">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">anovacannabis.org.br</span></span>
+                          <img src="an-tela-1.webp" alt="Tela inicial do site da ANOVA, com a frase Cuidado que acolhe, ciência que orienta, sobre foto de um conta-gotas" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Quem somos">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">anovacannabis.org.br/quem-somos</span></span>
+                          <img src="an-tela-2.webp" alt="Página Quem somos da ANOVA, com o título Acolhimento que aproxima" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Conteúdo">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">anovacannabis.org.br/conteudo</span></span>
+                          <img src="an-tela-3.webp" alt="Página de conteúdo educativo da ANOVA" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Faça parte">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">anovacannabis.org.br/faca-parte-da-anova</span></span>
+                          <img src="an-tela-4.webp" alt="Página para se associar à ANOVA" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="palco-pe">
+                      <p class="legenda"><span class="contagem" data-contagem>1 / 4</span><span data-legenda>Início</span></p>
+                      <div class="controles">
+                        <div class="pontos">
+                          <button type="button" data-ponto="0" aria-label="Ir para a tela 1"></button>
+                          <button type="button" data-ponto="1" aria-label="Ir para a tela 2"></button>
+                          <button type="button" data-ponto="2" aria-label="Ir para a tela 3"></button>
+                          <button type="button" data-ponto="3" aria-label="Ir para a tela 4"></button>
+                        </div>
+                        <button class="seta" type="button" data-seta="esq" aria-label="Tela anterior">&larr;</button>
+                        <button class="seta" type="button" data-seta="dir" aria-label="Próxima tela">&rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Associação sem fins lucrativos de orientação sobre cannabis
+                      medicinal. Site institucional com quem somos, conteúdo
+                      educativo, blog e a página para se associar.
+                    </p>
+                    <p>
+                      <b>Vinte e nove quilobytes de HTML e um script próprio</b>;
+                      o resto que a página carrega é medição de campanha. Playfair
+                      Display nos títulos, o verde e o areia da identidade da
+                      associação, e nenhum gerenciador de conteúdo por trás: o que
+                      o visitante baixa é só a página.
+                    </p>
+                    <p class="olho">O que usamos</p>
+                    <ul class="pilha">
+                      <li>HTML, CSS e <b>JavaScript à mão</b></li>
+                      <li><b>1</b> script próprio</li>
+                      <li><b>Playfair Display</b></li>
+                      <li><b>29 KB</b> de HTML na home</li>
+                      <li><b>Sem</b> etapa de build</li>
+                      <li><b>6</b> páginas</li>
+                    </ul>
+                    <a class="ir" href="https://anovacannabis.org.br/" target="_blank" rel="noopener">
+                      Abrir o site <span class="seta-ir" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="km-tela-1.webp">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t4">
+              <span class="item-num">04</span>
+              <span class="item-nome">Karmani</span>
+              <span class="item-tag">Loja de moda</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t4" role="region" aria-label="Karmani">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-fotos">
+
+                  <div class="vitrine" data-carrossel="karmani">
+                    <div class="palco">
+                      <div class="telas">
+                        <button class="tela" type="button" data-rotulo="Catálogo">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">karmani.com.br/karmani</span></span>
+                          <img src="km-tela-1.webp" alt="Catálogo da Karmani, com filtro de categorias à esquerda e grade de produtos" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Produto: vestido">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">karmani.com.br/karmani/produto/vestido-viscose-com-faixa</span></span>
+                          <img src="km-tela-2.webp" alt="Página de produto de um vestido em três cores, com composição do tecido" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Produto: blusa">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">karmani.com.br/karmani/produto/blusa-ombro-a-ombro</span></span>
+                          <img src="km-tela-3.webp" alt="Página de produto de uma blusa ombro a ombro" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Produto: calça">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">karmani.com.br/karmani/produto/calca-alfaiataria</span></span>
+                          <img src="km-tela-4.webp" alt="Página de produto de uma calça de alfaiataria" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="palco-pe">
+                      <p class="legenda"><span class="contagem" data-contagem>1 / 4</span><span data-legenda>Catálogo</span></p>
+                      <div class="controles">
+                        <div class="pontos">
+                          <button type="button" data-ponto="0" aria-label="Ir para a tela 1"></button>
+                          <button type="button" data-ponto="1" aria-label="Ir para a tela 2"></button>
+                          <button type="button" data-ponto="2" aria-label="Ir para a tela 3"></button>
+                          <button type="button" data-ponto="3" aria-label="Ir para a tela 4"></button>
+                        </div>
+                        <button class="seta" type="button" data-seta="esq" aria-label="Tela anterior">&larr;</button>
+                        <button class="seta" type="button" data-seta="dir" aria-label="Próxima tela">&rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Catálogo de moda feminina com busca, filtro por mais de
+                      vinte categorias e página de produto com variações de cor e
+                      composição do tecido. O preço aparece para quem entra na
+                      conta.
+                    </p>
+                    <p>
+                      <b>Roda numa plataforma de e-commerce em Next.js</b>, com a
+                      marca no domínio próprio. Nem todo projeto começa do zero:
+                      aqui o trabalho acontece dentro da plataforma, com o
+                      catálogo, as fotos e as fichas da marca.
+                    </p>
+                    <p class="olho">Em que roda</p>
+                    <ul class="pilha">
+                      <li>Plataforma de e-commerce em <b>Next.js</b></li>
+                      <li><b>20+</b> categorias</li>
+                      <li>Preço <b>mediante cadastro</b></li>
+                      <li>Fichas com <b>composição</b></li>
+                      <li><b>Domínio</b> próprio</li>
+                    </ul>
+                    <a class="ir" href="https://www.karmani.com.br/karmani/" target="_blank" rel="noopener">
+                      Abrir o site <span class="seta-ir" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="fd-tela-1.webp">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t5">
+              <span class="item-num">05</span>
+              <span class="item-nome">Fidelity Translations</span>
+              <span class="item-tag">Site institucional</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t5" role="region" aria-label="Fidelity Translations">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-fotos">
+
+                  <div class="vitrine" data-carrossel="fidelity">
+                    <div class="palco">
+                      <div class="telas">
+                        <button class="tela" type="button" data-rotulo="Início">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">fidelity.com.br</span></span>
+                          <img src="fd-tela-1.webp" alt="Tela inicial do site da Fidelity, com a frase Desde 1970 traduzindo eficiência" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Quem somos">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">fidelity.com.br/quem-somos</span></span>
+                          <img src="fd-tela-2.webp" alt="Página Quem somos da Fidelity" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Tradução juramentada">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">fidelity.com.br/traducao-juramentada</span></span>
+                          <img src="fd-tela-3.webp" alt="Página do serviço de tradução juramentada" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Contato">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">fidelity.com.br/contato</span></span>
+                          <img src="fd-tela-4.webp" alt="Página de contato da Fidelity" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="palco-pe">
+                      <p class="legenda"><span class="contagem" data-contagem>1 / 4</span><span data-legenda>Início</span></p>
+                      <div class="controles">
+                        <div class="pontos">
+                          <button type="button" data-ponto="0" aria-label="Ir para a tela 1"></button>
+                          <button type="button" data-ponto="1" aria-label="Ir para a tela 2"></button>
+                          <button type="button" data-ponto="2" aria-label="Ir para a tela 3"></button>
+                          <button type="button" data-ponto="3" aria-label="Ir para a tela 4"></button>
+                        </div>
+                        <button class="seta" type="button" data-seta="esq" aria-label="Tela anterior">&larr;</button>
+                        <button class="seta" type="button" data-seta="dir" aria-label="Próxima tela">&rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Empresa de tradução desde 1970: juramentada, técnica, livre
+                      e versão, com uma página por serviço, compliance, blog e
+                      pedido de orçamento, em português, inglês e espanhol.
+                    </p>
+                    <p>
+                      <b>Roda em WordPress com Elementor, a base que a empresa já
+                      usava</b>, com os formulários ligados ao RD Station. Quando o
+                      cliente tem uma operação inteira em cima da ferramenta, o
+                      trabalho é fazer o site render dentro dela, não trocar o que
+                      funciona.
+                    </p>
+                    <p class="olho">Em que roda</p>
+                    <ul class="pilha">
+                      <li><b>WordPress</b> + Elementor</li>
+                      <li>Formulários no <b>RD Station</b></li>
+                      <li><b>3</b> idiomas</li>
+                      <li>Uma página <b>por serviço</b></li>
+                      <li><b>Blog</b></li>
+                    </ul>
+                    <a class="ir" href="https://www.fidelity.com.br/" target="_blank" rel="noopener">
+                      Abrir o site <span class="seta-ir" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="pm-tela-1.webp">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t6">
+              <span class="item-num">06</span>
+              <span class="item-nome">Primeiro Minuto</span>
+              <span class="item-tag">Site de fotografia</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t6" role="region" aria-label="Primeiro Minuto">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-fotos">
+
+                  <div class="vitrine" data-carrossel="primeirominuto">
+                    <div class="palco">
+                      <div class="telas">
+                        <button class="tela" type="button" data-rotulo="Início">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">primeirominutofotografia.com.br</span></span>
+                          <img src="pm-tela-1.webp" alt="Tela inicial do site da Primeiro Minuto, com os pés de um bebê em preto e branco" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Portfólio">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">primeirominutofotografia.com.br/portfolio</span></span>
+                          <img src="pm-tela-2.webp" alt="Portfólio em categorias, de chá revelação a festa" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Serviços">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">primeirominutofotografia.com.br/servicos</span></span>
+                          <img src="pm-tela-3.webp" alt="Página de serviços de fotografia" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Sobre">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">primeirominutofotografia.com.br/sobre</span></span>
+                          <img src="pm-tela-4.webp" alt="Página sobre a fotógrafa e o estúdio" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="palco-pe">
+                      <p class="legenda"><span class="contagem" data-contagem>1 / 4</span><span data-legenda>Início</span></p>
+                      <div class="controles">
+                        <div class="pontos">
+                          <button type="button" data-ponto="0" aria-label="Ir para a tela 1"></button>
+                          <button type="button" data-ponto="1" aria-label="Ir para a tela 2"></button>
+                          <button type="button" data-ponto="2" aria-label="Ir para a tela 3"></button>
+                          <button type="button" data-ponto="3" aria-label="Ir para a tela 4"></button>
+                        </div>
+                        <button class="seta" type="button" data-seta="esq" aria-label="Tela anterior">&larr;</button>
+                        <button class="seta" type="button" data-seta="dir" aria-label="Próxima tela">&rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Fotografia de gestante, parto e recém-nascido em Santos e
+                      São Paulo: portfólio por tipo de ensaio, serviços, blog,
+                      loja e cursos.
+                    </p>
+                    <p>
+                      <b>Roda na Alboom Pro, plataforma feita para fotógrafos</b>,
+                      com a galeria em sete categorias, de chá revelação a festa.
+                      Um site de fotografia tem que vender sem roubar a cena das
+                      fotos: fundo branco, e o rosa da marca só nos botões e nos
+                      títulos.
+                    </p>
+                    <p class="olho">Em que roda</p>
+                    <ul class="pilha">
+                      <li>Plataforma <b>Alboom Pro</b></li>
+                      <li>Portfólio em <b>7</b> categorias</li>
+                      <li><b>Loja</b> e cursos</li>
+                      <li><b>Blog</b></li>
+                      <li>Pedido de <b>orçamento</b></li>
+                    </ul>
+                    <a class="ir" href="https://www.primeirominutofotografia.com.br/" target="_blank" rel="noopener">
+                      Abrir o site <span class="seta-ir" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="en-tela-1.webp">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t7">
+              <span class="item-num">07</span>
+              <span class="item-nome">Clínica Entourage</span>
+              <span class="item-tag">Site de clínica</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t7" role="region" aria-label="Clínica Entourage">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-fotos">
+
+                  <div class="vitrine" data-carrossel="entourage">
+                    <div class="palco">
+                      <div class="telas">
+                        <button class="tela" type="button" data-rotulo="Início">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">clinicaentourage.com</span></span>
+                          <img src="en-tela-1.webp" alt="Tela inicial do site da Clínica Entourage, com a frase Cannabis medicinal com acompanhamento médico responsável" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Quem somos">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">clinicaentourage.com/quem-somos.html</span></span>
+                          <img src="en-tela-2.webp" alt="Página Quem somos da clínica, com o título Ciência, acolhimento e responsabilidade" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Blog">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">clinicaentourage.com/blog.html</span></span>
+                          <img src="en-tela-3.webp" alt="Blog da clínica" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Jornada do paciente">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">clinicaentourage.com/#jornada</span></span>
+                          <img src="en-tela-4.webp" alt="Seção Jornada do paciente, na página inicial" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                        <button class="tela" type="button" data-rotulo="Especialidades">
+                          <span class="barra" aria-hidden="true"><i></i><i></i><i></i><span class="endereco">clinicaentourage.com/#especialidades</span></span>
+                          <img src="en-tela-5.webp" alt="Seção de especialidades, na página inicial" width="1280" height="800" loading="lazy" decoding="async">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="palco-pe">
+                      <p class="legenda"><span class="contagem" data-contagem>1 / 5</span><span data-legenda>Início</span></p>
+                      <div class="controles">
+                        <div class="pontos">
+                          <button type="button" data-ponto="0" aria-label="Ir para a tela 1"></button>
+                          <button type="button" data-ponto="1" aria-label="Ir para a tela 2"></button>
+                          <button type="button" data-ponto="2" aria-label="Ir para a tela 3"></button>
+                          <button type="button" data-ponto="3" aria-label="Ir para a tela 4"></button>
+                          <button type="button" data-ponto="4" aria-label="Ir para a tela 5"></button>
+                        </div>
+                        <button class="seta" type="button" data-seta="esq" aria-label="Tela anterior">&larr;</button>
+                        <button class="seta" type="button" data-seta="dir" aria-label="Próxima tela">&rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Clínica médica de cannabis medicinal: jornada do paciente,
+                      especialidades, quem somos, blog e agendamento direto pelo
+                      WhatsApp.
+                    </p>
+                    <p>
+                      <b>Quinze quilobytes de HTML e um script só.</b> Poppins, o
+                      verde da marca e páginas em HTML puro, sem gerenciador de
+                      conteúdo: abre rápido no celular e não tem o que quebrar
+                      sozinho.
+                    </p>
+                    <p class="olho">O que usamos</p>
+                    <ul class="pilha">
+                      <li>HTML, CSS e <b>JavaScript à mão</b></li>
+                      <li><b>1</b> script</li>
+                      <li><b>Poppins</b></li>
+                      <li><b>15 KB</b> de HTML na home</li>
+                      <li><b>Sem</b> etapa de build</li>
+                      <li>Agendamento pelo <b>WhatsApp</b></li>
+                    </ul>
+                    <a class="ir" href="https://clinicaentourage.com/" target="_blank" rel="noopener">
+                      Abrir o site <span class="seta-ir" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t8">
+              <span class="item-num">08</span>
+              <span class="item-nome">Loja em setor regulado</span>
+              <span class="item-tag">E-commerce</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t8" role="region" aria-label="Loja em setor regulado">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade">
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Numa loja comum qualquer pessoa compra qualquer produto.
+                      Nesta, o que cada cliente pode comprar depende do documento
+                      médico dele, e vender errado custa a licença da operação.
+                    </p>
+                    <p>
+                      <b>Toda trava roda no servidor, e roda duas vezes</b>: ao
+                      fechar o carrinho e de novo no pagamento. O preço nunca vem
+                      do navegador, o valor do pedido é reconstruído item por
+                      item, e a permissão é revalidada contra o estado de agora —
+                      não contra o retrato guardado na sessão.
+                    </p>
+                    <p class="olho">Em números</p>
+                    <ul class="pilha">
+                      <li><b>163</b> módulos de backend</li>
+                      <li><b>25</b> tabelas</li>
+                      <li><b>1.200+</b> casos de teste</li>
+                      <li>Integração com <b>CRM</b></li>
+                      <li>Dois meios de <b>pagamento</b></li>
+                      <li>Reserva de <b>estoque</b></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t9">
+              <span class="item-num">09</span>
+              <span class="item-nome">Três portas abertas numa base em uso</span>
+              <span class="item-tag">Segurança</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t9" role="region" aria-label="Três portas abertas numa base em uso">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade">
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      A autenticação aceitava o CPF como senha, o backend era
+                      chamado direto do navegador com a chave à vista, e o
+                      atendimento entrava na conta do cliente passando a senha
+                      dele na URL.
+                    </p>
+                    <p>
+                      <b>Trocar os três sem derrubar ninguém foi o trabalho de
+                      verdade</b>, porque a base de clientes já existia e estava
+                      usando o sistema. Hoje o acesso de suporte é um código de
+                      uso único, válido por dois minutos, com alerta de auditoria
+                      a cada uso.
+                    </p>
+                    <p class="olho">Em números</p>
+                    <ul class="pilha">
+                      <li><b>3</b> brechas fechadas</li>
+                      <li><b>120s</b> de validade do acesso</li>
+                      <li><b>0</b> cliente trancado fora</li>
+                      <li>Trilha <b>forense</b></li>
+                      <li>Conformidade <b>LGPD</b></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t10">
+              <span class="item-num">10</span>
+              <span class="item-nome">De um arquivo de 3.914 linhas a 163 módulos</span>
+              <span class="item-tag">Refatoração</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t10" role="region" aria-label="Refatoração em produção">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade">
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Reescrever do zero é quase sempre a resposta errada quando
+                      tem faturamento passando pelo código. A separação foi feita
+                      movendo código <b>sem alterar comportamento</b>, aos
+                      poucos, com fronteira dura entre regra de negócio e serviço
+                      externo.
+                    </p>
+                    <p>
+                      A loja continuou vendendo o tempo inteiro.
+                      <b>Nenhuma parada programada.</b>
+                    </p>
+                    <p class="olho">Em números</p>
+                    <ul class="pilha">
+                      <li><b>3.914</b> linhas, antes</li>
+                      <li><b>163</b> módulos, depois</li>
+                      <li><b>0</b> parada programada</li>
+                      <li>Teste a cada <b>envio de código</b></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t11">
+              <span class="item-num">11</span>
+              <span class="item-nome">Duas empresas no mesmo sistema</span>
+              <span class="item-tag">Multimarca</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t11" role="region" aria-label="Duas empresas no mesmo sistema">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade">
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Catálogo, funil, cores, tipografia e CRM próprios para cada
+                      marca, separadas pelo domínio. A segunda loja não é mantida
+                      à mão: ela é <b>gerada</b> a partir da primeira, e o teste
+                      reclama se alguém esquecer de regerar.
+                    </p>
+                    <p>
+                      Em outro ponto do mesmo sistema a resposta certa foi o
+                      oposto — <b>duplicar de propósito</b>, com o motivo e o
+                      sinal de quando desfazer escritos no arquivo. Não abstrair
+                      também é uma decisão.
+                    </p>
+                    <p class="olho">Em números</p>
+                    <ul class="pilha">
+                      <li><b>2</b> marcas</li>
+                      <li><b>1</b> base de código</li>
+                      <li><b>1</b> publicação</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t12">
+              <span class="item-num">12</span>
+              <span class="item-nome">Mapa de calor que não identifica ninguém</span>
+              <span class="item-tag">Medição</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t12" role="region" aria-label="Mapa de calor">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade">
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Em vez de contratar ferramenta, o coletor foi construído:
+                      registra onde as pessoas clicam, por onde passam o mouse e
+                      até onde rolam, e desenha o calor por cima da página real.
+                      Está rodando, entre outros, no site da Houzze aqui de cima.
+                    </p>
+                    <p>
+                      <b>Não guarda endereço de rede, nome, e-mail nem nada que
+                      identifique uma pessoa</b> — e isso foi a primeira decisão
+                      do projeto, não uma sobra. O navegador do visitante também
+                      nunca fala com o serviço de armazenamento: tudo passa pelo
+                      servidor.
+                    </p>
+                    <p class="olho">Em números</p>
+                    <ul class="pilha">
+                      <li><b>0</b> dado pessoal</li>
+                      <li><b>180</b> dias de retenção</li>
+                      <li>Painel <b>próprio</b></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe">
+          <h3>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t13">
+              <span class="item-num">13</span>
+              <span class="item-nome">Um acesso, quatro painéis</span>
+              <span class="item-tag">Software interno</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="detalhe" id="t13" role="region" aria-label="Software interno">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade">
+                  <div class="detalhe-sobre">
+                    <p class="olho">Sobre</p>
+                    <p>
+                      Atendimento, descontos, design e tecnologia sob um login
+                      só, com cada pessoa vendo apenas o que lhe cabe.
+                    </p>
+                    <p>
+                      Cada painel guarda o segredo no próprio servidor e repassa
+                      a chamada, de modo que <b>o navegador de quem atende nunca
+                      vê chave do sistema</b>. CPF aparece mascarado na tela, e
+                      cada acesso à conta de um cliente gera registro.
+                    </p>
+                    <p class="olho">Em números</p>
+                    <ul class="pilha">
+                      <li><b>4</b> painéis</li>
+                      <li><b>1</b> login</li>
+                      <li>Permissão <b>por pessoa</b></li>
+                      <li>Trilha de <b>auditoria</b></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ol>
+
+      <div class="convite sobe">
+        <p>Quer um site assim, com o endereço no ar em semanas e não em meses?</p>
+        <a class="botao botao-cheio" href="index.html#contato">Falar com a gente</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fecho">
+    <div class="dentro">
+      <h2 class="sobe">O seu projeto pode ser o próximo aqui</h2>
+      <p class="sobe">
+        Conta o que você vende e para quem. A gente responde dizendo se é
+        trabalho para a gente ou não.
+      </p>
+      <!-- O destino deste botão espera o canal de contato dela.
+           Nenhum endereço inventado entra aqui. -->
+      <div class="acoes sobe">
+        <a class="botao botao-laranja" href="index.html#contato">Começar uma conversa</a>
+        <a class="botao botao-claro" href="index.html#servicos">Ver os serviços</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="dentro">
+    <p class="enorme">ereio<span class="pt">.</span><span class="co">co</span></p>
+    <span class="assinatura">2026</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1773 @@
+/* =================================================================
+   ereio.co — estilo único das duas páginas
+
+   As cores vieram dos pixels do logo, não de estimativa:
+     violeta #5838D8   o símbolo
+     laranja #FF7C01   o ponto, e o ponto do .co
+     tinta   #101020   a palavra
+
+   A tinta é um quase-preto puxado para o violeta (matiz 240, mesma
+   família do símbolo). Todo preto e todo cinza da página herdam esse
+   desvio — é o que faz a paleta parecer uma coisa só, e não cores
+   soltas sobre um preto neutro qualquer.
+
+   CLARO E ESCURO ALTERNADOS. Cada seção declara as próprias cores em
+   tokens (--fundo, --texto, --cartao, --linha...) e TODO componente lê
+   desses tokens, nunca de uma cor fixa. Trocar uma seção de preta para
+   clara é mudar a classe dela: nenhum componente precisa saber.
+
+   Um arquivo só para as duas páginas, de propósito: estilo copiado
+   entre páginas diverge sem ninguém perceber.
+   ================================================================= */
+
+:root {
+  --preto:         #08080F;
+  --tinta:         #101020;
+  --tinta-alta:    #16162B;
+  --tinta-topo:    #1F1D3A;
+
+  --violeta:       #5838D8;
+  --violeta-alto:  #8468FF;
+  --violeta-fundo: #1A1240;
+  --violeta-claro: #EFEBFD;
+  --laranja:       #FF7C01;
+  --laranja-alto:  #FF9733;
+
+  --branco:        #FFFFFF;
+  --nevoa:         #F6F5FB;
+  --nevoa-funda:   #EDECF6;
+
+  --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* quatro curvas, cada uma com um trabalho. Nenhuma declarada sem uso. */
+  --entra:    cubic-bezier(0.16, 1, 0.3, 1);
+  --sai:      cubic-bezier(0.55, 0, 0.9, 0.3);
+  --ambiente: cubic-bezier(0.4, 0, 0.18, 1);
+  --toque:    cubic-bezier(0.22, 0, 0.1, 1);
+
+  --gut: clamp(1.1rem, 4.5vw, 3.5rem);
+  --max: 72rem;
+
+  /* a altura do cabeçalho fixo: a abertura reserva esse espaço em cima */
+  --alto-topo: 5rem;
+  --alto-topo-preso: 4rem;
+
+  /* os tokens de seção. O padrão é o claro; cada seção sobrescreve. */
+  --fundo:       var(--branco);
+  --texto:       var(--tinta);
+  --texto-fraco: #56546E;
+  --cartao:      var(--branco);
+  --cartao-alto: var(--nevoa);
+  --linha:       #E3E1F0;
+  --linha-viva:  #CFC9EC;
+  --realce:      var(--violeta);
+  --selo-fundo:  var(--violeta-claro);
+  --recuo-1: blur(1.4px) brightness(1.03) contrast(0.95) saturate(0.95);
+  --recuo-2: blur(3px)   brightness(1.06) contrast(0.90) saturate(0.90);
+
+  color-scheme: light dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--branco);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: clamp(0.94rem, 0.9rem + 0.18vw, 1rem);
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.dentro { max-width: var(--max); margin-inline: auto; }
+:focus-visible { outline: 2px solid var(--laranja); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3 { text-wrap: balance; }
+
+/* ----------------------- os dois ambientes ----------------------- */
+
+.escuro {
+  --fundo:       var(--preto);
+  --texto:       var(--branco);
+  --texto-fraco: #ADA8CE;
+  --cartao:      var(--tinta-alta);
+  --cartao-alto: var(--tinta-topo);
+  --linha:       #262442;
+  --linha-viva:  #3A3663;
+  --realce:      var(--violeta-alto);
+  --selo-fundo:  var(--violeta-fundo);
+  --recuo-1: blur(1.4px) brightness(0.6) saturate(0.9);
+  --recuo-2: blur(3px)   brightness(0.38) saturate(0.8);
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+.claro {
+  --fundo:       var(--nevoa);
+  --texto:       var(--tinta);
+  --texto-fraco: #56546E;
+  --cartao:      var(--branco);
+  --cartao-alto: var(--branco);
+  --linha:       #E3E1F0;
+  --linha-viva:  #CFC9EC;
+  --realce:      var(--violeta);
+  --selo-fundo:  var(--violeta-claro);
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+.branca { --fundo: var(--branco); }
+
+.olho {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--realce);
+}
+
+.olho::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--laranja);
+  flex: none;
+}
+
+/* ============================= botões ============================= */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.78rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  /* VOLTA: curta e sem hesitação. Retorno que demora parece travamento. */
+  transition:
+    transform    0.2s var(--sai),
+    background   0.2s var(--toque),
+    box-shadow   0.2s var(--sai),
+    color        0.2s var(--toque),
+    border-color 0.2s var(--toque);
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+  /* IDA: mais longa e macia, para assentar em vez de saltar */
+  transition:
+    transform    0.42s var(--entra),
+    background   0.28s var(--toque),
+    box-shadow   0.42s var(--ambiente),
+    color        0.28s var(--toque),
+    border-color 0.28s var(--toque);
+}
+
+.botao-cheio {
+  background: var(--violeta);
+  color: var(--branco);
+  box-shadow: 0 0.5rem 1.2rem -0.5rem rgba(88, 56, 216, 0.6);
+}
+.botao-cheio:hover { background: #4A2DC4; box-shadow: 0 0.85rem 1.8rem -0.5rem rgba(88, 56, 216, 0.75); }
+
+.botao-laranja {
+  background: var(--laranja);
+  color: var(--preto);
+  box-shadow: 0 0.5rem 1.2rem -0.5rem rgba(255, 124, 1, 0.6);
+}
+.botao-laranja:hover { background: var(--laranja-alto); box-shadow: 0 0.85rem 1.8rem -0.5rem rgba(255, 151, 51, 0.7); }
+
+.botao-vazio {
+  background: transparent;
+  color: var(--texto);
+  border-color: var(--linha-viva);
+}
+.botao-vazio:hover { border-color: var(--realce); color: var(--realce); }
+
+.botao-claro { background: var(--branco); color: var(--preto); }
+.botao-claro:hover { background: var(--nevoa-funda); }
+
+/* ======================= o cabeçalho e o painel =======================
+
+   Barra fixa no topo, como num site de agência: a marca à esquerda; os
+   links, um filete e as redes no meio; a chamada laranja à direita.
+   Começa transparente sobre a abertura escura e, ao rolar, ganha fundo
+   escuro translúcido com desfoque e uma linha embaixo (classe "preso",
+   posta pelo script), e encolhe um pouco.
+
+   Em tela estreita os links e as redes saem da barra e vão para a gaveta
+   que DESLIZA pela direita, aberta pelo gatilho de três pontos — o ponto
+   do ".co" do logo, repetido.
+   ===================================================================== */
+
+.topo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: var(--alto-topo);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--gut);
+  color: var(--branco);
+  border-bottom: 1px solid transparent;
+  transition:
+    height       0.4s var(--toque),
+    background   0.4s var(--toque),
+    border-color 0.4s var(--toque),
+    box-shadow   0.4s var(--ambiente);
+}
+
+.topo.preso {
+  height: var(--alto-topo-preso);
+  background: rgba(8, 8, 15, 0.8);
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1rem 2.5rem -1.5rem rgba(0, 0, 0, 0.7);
+}
+
+.topo-dentro {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1.5vw, 1.25rem);
+}
+
+/* a marca empurra todo o resto para a direita */
+.marca {
+  display: inline-block;
+  margin-right: auto;
+  line-height: 0;
+}
+
+.marca img {
+  width: clamp(6.5rem, 10vw, 8.25rem);
+  height: auto;
+  transition: width 0.4s var(--toque);
+}
+
+.topo.preso .marca img { width: clamp(6rem, 9vw, 7.25rem); }
+
+/* os links e as redes moram na barra em tela larga; em tela estreita
+   somem daqui e quem navega é a gaveta, pelo gatilho */
+.navega {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+@media (min-width: 60rem) {
+  .navega { display: flex; }
+  .topo .gatilho { display: none; }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links a {
+  display: block;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #ADA8CE;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s var(--sai), color 0.2s var(--sai);
+}
+
+.links a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--branco);
+  transition: background 0.34s var(--toque), color 0.34s var(--toque);
+}
+
+.links a[aria-current="page"] { color: var(--branco); }
+
+.links a[aria-current="page"]::before {
+  content: "";
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.3rem;
+  margin-right: 0.4rem;
+  border-radius: 50%;
+  background: var(--laranja);
+  vertical-align: 0.1em;
+}
+
+.filete {
+  width: 1px;
+  height: 1.3rem;
+  flex: none;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* a chamada da barra é um pouco menor que os botões da página */
+.topo-falar { padding: 0.6rem 1.1rem; font-size: 0.84rem; }
+
+/* ------- as redes ------- */
+
+.redes {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.redes a {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  color: #ADA8CE;
+  text-decoration: none;
+  transition:
+    background 0.2s var(--sai),
+    color      0.2s var(--sai),
+    transform  0.2s var(--sai);
+}
+
+.redes a:hover {
+  background: var(--violeta);
+  color: var(--branco);
+  transform: translateY(-2px);
+  transition:
+    background 0.35s var(--toque),
+    color      0.35s var(--toque),
+    transform  0.4s  var(--entra);
+}
+
+.redes svg { width: 1.05rem; height: 1.05rem; display: block; fill: currentColor; }
+
+/* em tela estreita as redes saem da barra junto com os links (a .navega
+   inteira some) e ficam só dentro da gaveta */
+
+/* ------- o gatilho: três pontos que viram um X ------- */
+
+.gatilho {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem 0.45rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--violeta);
+  color: var(--branco);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.25s var(--toque);
+}
+
+.gatilho:hover { background: #4A2DC4; }
+
+.gatilho-pontos {
+  position: relative;
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+}
+
+.gatilho-pontos i {
+  position: absolute;
+  top: 50%;
+  width: 0.3rem;
+  height: 0.3rem;
+  margin-top: -0.15rem;
+  border-radius: 50%;
+  background: var(--branco);
+  transition:
+    width      0.42s var(--entra),
+    height     0.42s var(--entra),
+    transform  0.42s var(--entra),
+    opacity    0.22s var(--sai),
+    margin     0.42s var(--entra),
+    border-radius 0.42s var(--entra);
+}
+
+.gatilho-pontos i:nth-child(1) { left: 0.15rem; }
+.gatilho-pontos i:nth-child(2) { left: 50%; margin-left: -0.15rem; }
+.gatilho-pontos i:nth-child(3) { right: 0.15rem; }
+
+/* ABERTO: o do meio some e os dois de fora viram traços cruzados. É o
+   mesmo elemento mudando de forma, e não um ícone trocado por outro. */
+.gatilho[aria-expanded="true"] .gatilho-pontos i:nth-child(1),
+.gatilho[aria-expanded="true"] .gatilho-pontos i:nth-child(3) {
+  left: 50%;
+  right: auto;
+  width: 1.1rem;
+  height: 2px;
+  margin-top: -1px;
+  margin-left: -0.55rem;
+  border-radius: 2px;
+}
+
+.gatilho[aria-expanded="true"] .gatilho-pontos i:nth-child(1) { transform: rotate(45deg); }
+.gatilho[aria-expanded="true"] .gatilho-pontos i:nth-child(3) { transform: rotate(-45deg); }
+.gatilho[aria-expanded="true"] .gatilho-pontos i:nth-child(2) { opacity: 0; transform: scale(0.2); }
+
+/* ------- o véu e o painel que desliza ------- */
+
+.veu {
+  position: fixed;
+  inset: 0;
+  z-index: 54;
+  background: rgba(8, 8, 15, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.3s var(--sai);
+}
+
+.veu.aberta { opacity: 1; transition: opacity 0.4s var(--entra); }
+
+.painel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 55;
+  width: min(26rem, 88vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(4.5rem, 11vh, 6rem) clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 4vh, 2.5rem);
+  background: var(--preto);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.38s var(--sai);
+}
+
+.painel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 45% at 85% 18%, rgba(88, 56, 216, 0.5), transparent 72%),
+    radial-gradient(ellipse 70% 40% at 15% 90%, rgba(255, 124, 1, 0.16), transparent 72%);
+  pointer-events: none;
+}
+
+/* ENTRA mais devagar do que SAI: a gaveta assenta ao abrir e some
+   rápido ao fechar, que é o que a pessoa já decidiu */
+.painel.aberta { transform: none; transition: transform 0.6s var(--entra); }
+
+.painel-dentro { position: relative; }
+
+.painel .olho { margin-bottom: 1.1rem; }
+
+.painel-links {
+  display: grid;
+  gap: 0.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.painel-links a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--branco);
+  text-decoration: none;
+  transition: color 0.25s var(--toque), padding-left 0.35s var(--sai);
+}
+
+.painel-links a:hover {
+  color: var(--laranja);
+  padding-left: 0.6rem;
+  transition: color 0.3s var(--toque), padding-left 0.5s var(--entra);
+}
+
+.painel-links .n {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  color: var(--violeta-alto);
+}
+
+.painel-links .t {
+  font-size: clamp(1.25rem, 1rem + 1.6vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.painel-links a[aria-current="page"] .t { color: var(--violeta-alto); }
+
+/* os links entram em sequência, depois que a gaveta chega */
+.painel-links li {
+  opacity: 0;
+  transform: translateX(1.1rem);
+  transition:
+    opacity   0.45s var(--ambiente),
+    transform 0.45s var(--entra);
+}
+
+.painel.aberta .painel-links li { opacity: 1; transform: none; }
+.painel.aberta .painel-links li:nth-child(1) { transition-delay: 0.14s; }
+.painel.aberta .painel-links li:nth-child(2) { transition-delay: 0.19s; }
+.painel.aberta .painel-links li:nth-child(3) { transition-delay: 0.24s; }
+.painel.aberta .painel-links li:nth-child(4) { transition-delay: 0.29s; }
+
+.painel-pe {
+  margin-top: clamp(1.5rem, 4vh, 2.25rem);
+  opacity: 0;
+  transform: translateX(1.1rem);
+  transition:
+    opacity   0.45s var(--ambiente) 0.34s,
+    transform 0.45s var(--entra) 0.34s;
+}
+
+.painel.aberta .painel-pe { opacity: 1; transform: none; }
+
+.painel-pe .dito {
+  margin: 0 0 1rem;
+  max-width: 30ch;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8B86B0;
+}
+
+.painel-pe .redes { margin-top: 1rem; gap: 0.25rem; }
+.painel-pe .redes a { background: rgba(255, 255, 255, 0.06); }
+
+/* quando o painel está aberto a página atrás não rola */
+body.travada { overflow: hidden; }
+
+/* ============================== abertura ============================== */
+
+.abertura {
+  position: relative;
+  isolation: isolate;
+  /* em cima, o espaço do cabeçalho fixo mais a respiração */
+  padding: calc(var(--alto-topo) + clamp(1.5rem, 5vh, 3.5rem)) var(--gut) clamp(3rem, 8vh, 5.5rem);
+  overflow: hidden;
+}
+
+/* o brilho: violeta grande, laranja pequeno. É a única fonte de luz da
+   abertura, e é o que impede o preto de ficar chapado */
+.abertura::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 58% 55% at 84% 34%, rgba(88, 56, 216, 0.42), transparent 70%),
+    radial-gradient(ellipse 42% 45% at 68% 80%, rgba(255, 124, 1, 0.16), transparent 70%),
+    radial-gradient(ellipse 70% 60% at 8% 8%, rgba(132, 104, 255, 0.10), transparent 72%);
+}
+
+/* a trama de pontos: o ponto do logo, repetido até virar textura */
+.abertura::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.09) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 0%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 0%, transparent 76%);
+}
+
+.abertura-curta { padding-bottom: clamp(2rem, 5vh, 3.25rem); }
+
+/* na abertura curta o símbolo desce: senão encosta no cabeçalho */
+.abertura-curta .simbolo { top: 62%; }
+
+/* o símbolo da marca, sangrando pela direita */
+.simbolo {
+  position: absolute;
+  z-index: -1;
+  right: clamp(-6rem, -7vw, -1.5rem);
+  top: 48%;
+  width: clamp(12rem, 32vw, 24rem);
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+  animation: boiar 15s var(--ambiente) infinite alternate;
+}
+
+@keyframes boiar {
+  from { transform: translateY(-50%) scale(1)    rotate(0deg); }
+  to   { transform: translateY(-53%) scale(1.04) rotate(-1.6deg); }
+}
+
+@media (max-width: 62rem) {
+  .simbolo { opacity: 0.16; right: -14%; width: 20rem; }
+}
+
+.abertura .dentro { position: relative; max-width: 58rem; }
+
+/* na home, texto à esquerda e o slide à direita; em tela estreita o slide
+   desce para baixo do texto */
+.abertura-slide .dentro {
+  max-width: var(--max);
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .abertura-slide .dentro { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+}
+
+.abertura-slide h1 { font-size: clamp(2rem, 1rem + 3.4vw, 3.5rem); }
+
+.abertura h1 {
+  margin: 0;
+  max-width: 17ch;
+  font-size: clamp(2rem, 1rem + 4.2vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.042em;
+}
+
+.abertura-curta h1 { max-width: 22ch; font-size: clamp(1.75rem, 1rem + 3.2vw, 3rem); }
+
+.abertura h1 .destaque { color: var(--violeta-alto); }
+
+/* o ponto do logo, agora como pontuação da frase */
+.ponto {
+  display: inline-block;
+  width: 0.18em;
+  height: 0.18em;
+  margin-left: 0.08em;
+  border-radius: 50%;
+  background: var(--laranja);
+  vertical-align: baseline;
+  animation: pulsar 3.6s var(--ambiente) infinite;
+}
+
+@keyframes pulsar {
+  0%, 70%, 100% { transform: scale(1);    opacity: 1; }
+  84%           { transform: scale(1.35); opacity: 0.78; }
+}
+
+.abertura .chamada {
+  margin: clamp(1.1rem, 3vh, 1.6rem) 0 0;
+  max-width: 50ch;
+  font-size: clamp(0.98rem, 0.94rem + 0.28vw, 1.1rem);
+  line-height: 1.58;
+  color: var(--texto-fraco);
+}
+
+.abertura .chamada b { font-weight: 700; color: var(--texto); }
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: clamp(1.5rem, 3.5vh, 2rem);
+}
+
+.selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.6rem;
+  margin: clamp(1.75rem, 4vh, 2.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+.selos li { display: flex; align-items: center; gap: 0.45rem; }
+
+.selos li::before {
+  content: "";
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background: var(--realce);
+  flex: none;
+}
+
+/* ========================= o slide da abertura =========================
+
+   As telas dos sites, uma de cada vez, numa janela de navegador. O script
+   só troca classes ("ativa" na que entra, "saindo" na que sai) e o CSS
+   desliza as duas em sentidos opostos. Atrás de tudo, o AMBIENTE: a mesma
+   tela, enorme e desfocada, que tinge a abertura com a cor do site da vez.
+   ====================================================================== */
+
+.ambiente {
+  position: absolute;
+  inset: -12%;
+  z-index: -3;
+  pointer-events: none;
+}
+
+.ambiente img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(42px) saturate(1.5) brightness(0.3);
+  transform: scale(1.1);
+  opacity: 0;
+  transition: opacity 1.4s var(--ambiente);
+}
+
+.ambiente img.ativa { opacity: 0.6; }
+
+.slide {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.janela {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  background: var(--tinta-alta);
+  box-shadow:
+    0 2.5rem 5rem -2rem rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(88, 56, 216, 0.22),
+    0 0 6rem -1rem rgba(88, 56, 216, 0.45);
+  overflow: hidden;
+}
+
+/* a barra da janela: três pontos (o primeiro laranja, como o do logo) e o
+   endereço do site da vez */
+.janela-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 2.1rem;
+  padding: 0 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.janela-barra i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.janela-barra i:first-child { background: var(--laranja); }
+
+.janela-endereco {
+  margin-left: 0.6rem;
+  max-width: 70%;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(8, 8, 15, 0.5);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: #ADA8CE;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.telas-slide {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.tela-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(8%) scale(1.02);
+  pointer-events: none;
+  transition:
+    opacity   0.7s var(--ambiente),
+    transform 0.9s var(--entra);
+}
+
+.tela-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.tela-slide.ativa { opacity: 1; transform: none; pointer-events: auto; z-index: 1; }
+.tela-slide.saindo { transform: translateX(-8%) scale(0.98); }
+
+/* a tela ativa respira: um zoom quase imperceptível enquanto fica */
+.slide.rodando .tela-slide.ativa img { animation: respirar 5.4s var(--ambiente) forwards; }
+
+@keyframes respirar {
+  from { transform: scale(1); }
+  to   { transform: scale(1.035); }
+}
+
+.slide-pe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+
+.slide-legenda {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--texto-fraco);
+}
+
+.slide-legenda .n {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--violeta-alto);
+}
+
+.slide-legenda b { color: var(--texto); font-weight: 700; white-space: nowrap; }
+
+.slide-legenda .t {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slide-legenda .t::before { content: "—"; margin-right: 0.6rem; opacity: 0.5; }
+
+.slide-controles { display: flex; align-items: center; gap: 0.5rem; flex: none; }
+
+.slide-seta {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--branco);
+  cursor: pointer;
+  transition: background 0.2s var(--sai), border-color 0.2s var(--sai);
+}
+
+.slide-seta:hover {
+  background: var(--violeta);
+  border-color: var(--violeta);
+  transition: background 0.3s var(--toque), border-color 0.3s var(--toque);
+}
+
+.slide-seta svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.slide-pontos { display: flex; gap: 0.35rem; margin: 0; padding: 0; list-style: none; }
+
+.slide-pontos button {
+  width: 0.45rem;
+  height: 0.45rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background 0.25s var(--toque), transform 0.25s var(--entra);
+}
+
+.slide-pontos button[aria-current="true"] { background: var(--laranja); transform: scale(1.3); }
+
+/* a barra de progresso: enche no tempo de uma tela */
+.slide-progresso {
+  display: block;
+  height: 2px;
+  margin-top: 0.7rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.slide-progresso i {
+  display: block;
+  height: 100%;
+  background: var(--laranja);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.slide.rodando .slide-progresso i { animation: encher 5s linear forwards; }
+
+@keyframes encher {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* sem script: a primeira tela fica, parada, e os controles somem */
+.sem-js .slide-controles,
+.sem-js .slide-progresso { display: none; }
+
+/* =============================== prova =============================== */
+
+.prova {
+  background: var(--violeta);
+  color: var(--branco);
+  padding: clamp(2rem, 5vh, 3rem) var(--gut);
+}
+
+.prova .dentro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 4vw, 2.25rem);
+}
+
+@media (min-width: 52rem) { .prova .dentro { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.prova b {
+  display: block;
+  font-size: clamp(1.6rem, 1.1rem + 1.9vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.prova .risco {
+  display: block;
+  width: 1.8rem;
+  height: 3px;
+  margin: 0.7rem 0 0.6rem;
+  border-radius: 2px;
+  background: var(--laranja);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s var(--entra);
+}
+
+.prova .vista .risco { transform: scaleX(1); }
+
+.prova span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #D6CEFB;
+}
+
+/* ============================== seções ============================== */
+
+.secao { padding: clamp(3rem, 7vh, 5rem) var(--gut); }
+
+.cabeca { max-width: 40rem; margin-bottom: clamp(1.75rem, 4vh, 2.75rem); }
+
+.cabeca h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 1.1rem + 1.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--texto);
+}
+
+.cabeca p {
+  margin: 0.8rem 0 0;
+  max-width: 54ch;
+  font-size: clamp(0.95rem, 0.92rem + 0.2vw, 1.04rem);
+  color: var(--texto-fraco);
+}
+
+/* ============================= serviços ============================= */
+
+.grade-servicos {
+  display: grid;
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.servico {
+  position: relative;
+  overflow: hidden;
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: 0.9rem;
+  padding: clamp(1.1rem, 2.2vw, 1.5rem);
+  transition:
+    transform    0.24s var(--sai),
+    background   0.24s var(--sai),
+    box-shadow   0.24s var(--sai),
+    border-color 0.2s  var(--toque);
+}
+
+@media (hover: hover) {
+  .servico:hover {
+    transform: translateY(-4px);
+    background: var(--cartao-alto);
+    border-color: var(--realce);
+    box-shadow: 0 1rem 2rem -1rem rgba(16, 16, 32, 0.25);
+    transition:
+      transform    0.48s var(--entra),
+      background   0.48s var(--ambiente),
+      box-shadow   0.48s var(--ambiente),
+      border-color 0.32s var(--toque);
+  }
+}
+
+.servico::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--violeta), var(--violeta-alto) 58%, var(--laranja));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.85s var(--entra) 0.1s;
+}
+
+.servico.vista::before { transform: scaleX(1); }
+
+.servico .num {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-bottom: 0.85rem;
+  border-radius: 0.55rem;
+  background: var(--selo-fundo);
+  color: var(--realce);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.servico h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.026em;
+  color: var(--texto);
+}
+
+.servico p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--texto-fraco);
+}
+
+/* ------- a chamada que reaparece no meio da rolagem ------- */
+
+.convite {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.75rem;
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  padding: clamp(1.1rem, 2.2vw, 1.5rem) clamp(1.1rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--linha-viva);
+  border-radius: 0.9rem;
+  background: var(--selo-fundo);
+}
+
+.convite p {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(0.95rem, 0.92rem + 0.2vw, 1.04rem);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  color: var(--texto);
+}
+
+/* ============================= processo ============================= */
+
+.passos {
+  display: grid;
+  gap: clamp(1.1rem, 2.5vw, 1.75rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: passo;
+}
+
+.passo {
+  position: relative;
+  counter-increment: passo;
+  padding-top: 1.75rem;
+  border-top: 2px solid var(--linha);
+}
+
+.passo::before {
+  content: "0" counter(passo);
+  position: absolute;
+  top: -0.8rem;
+  left: 0;
+  padding-right: 0.6rem;
+  background: var(--fundo);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--realce);
+}
+
+.passo::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 2rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--laranja);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s var(--entra) 0.15s;
+}
+
+.passo.vista::after { transform: scaleX(1); }
+
+.passo h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.024em;
+  color: var(--texto);
+}
+
+.passo p { margin: 0; font-size: 0.87rem; line-height: 1.55; color: var(--texto-fraco); }
+
+/* ==================== a lista de trabalhos que abre ====================
+
+   Um trabalho por linha; clicar no nome abre o detalhe. A altura anima
+   por grid-template-rows de 0fr para 1fr, que é o único jeito de animar
+   altura automática sem medir nada no script.
+   ====================================================================== */
+
+/* NADA DE CARTÕES. Uma lista de nomes, grande, separada por filete — o
+   índice de uma agência, e não seis caixinhas iguais. O trabalho aparece
+   ao passar o mouse: a tela do site flutua junto do cursor. */
+
+.itens {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  border-top: 1px solid var(--linha);
+}
+
+.item {
+  border-bottom: 1px solid var(--linha);
+  transition: background 0.3s var(--sai);
+}
+
+.item.aberto { background: var(--cartao); }
+
+.item h3 { margin: 0; font-size: inherit; font-weight: inherit; }
+
+.item-cabeca {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.7rem, 2vw, 1.5rem);
+  width: 100%;
+  padding: clamp(1.1rem, 2.6vh, 1.75rem) clamp(0.5rem, 1.5vw, 1rem);
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: padding-left 0.35s var(--sai);
+}
+
+@media (hover: hover) {
+  .item-cabeca:hover { padding-left: clamp(1rem, 2.5vw, 1.75rem); transition: padding-left 0.5s var(--entra); }
+}
+
+/* o filete laranja que corre sob o nome enquanto o mouse está nele */
+.item-cabeca::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: var(--laranja);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--sai);
+}
+
+@media (hover: hover) {
+  .item-cabeca:hover::after { transform: scaleX(1); transition: transform 0.55s var(--entra); }
+}
+
+.item.aberto .item-cabeca::after { transform: scaleX(1); }
+
+.item-num {
+  flex: none;
+  width: 1.6rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--realce);
+}
+
+.item-nome {
+  flex: 1;
+  font-size: clamp(1.15rem, 0.9rem + 1.5vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.038em;
+  color: var(--texto);
+  transition: color 0.25s var(--toque);
+}
+
+@media (hover: hover) {
+  .item-cabeca:hover .item-nome { color: var(--realce); }
+}
+
+.item-tag {
+  display: none;
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+@media (min-width: 46rem) { .item-tag { display: inline-block; } }
+
+/* o sinal de mais que vira menos: dois traços, um deles gira */
+.item-mais {
+  position: relative;
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid var(--linha-viva);
+  border-radius: 50%;
+  transition: background 0.25s var(--sai), border-color 0.25s var(--sai);
+}
+
+.item-cabeca:hover .item-mais { background: var(--realce); border-color: var(--realce); }
+
+.item-mais::before,
+.item-mais::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.6rem;
+  height: 2px;
+  margin: -1px 0 0 -0.3rem;
+  border-radius: 2px;
+  background: var(--realce);
+  transition: transform 0.4s var(--entra), background 0.25s var(--sai);
+}
+
+.item-cabeca:hover .item-mais::before,
+.item-cabeca:hover .item-mais::after { background: var(--branco); }
+
+.item-mais::after { transform: rotate(90deg); }
+.item.aberto .item-mais::after { transform: rotate(0deg); }
+
+/* ------- a prévia que segue o cursor ------- */
+
+.previa {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  width: clamp(13rem, 22vw, 19rem);
+  border: 1px solid var(--linha-viva);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--cartao);
+  box-shadow: 0 1.5rem 3rem -1rem rgba(16, 16, 32, 0.45);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0) scale(0.92) rotate(-2deg);
+  transition:
+    opacity   0.25s var(--sai),
+    transform 0.35s var(--sai);
+}
+
+.previa.vendo {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0) scale(1) rotate(-2deg);
+  transition:
+    opacity   0.3s var(--entra),
+    transform 0.5s var(--entra);
+}
+
+.previa img { display: block; width: 100%; height: auto; }
+
+/* dedo não tem cursor para seguir: no celular a prévia nem existe */
+@media (hover: none) { .previa { display: none; } }
+
+.detalhe {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ambiente);
+}
+
+.item.aberto .detalhe { grid-template-rows: 1fr; }
+
+.detalhe > div { overflow: hidden; }
+
+.detalhe-dentro {
+  padding: clamp(1.1rem, 2.5vw, 1.6rem) clamp(1rem, 2.5vw, 1.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  border-top: 1px solid var(--linha);
+}
+
+/* AS FOTOS DE UM LADO, O SOBRE DO OUTRO. Em tela estreita o carrossel
+   vem primeiro, porque é o que faz a pessoa parar. */
+.detalhe-grade { display: grid; gap: clamp(1.1rem, 2.5vw, 2rem); }
+
+@media (min-width: 60rem) {
+  .detalhe-grade.com-fotos {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.detalhe-sobre p {
+  margin: 0 0 0.7rem;
+  max-width: 50ch;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--texto-fraco);
+}
+
+.detalhe-sobre p b { font-weight: 600; color: var(--texto); }
+.detalhe-sobre .olho { margin-top: 1.1rem; }
+.detalhe-sobre > .olho:first-child { margin-top: 0; }
+
+/* ========================= vitrine: o carrossel =========================
+
+   Mesma mecânica do carrossel da AMGlobal: o script escreve `data-pos`
+   em cada tela (0 é a do meio, 1 a da direita, -1 a da esquerda, 2 e -2
+   as de fora) e o CSS faz o resto.
+
+   O FOCO É MAIS LENTO QUE O MOVIMENTO, de propósito: 1,2s contra 0,8s.
+   A tela chega ao lugar e só então termina de entrar em foco, que é como
+   uma lente se comporta. Se os dois durassem o mesmo, a troca viraria um
+   bloco só e o gesto sumiria.
+
+   Como as laterais recuam depende do ambiente: sobre fundo claro quem
+   afasta é o desfoque mais um CLAREAMENTO; sobre preto, o desfoque mais
+   o ESCURECIMENTO. Por isso o filtro vem de token de seção.
+   ======================================================================= */
+
+.vitrine { --tela: clamp(13rem, 36vw, 24rem); }
+
+.palco {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(0.6rem, 2vw, 1.25rem) 0;
+  perspective: 1500px;
+}
+
+.telas {
+  position: relative;
+  height: calc(var(--tela) * 0.625 + 1.7rem);
+  transform-style: preserve-3d;
+}
+
+.tela {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--tela);
+  margin-left: calc(var(--tela) / -2);
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--linha-viva);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: var(--cartao-alto);
+  cursor: pointer;
+  text-align: left;
+  transform-style: preserve-3d;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateX(0) scale(0.6);
+  transition:
+    transform  0.8s var(--entra),
+    opacity    0.8s var(--ambiente),
+    box-shadow 0.8s var(--ambiente),
+    filter     1.2s var(--ambiente);
+}
+
+.tela[data-pos="0"],
+.tela[data-pos="1"],
+.tela[data-pos="-1"],
+.tela[data-pos="2"],
+.tela[data-pos="-2"] { pointer-events: auto; }
+
+.tela[data-pos="0"] {
+  transform: translateX(0) rotateY(0deg) scale(1);
+  z-index: 3;
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 1.25rem 2.75rem -1rem rgba(16, 16, 32, 0.4);
+}
+
+.tela[data-pos="1"] {
+  transform: translateX(54%) rotateY(-22deg) scale(0.84);
+  z-index: 2;
+  opacity: 1;
+  filter: var(--recuo-1);
+}
+
+.tela[data-pos="-1"] {
+  transform: translateX(-54%) rotateY(22deg) scale(0.84);
+  z-index: 2;
+  opacity: 1;
+  filter: var(--recuo-1);
+}
+
+.tela[data-pos="2"] {
+  transform: translateX(96%) rotateY(-30deg) scale(0.7);
+  z-index: 1;
+  opacity: 1;
+  filter: var(--recuo-2);
+}
+
+.tela[data-pos="-2"] {
+  transform: translateX(-96%) rotateY(30deg) scale(0.7);
+  z-index: 1;
+  opacity: 1;
+  filter: var(--recuo-2);
+}
+
+/* o hover puxa a tela PARA O FOCO: é o convite certo, porque é
+   exatamente o que o clique faz */
+@media (hover: hover) {
+  .tela[data-pos="1"]:hover,
+  .tela[data-pos="-1"]:hover { filter: blur(0.3px); }
+  .tela[data-pos="2"]:hover,
+  .tela[data-pos="-2"]:hover { filter: var(--recuo-1); }
+}
+
+.tela:focus-visible { outline: 2px solid var(--laranja); outline-offset: 4px; }
+
+/* a barra do navegador é o que faz a captura ser lida como um site
+   aberto, e não como uma imagem solta */
+.tela .barra {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.55rem;
+  border-bottom: 1px solid var(--linha);
+  background: var(--nevoa);
+}
+
+.tela .barra i {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: #C9C6DE;
+  flex: none;
+}
+
+.tela .barra .endereco {
+  margin-left: 0.3rem;
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 0.53rem;
+  color: #6F6B8E;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tela img { display: block; width: 100%; height: auto; }
+
+/* ------- a legenda e os controles ------- */
+
+.palco-pe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.legenda {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  min-height: 1.3rem;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+.legenda .contagem { color: var(--laranja); }
+
+.controles { display: flex; align-items: center; gap: 0.4rem; }
+
+.seta {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid var(--linha-viva);
+  border-radius: 50%;
+  background: var(--cartao);
+  color: var(--texto);
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background   0.18s var(--sai),
+    border-color 0.18s var(--sai),
+    color        0.18s var(--sai);
+}
+
+.seta:hover {
+  background: var(--violeta);
+  border-color: var(--violeta);
+  color: var(--branco);
+  transition:
+    background   0.32s var(--toque),
+    border-color 0.32s var(--toque),
+    color        0.32s var(--toque);
+}
+
+.pontos { display: flex; gap: 0.3rem; margin-right: 0.25rem; }
+
+.pontos button {
+  width: 0.4rem;
+  height: 0.4rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--linha-viva);
+  cursor: pointer;
+  transition: background 0.22s var(--sai), transform 0.22s var(--sai);
+}
+
+.pontos button[aria-current="true"] {
+  background: var(--laranja);
+  transform: scale(1.3);
+  transition: background 0.38s var(--entra), transform 0.38s var(--entra);
+}
+
+/* ------- o que usamos para construir ------- */
+
+.pilha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pilha li {
+  padding: 0.28rem 0.6rem;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--cartao-alto);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  color: var(--texto-fraco);
+}
+
+.pilha li b { font-weight: 500; color: var(--realce); }
+
+/* O link "abrir o site". A setinha dele é `.seta-ir`, e NÃO `.seta`:
+   `.seta` é a seta redonda do carrossel, e o nome repetido transformava
+   esta setinha num círculo. */
+.ir {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--realce);
+  text-decoration: none;
+}
+
+.ir .seta-ir { display: inline-block; transition: transform 0.22s var(--sai); }
+.ir:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+.ir:hover .seta-ir { transform: translateX(0.3rem); transition: transform 0.42s var(--entra); }
+
+/* ============================== chamada ============================== */
+
+.fecho {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--violeta);
+  color: var(--branco);
+  padding: clamp(3rem, 8vh, 5rem) var(--gut);
+  text-align: center;
+}
+
+.fecho::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  width: min(120vw, 48rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, rgba(255, 124, 1, 0.34), transparent 70%);
+}
+
+.fecho h2 {
+  margin: 0 auto;
+  max-width: 20ch;
+  font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.042em;
+}
+
+.fecho p {
+  margin: 1rem auto 0;
+  max-width: 48ch;
+  font-size: clamp(0.95rem, 0.92rem + 0.22vw, 1.06rem);
+  color: #E2DBFC;
+}
+
+.fecho .acoes { justify-content: center; }
+
+/* =============================== rodapé =============================== */
+
+.rodape {
+  background: var(--preto);
+  color: var(--branco);
+  padding: clamp(2.25rem, 5vh, 3.25rem) var(--gut);
+}
+
+.rodape .dentro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.75rem;
+}
+
+.rodape .enorme {
+  margin: 0;
+  font-size: clamp(1.8rem, 1.1rem + 3vw, 3.2rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+.rodape .enorme .pt { color: var(--laranja); }
+.rodape .enorme .co { color: var(--violeta-alto); }
+
+.rodape .assinatura {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8B86B0;
+}
+
+/* ============================== chegada ============================== */
+
+.sobe {
+  opacity: 0;
+  transform: translateY(1.1rem);
+  transition:
+    opacity   0.7s var(--ambiente),
+    transform 0.7s var(--entra);
+}
+
+.sobe.vista { opacity: 1; transform: none; }
+
+.sem-js .sobe { opacity: 1; transform: none; }
+.sem-js .risco,
+.sem-js .servico::before,
+.sem-js .passo::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sobe, .sobe.vista { opacity: 1; transform: none; transition: none; }
+  .risco, .servico::before, .passo::after { transform: scaleX(1); transition: none; }
+  .simbolo, .ponto { animation: none; }
+  .servico, .item, .botao, .ir .seta-ir, .detalhe { transition: none; }
+  .botao:hover, .servico:hover { transform: none; }
+  .ir:hover .seta-ir { transform: none; }
+  /* o slide troca sem deslizar, e nada roda sozinho (o script não agenda) */
+  .topo, .marca img, .tela-slide, .ambiente img, .slide-seta, .slide-pontos button { transition: none; }
+  .slide.rodando .tela-slide.ativa img, .slide.rodando .slide-progresso i { animation: none; }
+}
