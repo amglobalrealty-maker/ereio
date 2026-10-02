@@ -99,25 +99,40 @@
 
 <main id="inicio">
 
-  <section class="abertura abertura-curta escuro">
+  <section class="abertura abertura-curta escuro abertura-trabalhos">
     <div class="dentro">
-      <p class="olho sobe">Trabalhos</p>
-      <h1 class="sobe">Sites, sistemas, marcas e campanhas que a agência colocou no ar<span class="ponto" aria-hidden="true"></span></h1>
-      <p class="chamada sobe">
-        Cada projeto com as telas, o que foi decidido e por quê. Clientes que
-        autorizaram aparecem com nome e link para o site; os sistemas aparecem
-        pelo problema e pela solução.
-        <b>Os trabalhos de marca e campanha são projetos autorais da agência,
-        para marcas fictícias.</b>
-      </p>
-      <!-- o resumo das frentes: cada número leva à frente certa (a âncora
-           abre a frente, pelo script) -->
-      <ul class="resumo-frentes sobe">
-        <li><a href="#g-sites"><b>7</b> sites</a></li>
-        <li><a href="#g-automacoes"><b>6</b> sistemas e automações</a></li>
-        <li><a href="#g-key-visual"><b>6</b> key visuals</a></li>
-        <li><a href="#g-logos"><b>6</b> logos</a></li>
-      </ul>
+      <div class="abertura-texto">
+        <p class="olho sobe">Trabalhos</p>
+        <h1 class="sobe">Sites, sistemas, marcas e campanhas que a agência colocou no ar<span class="ponto" aria-hidden="true"></span></h1>
+        <p class="chamada sobe">
+          Cada projeto com as telas, o que foi decidido e por quê. Clientes que
+          autorizaram aparecem com nome e link para o site; os sistemas aparecem
+          pelo problema e pela solução.
+          <b>Quatro frentes, vinte e cinco trabalhos: escolha por onde começar.</b>
+        </p>
+        <!-- o resumo das frentes: cada número leva à frente certa (a âncora
+             abre a frente, pelo script), na cor dela -->
+        <ul class="resumo-frentes sobe">
+          <li><a href="#g-sites" data-frente="sites"><b>7</b> sites</a></li>
+          <li><a href="#g-automacoes" data-frente="automacoes"><b>6</b> sistemas e automações</a></li>
+          <li><a href="#g-key-visual" data-frente="key-visual"><b>6</b> key visuals</a></li>
+          <li><a href="#g-logos" data-frente="logos"><b>6</b> logos</a></li>
+        </ul>
+      </div>
+      <!-- O MURAL: cinco cartões (telas e peças) inclinados e sobrepostos,
+           flutuando devagar; o que recebe o mouse sobe. Decorativo. -->
+      <div class="mural sobe" aria-hidden="true">
+        <img src="hz-tela-1.webp" alt="" width="1280" height="800">
+        <img src="peca-kv-1.webp" alt="" width="1280" height="800">
+        <img src="dpr-tela-1.webp" alt="" width="1280" height="800">
+        <img src="peca-logo-2.webp" alt="" width="1280" height="800">
+        <img src="an-tela-1.webp" alt="" width="1280" height="800">
+      </div>
+    </div>
+    <!-- A FAIXA: os nomes dos 25 trabalhos rolando sem fim. Dois lotes
+         iguais, para a volta ser invisível. Para no mouse. -->
+    <div class="faixa-nomes" aria-hidden="true">
+      <div class="faixa-trilho"><div class="faixa-lote"><span>Houzze Imobiliária</span><span>DPR Construtora</span><span>ANOVA</span><span>Karmani</span><span>Fidelity Translations</span><span>Primeiro Minuto</span><span>Clínica Entourage</span><span>Loja em setor regulado</span><span>Três portas abertas numa base em uso</span><span>De um arquivo de 3.914 linhas a 163 módulos</span><span>Duas empresas no mesmo sistema</span><span>Mapa de calor que não identifica ninguém</span><span>Um acesso, quatro painéis</span><span>Varanda Café</span><span>Noite Aberta</span><span>Pausa</span><span>Verão Aberto</span><span>Sal & Brisa</span><span>Jazz no Cais</span><span>Boreal Óptica</span><span>Maré Surf School</span><span>Coco Brisa</span><span>Açaí da Ilha</span><span>Sol a Sol</span><span>Onda Swimwear</span></div><div class="faixa-lote"><span>Houzze Imobiliária</span><span>DPR Construtora</span><span>ANOVA</span><span>Karmani</span><span>Fidelity Translations</span><span>Primeiro Minuto</span><span>Clínica Entourage</span><span>Loja em setor regulado</span><span>Três portas abertas numa base em uso</span><span>De um arquivo de 3.914 linhas a 163 módulos</span><span>Duas empresas no mesmo sistema</span><span>Mapa de calor que não identifica ninguém</span><span>Um acesso, quatro painéis</span><span>Varanda Café</span><span>Noite Aberta</span><span>Pausa</span><span>Verão Aberto</span><span>Sal & Brisa</span><span>Jazz no Cais</span><span>Boreal Óptica</span><span>Maré Surf School</span><span>Coco Brisa</span><span>Açaí da Ilha</span><span>Sol a Sol</span><span>Onda Swimwear</span></div></div>
     </div>
   </section>
 
@@ -135,7 +150,9 @@
         <section class="grupo aberto" data-grupo="sites">
           <h3 class="grupo-titulo">
             <button class="grupo-cabeca" type="button" aria-expanded="true" aria-controls="g-sites">
+              <span class="grupo-num">01</span>
               <span class="grupo-nome">Sites</span>
+              <span class="grupo-previas" aria-hidden="true"><img src="hz-tela-1.webp" alt="" width="1280" height="800" loading="lazy"><img src="dpr-tela-1.webp" alt="" width="1280" height="800" loading="lazy"><img src="an-tela-1.webp" alt="" width="1280" height="800" loading="lazy"></span>
               <span class="grupo-conta">7 trabalhos</span>
               <span class="grupo-mais" aria-hidden="true"></span>
             </button>
@@ -760,7 +777,9 @@
         <section class="grupo" data-grupo="automacoes">
           <h3 class="grupo-titulo">
             <button class="grupo-cabeca" type="button" aria-expanded="false" aria-controls="g-automacoes">
+              <span class="grupo-num">02</span>
               <span class="grupo-nome">Automações e sistemas</span>
+              <span class="grupo-previas" aria-hidden="true"><b>163</b><b>1.200</b><b>0</b></span>
               <span class="grupo-conta">6 trabalhos</span>
               <span class="grupo-mais" aria-hidden="true"></span>
             </button>
@@ -1022,7 +1041,9 @@
         <section class="grupo" data-grupo="key-visual">
           <h3 class="grupo-titulo">
             <button class="grupo-cabeca" type="button" aria-expanded="false" aria-controls="g-key-visual">
+              <span class="grupo-num">03</span>
               <span class="grupo-nome">Key visual</span>
+              <span class="grupo-previas" aria-hidden="true"><img src="peca-kv-1.webp" alt="" width="1280" height="800" loading="lazy"><img src="peca-kv-2.webp" alt="" width="1280" height="800" loading="lazy"><img src="peca-kv-3.webp" alt="" width="1280" height="800" loading="lazy"></span>
               <span class="grupo-conta">6 trabalhos</span>
               <span class="grupo-mais" aria-hidden="true"></span>
             </button>
@@ -1030,7 +1051,8 @@
           <div class="grupo-corpo" id="g-key-visual">
             <div>
       <ol class="itens" data-lista-trabalhos>
-        <li class="item sobe" data-previa="estudo-kv-1.webp">
+
+        <li class="item sobe" data-previa="peca-kv-1.webp">
           <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t14">
               <span class="item-num">01</span>
@@ -1045,12 +1067,12 @@
                 <div class="detalhe-grade com-peca">
 
                   <figure class="peca">
-                    <img src="estudo-kv-1.webp" alt="Prancha do key visual Varanda Café: a frase Acorda devagar em serifa fina ao lado de um grão de café enorme, em terracota sobre creme, com os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
+                    <img src="peca-kv-1.webp" alt="Key visual Varanda Café: a frase Acorda devagar em serifa fina ao lado de um grão de café enorme, terracota sobre creme, com os formatos feed, story e outdoor" width="1280" height="800" loading="lazy" decoding="async">
                     <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
                   </figure>
 
                   <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
+                    <p class="olho">Briefing</p>
                     <p>
                       Uma cafeteria de bairro lança o primeiro blend próprio e quer anunciar sem parecer rede: a peça precisa ter calma e cheiro de manhã.
                     </p>
@@ -1065,7 +1087,6 @@
                       <li>O grão como <b>forma única</b></li>
                       <li>Uma composição, <b>três formatos</b></li>
                     </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
                   </div>
 
                 </div>
@@ -1074,71 +1095,27 @@
           </div>
         </li>
 
-        <li class="item sobe" data-previa="estudo-kv-2.webp">
+        <li class="item sobe" data-previa="peca-kv-2.webp">
           <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t15">
               <span class="item-num">02</span>
-              <span class="item-nome">Travessa Pilates</span>
-              <span class="item-tag">Key visual</span>
-              <span class="item-mais" aria-hidden="true"></span>
-            </button>
-          </h4>
-          <div class="detalhe" id="t15" role="region" aria-label="Travessa Pilates">
-            <div>
-              <div class="detalhe-dentro">
-                <div class="detalhe-grade com-peca">
-
-                  <figure class="peca">
-                    <img src="estudo-kv-2.webp" alt="Prancha do key visual Travessa Pilates: a frase Volte a caber no seu corpo em tipo pesado, com arcos verde-água sobre grafite, e os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
-                    <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
-                  </figure>
-
-                  <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
-                    <p>
-                      Um estúdio pequeno abre turmas novas e compete com academias grandes. Não dá para competir em foto de corpo perfeito; dá para competir em voz.
-                    </p>
-                    <p>
-                      <b>Nenhuma foto.</b> Os arcos são o movimento do aparelho; uma cor de destaque sobre grafite; e a promessa é caber no próprio corpo, não no de outra pessoa.
-                    </p>
-                    <p class="olho">Como fizemos</p>
-                    <ul class="pilha">
-                      <li><b>Red Hat Display</b> em um peso só</li>
-                      <li><b>1</b> cor de destaque</li>
-                      <li>Arcos como <b>movimento</b></li>
-                      <li><b>Sem</b> foto de banco</li>
-                      <li>Uma composição, <b>três formatos</b></li>
-                    </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="item sobe" data-previa="estudo-kv-3.webp">
-          <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t16">
-              <span class="item-num">03</span>
               <span class="item-nome">Noite Aberta</span>
               <span class="item-tag">Key visual</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
           </h4>
-          <div class="detalhe" id="t16" role="region" aria-label="Noite Aberta">
+          <div class="detalhe" id="t15" role="region" aria-label="Noite Aberta">
             <div>
               <div class="detalhe-dentro">
                 <div class="detalhe-grade com-peca">
 
                   <figure class="peca">
-                    <img src="estudo-kv-3.webp" alt="Prancha do key visual do festival Noite Aberta: o nome em tipo condensado enorme e fora do eixo, blocos laranja e magenta inclinados sobre preto, datas e line-up, com os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
+                    <img src="peca-kv-2.webp" alt="Key visual do festival Noite Aberta: o nome em tipo condensado enorme e fora do eixo, blocos laranja e magenta inclinados sobre preto, com os formatos feed, story e outdoor" width="1280" height="800" loading="lazy" decoding="async">
                     <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
                   </figure>
 
                   <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
+                    <p class="olho">Briefing</p>
                     <p>
                       Festival de música independente, três dias, orçamento curto: a identidade tem que render em lambe, story e outdoor sem depender de foto de artista.
                     </p>
@@ -1153,7 +1130,6 @@
                       <li>Grade <b>quebrada</b></li>
                       <li>O título é a <b>imagem</b></li>
                     </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
                   </div>
 
                 </div>
@@ -1162,71 +1138,27 @@
           </div>
         </li>
 
-        <li class="item sobe" data-previa="estudo-kv-4.webp">
+        <li class="item sobe" data-previa="peca-kv-3.webp">
           <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t23">
-              <span class="item-num">04</span>
-              <span class="item-nome">Margem Livraria</span>
-              <span class="item-tag">Key visual</span>
-              <span class="item-mais" aria-hidden="true"></span>
-            </button>
-          </h4>
-          <div class="detalhe" id="t23" role="region" aria-label="Margem Livraria">
-            <div>
-              <div class="detalhe-dentro">
-                <div class="detalhe-grade com-peca">
-
-                  <figure class="peca">
-                    <img src="estudo-kv-4.webp" alt="Prancha do key visual Margem Livraria: a frase Todo livro já foi de alguém em serifa clássica, com lombadas empilhadas como blocos de cor vinho, verde e mostarda sobre papel, e os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
-                    <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
-                  </figure>
-
-                  <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
-                    <p>
-                      Livraria de bairro faz o mês do livro usado e quer uma campanha que trate o usado como valor, não como desconto.
-                    </p>
-                    <p>
-                      <b>Todo livro já foi de alguém.</b> Lombadas empilhadas como blocos de cor, serifa clássica com o itálico fazendo a ênfase, papel e tinta. Nenhuma foto de livro.
-                    </p>
-                    <p class="olho">Como fizemos</p>
-                    <ul class="pilha">
-                      <li><b>Libre Baskerville</b> nos títulos</li>
-                      <li><b>Manrope</b> no texto</li>
-                      <li>Lombadas como <b>blocos de cor</b></li>
-                      <li>Vinho, verde e <b>mostarda</b></li>
-                      <li>Uma composição, <b>três formatos</b></li>
-                    </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="item sobe" data-previa="estudo-kv-5.webp">
-          <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t24">
-              <span class="item-num">05</span>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t16">
+              <span class="item-num">03</span>
               <span class="item-nome">Pausa</span>
               <span class="item-tag">Key visual</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
           </h4>
-          <div class="detalhe" id="t24" role="region" aria-label="Pausa">
+          <div class="detalhe" id="t16" role="region" aria-label="Pausa">
             <div>
               <div class="detalhe-dentro">
                 <div class="detalhe-grade com-peca">
 
                   <figure class="peca">
-                    <img src="estudo-kv-5.webp" alt="Prancha do key visual do aplicativo Pausa: a frase Quatro segundos, só isso, ao lado de círculos concêntricos em gradiente pêssego e lavanda sobre azul-noite, e os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
+                    <img src="peca-kv-3.webp" alt="Key visual do aplicativo Pausa: a frase Quatro segundos, só isso, ao lado de círculos concêntricos em pêssego e lavanda sobre azul-noite, com os formatos feed, story e outdoor" width="1280" height="800" loading="lazy" decoding="async">
                     <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
                   </figure>
 
                   <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
+                    <p class="olho">Briefing</p>
                     <p>
                       Aplicativo de respiração que quer se diferenciar dos de meditação: sem meta, sem sequência, sem culpa. A peça precisa acalmar antes de convencer.
                     </p>
@@ -1241,7 +1173,6 @@
                       <li><b>Sem</b> foto</li>
                       <li>Uma composição, <b>três formatos</b></li>
                     </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
                   </div>
 
                 </div>
@@ -1250,42 +1181,127 @@
           </div>
         </li>
 
-        <li class="item sobe" data-previa="estudo-kv-6.webp">
+        <li class="item sobe" data-previa="peca-kv-4.webp">
           <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t25">
-              <span class="item-num">06</span>
-              <span class="item-nome">Corrida das Pontes</span>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t17">
+              <span class="item-num">04</span>
+              <span class="item-nome">Verão Aberto</span>
               <span class="item-tag">Key visual</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
           </h4>
-          <div class="detalhe" id="t25" role="region" aria-label="Corrida das Pontes">
+          <div class="detalhe" id="t17" role="region" aria-label="Verão Aberto">
             <div>
               <div class="detalhe-dentro">
                 <div class="detalhe-grade com-peca">
 
                   <figure class="peca">
-                    <img src="estudo-kv-6.webp" alt="Prancha do key visual da Corrida das Pontes: o nome em condensado itálico enorme, faixas amarelas inclinadas sobre asfalto escuro, as distâncias 5K, 10K e 21K, e os formatos feed, story e outdoor ao lado" width="1280" height="800" loading="lazy" decoding="async">
+                    <img src="peca-kv-4.webp" alt="Key visual do beach club Verão Aberto: a frase O verão abriu em tipo pesado sobre um degradê de pôr do sol do roxo ao amarelo, com um guarda-sol listrado, e os formatos feed, story e outdoor" width="1280" height="800" loading="lazy" decoding="async">
                     <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
                   </figure>
 
                   <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
+                    <p class="olho">Briefing</p>
                     <p>
-                      Corrida de rua pelas pontes do centro, três distâncias. A identidade precisa gritar em lambe e caber num número de peito.
+                      Beach club abre a temporada e quer uma campanha que pareça o fim de tarde na areia, não um panfleto de promoção.
                     </p>
                     <p>
-                      <b>Faixas de pedestre inclinadas como asfalto</b>, tipo condensado itálico enorme e uma cor só: amarelo-sinal.
+                      <b>O pôr do sol é o fundo inteiro</b>, em degradê do roxo ao amarelo, e o guarda-sol listrado é a única forma. Tipo pesado e aberto, frase de duas palavras.
                     </p>
                     <p class="olho">Como fizemos</p>
                     <ul class="pilha">
-                      <li><b>Barlow Condensed</b> itálico pesado</li>
-                      <li><b>Barlow</b> no resto</li>
-                      <li><b>1</b> cor: amarelo-sinal</li>
-                      <li>Diagonais de <b>18 graus</b></li>
+                      <li><b>Unbounded</b> no título</li>
+                      <li><b>Manrope</b> no texto</li>
+                      <li>Degradê do <b>pôr do sol</b></li>
+                      <li>O <b>guarda-sol</b> como forma</li>
                       <li>Uma composição, <b>três formatos</b></li>
                     </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="peca-kv-5.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t18">
+              <span class="item-num">05</span>
+              <span class="item-nome">Sal & Brisa</span>
+              <span class="item-tag">Key visual</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t18" role="region" aria-label="Sal & Brisa">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="peca-kv-5.webp" alt="Key visual do quiosque Sal e Brisa: a frase Gelado até a última gota em tipo redondo e pesado, com uma fatia de toranja e uma rodela de limão em cores chapadas sobre laranja, e os formatos feed, story e outdoor" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing</p>
+                    <p>
+                      Quiosque de sucos e açaí na praia quer parecer gelado e alegre de longe, no meio de dez barracas iguais.
+                    </p>
+                    <p>
+                      <b>Fruta cortada como forma</b>: a fatia de toranja e a rodela de limão em cores chapadas, tipo redondo e gordo. Nada de foto de copo suando.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Rubik</b> black</li>
+                      <li>Cores <b>cítricas</b></li>
+                      <li>Fruta como <b>forma</b></li>
+                      <li><b>Sem</b> foto</li>
+                      <li>Uma composição, <b>três formatos</b></li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="peca-kv-6.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t19">
+              <span class="item-num">06</span>
+              <span class="item-nome">Jazz no Cais</span>
+              <span class="item-tag">Key visual</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t19" role="region" aria-label="Jazz no Cais">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="peca-kv-6.webp" alt="Key visual do Jazz no Cais: a frase A noite afina às oito em serifa alta, com um refletor dourado atravessando o azul-profundo, e os formatos feed, story e outdoor" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Peça principal e os desdobramentos em feed, story e outdoor</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing</p>
+                    <p>
+                      Noite semanal de jazz num armazém do cais, entrada livre. Precisa parecer caro sem cobrar nada.
+                    </p>
+                    <p>
+                      <b>Um refletor dourado atravessa o azul</b>; o resto é silêncio. Serifa alta, com o itálico na palavra que soa.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>DM Serif Display</b> no título</li>
+                      <li><b>Manrope</b> no texto</li>
+                      <li>Azul-profundo e <b>dourado</b></li>
+                      <li>O <b>refletor</b> como forma</li>
+                      <li>Uma composição, <b>três formatos</b></li>
+                    </ul>
                   </div>
 
                 </div>
@@ -1301,7 +1317,9 @@
         <section class="grupo" data-grupo="logos">
           <h3 class="grupo-titulo">
             <button class="grupo-cabeca" type="button" aria-expanded="false" aria-controls="g-logos">
+              <span class="grupo-num">04</span>
               <span class="grupo-nome">Logos</span>
+              <span class="grupo-previas" aria-hidden="true"><img src="peca-logo-1.webp" alt="" width="1280" height="800" loading="lazy"><img src="peca-logo-2.webp" alt="" width="1280" height="800" loading="lazy"><img src="peca-logo-3.webp" alt="" width="1280" height="800" loading="lazy"></span>
               <span class="grupo-conta">6 trabalhos</span>
               <span class="grupo-mais" aria-hidden="true"></span>
             </button>
@@ -1309,117 +1327,28 @@
           <div class="grupo-corpo" id="g-logos">
             <div>
       <ol class="itens" data-lista-trabalhos>
-        <li class="item sobe" data-previa="estudo-logo-1.webp">
+
+        <li class="item sobe" data-previa="peca-logo-1.webp">
           <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t17">
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t20">
               <span class="item-num">01</span>
-              <span class="item-nome">Quintal Orgânico</span>
-              <span class="item-tag">Logo</span>
-              <span class="item-mais" aria-hidden="true"></span>
-            </button>
-          </h4>
-          <div class="detalhe" id="t17" role="region" aria-label="Quintal Orgânico">
-            <div>
-              <div class="detalhe-dentro">
-                <div class="detalhe-grade com-peca">
-
-                  <figure class="peca">
-                    <img src="estudo-logo-1.webp" alt="Prancha do logo Quintal Orgânico: um Q em anel grosso cuja cauda vira um broto com duas folhas, verde sobre creme, com as versões positiva, negativa e monocromática e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
-                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
-                  </figure>
-
-                  <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
-                    <p>
-                      Feira semanal de produtores pede uma marca que funcione em carimbo, sacola de pano e placa de madeira: traço grosso, uma cor, sem degradê.
-                    </p>
-                    <p>
-                      <b>O Q é o quintal cercado, e a cauda brota.</b> Monograma e planta na mesma forma, num traço só, grosso o bastante para o carimbo e para a sacola.
-                    </p>
-                    <p class="olho">Como fizemos</p>
-                    <ul class="pilha">
-                      <li><b>Lora</b> no nome</li>
-                      <li><b>Manrope</b> no apoio</li>
-                      <li>Monograma <b>Q</b> que brota</li>
-                      <li><b>1</b> traço, <b>1</b> cor</li>
-                      <li>Positivo, negativo e <b>mono</b></li>
-                      <li>Grade de <b>construção</b></li>
-                    </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="item sobe" data-previa="estudo-logo-2.webp">
-          <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t18">
-              <span class="item-num">02</span>
-              <span class="item-nome">Rua Oito Marcenaria</span>
-              <span class="item-tag">Logo</span>
-              <span class="item-mais" aria-hidden="true"></span>
-            </button>
-          </h4>
-          <div class="detalhe" id="t18" role="region" aria-label="Rua Oito Marcenaria">
-            <div>
-              <div class="detalhe-dentro">
-                <div class="detalhe-grade com-peca">
-
-                  <figure class="peca">
-                    <img src="estudo-logo-2.webp" alt="Prancha do logo Rua Oito Marcenaria: um quadrado dividido por uma junta rabo-de-andorinha, madeira escura em cima e clara embaixo, com as versões positiva, negativa e monocromática e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
-                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
-                  </figure>
-
-                  <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
-                    <p>
-                      Marcenaria sob medida que leva o número da rua no nome. O pedido: parecer ofício, não design.
-                    </p>
-                    <p>
-                      <b>Duas madeiras unidas por um rabo-de-andorinha.</b> O encaixe, que é o ofício, é o símbolo; o quadrado é a peça pronta. Serifa com peso e as duas cores da madeira.
-                    </p>
-                    <p class="olho">Como fizemos</p>
-                    <ul class="pilha">
-                      <li><b>Bitter</b> no nome</li>
-                      <li><b>Manrope</b> no apoio</li>
-                      <li>Junta <b>rabo-de-andorinha</b></li>
-                      <li><b>2</b> tons de madeira</li>
-                      <li>Positivo, negativo e <b>mono</b></li>
-                      <li>Grade de <b>construção</b></li>
-                    </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="item sobe" data-previa="estudo-logo-3.webp">
-          <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t19">
-              <span class="item-num">03</span>
               <span class="item-nome">Boreal Óptica</span>
               <span class="item-tag">Logo</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
           </h4>
-          <div class="detalhe" id="t19" role="region" aria-label="Boreal Óptica">
+          <div class="detalhe" id="t20" role="region" aria-label="Boreal Óptica">
             <div>
               <div class="detalhe-dentro">
                 <div class="detalhe-grade com-peca">
 
                   <figure class="peca">
-                    <img src="estudo-logo-3.webp" alt="Prancha do logo Boreal Óptica: um o fino cujo arco de cima é uma faixa de aurora em gradiente verde-água, índigo e violeta, sobre azul-noite, com as versões e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
+                    <img src="peca-logo-1.webp" alt="Logo Boreal Óptica: um o fino cujo arco de cima é uma faixa de aurora em gradiente verde-água, índigo e violeta, sobre azul-noite, com as versões e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
                     <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
                   </figure>
 
                   <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
+                    <p class="olho">Briefing</p>
                     <p>
                       Óptica nova num bairro com três concorrentes antigas. Precisa parecer mais técnica e mais jovem que elas, sem cair em clínica.
                     </p>
@@ -1434,7 +1363,6 @@
                       <li>Positivo, sobre a cor e <b>mono</b></li>
                       <li>Grade de <b>construção</b></li>
                     </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
                   </div>
 
                 </div>
@@ -1443,87 +1371,41 @@
           </div>
         </li>
 
-        <li class="item sobe" data-previa="estudo-logo-4.webp">
-          <h4>
-            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t20">
-              <span class="item-num">04</span>
-              <span class="item-nome">Forno Sete</span>
-              <span class="item-tag">Logo</span>
-              <span class="item-mais" aria-hidden="true"></span>
-            </button>
-          </h4>
-          <div class="detalhe" id="t20" role="region" aria-label="Forno Sete">
-            <div>
-              <div class="detalhe-dentro">
-                <div class="detalhe-grade com-peca">
-
-                  <figure class="peca">
-                    <img src="estudo-logo-4.webp" alt="Prancha do logo Forno Sete: uma espiga de trigo que forma o numeral 7, marrom sobre creme, com as versões positiva, negativa e monocromática e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
-                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
-                  </figure>
-
-                  <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
-                    <p>
-                      Padaria artesanal que assa em forno a lenha e leva o número da receita original no nome. Precisa de uma marca que caiba no saco de pão e na fachada.
-                    </p>
-                    <p>
-                      <b>A espiga é o 7.</b> A barra do número é a haste deitada; a perna é o caule, com seis grãos no mesmo ritmo, três de cada lado.
-                    </p>
-                    <p class="olho">Como fizemos</p>
-                    <ul class="pilha">
-                      <li><b>Fraunces</b> pesado no nome</li>
-                      <li><b>Manrope</b> no apoio</li>
-                      <li>Espiga que vira <b>numeral</b></li>
-                      <li><b>6</b> grãos, em ritmo</li>
-                      <li>Positivo, negativo e <b>mono</b></li>
-                      <li>Grade de <b>construção</b></li>
-                    </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="item sobe" data-previa="estudo-logo-5.webp">
+        <li class="item sobe" data-previa="peca-logo-2.webp">
           <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t21">
-              <span class="item-num">05</span>
-              <span class="item-nome">Lume Arquitetura</span>
+              <span class="item-num">02</span>
+              <span class="item-nome">Maré Surf School</span>
               <span class="item-tag">Logo</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
           </h4>
-          <div class="detalhe" id="t21" role="region" aria-label="Lume Arquitetura">
+          <div class="detalhe" id="t21" role="region" aria-label="Maré Surf School">
             <div>
               <div class="detalhe-dentro">
                 <div class="detalhe-grade com-peca">
 
                   <figure class="peca">
-                    <img src="estudo-logo-5.webp" alt="Prancha do logo Lume Arquitetura: a planta de um cômodo em traço grosso com o canto aberto como porta e um ponto de luz amarelo dentro, sobre cinza-claro, com as versões e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
-                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
+                    <img src="peca-logo-2.webp" alt="Logo Maré Surf School: uma onda que forma a letra M em degradê turquesa para coral, com a crista quebrando, as versões colorida, sobre escuro e mono, e a aplicação numa prancha de surf" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e aplicação</figcaption>
                   </figure>
 
                   <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
+                    <p class="olho">Briefing</p>
                     <p>
-                      Escritório de arquitetura residencial, pequeno, que vende luz natural como argumento. A marca tem que ser planta e lâmpada ao mesmo tempo.
+                      Escola de surf para iniciantes, de criança a aposentado. A marca tem que ser alegre e caber numa prancha, numa camiseta e no adesivo do carro.
                     </p>
                     <p>
-                      <b>A planta de um cômodo com a porta aberta e a luz entrando.</b> Traço grosso, canto aberto, um ponto amarelo: o único acento de cor da marca.
+                      <b>A onda é o M</b>, com a crista quebrando em coral. Degradê turquesa para coral na versão principal; chapada nas outras.
                     </p>
                     <p class="olho">Como fizemos</p>
                     <ul class="pilha">
-                      <li><b>Archivo</b> leve e espaçado</li>
-                      <li>Planta baixa com a <b>porta</b></li>
-                      <li><b>1</b> acento de cor</li>
-                      <li>Positivo, negativo e <b>mono</b></li>
-                      <li>Grade de <b>construção</b></li>
+                      <li><b>Nunito</b> black no nome</li>
+                      <li>Onda que vira <b>M</b></li>
+                      <li>Turquesa para <b>coral</b></li>
+                      <li>Colorido, sobre escuro e <b>mono</b></li>
+                      <li>Aplicação na <b>prancha</b></li>
                     </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
                   </div>
 
                 </div>
@@ -1532,43 +1414,170 @@
           </div>
         </li>
 
-        <li class="item sobe" data-previa="estudo-logo-6.webp">
+        <li class="item sobe" data-previa="peca-logo-3.webp">
           <h4>
             <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t22">
-              <span class="item-num">06</span>
-              <span class="item-nome">Ponte Advocacia</span>
+              <span class="item-num">03</span>
+              <span class="item-nome">Coco Brisa</span>
               <span class="item-tag">Logo</span>
               <span class="item-mais" aria-hidden="true"></span>
             </button>
           </h4>
-          <div class="detalhe" id="t22" role="region" aria-label="Ponte Advocacia">
+          <div class="detalhe" id="t22" role="region" aria-label="Coco Brisa">
             <div>
               <div class="detalhe-dentro">
                 <div class="detalhe-grade com-peca">
 
                   <figure class="peca">
-                    <img src="estudo-logo-6.webp" alt="Prancha do logo Ponte Advocacia: um P cuja barriga é um arco de ponte apoiado em dois pilares, azul-tinta sobre creme, com as versões positiva, negativa e sobre dourado e a grade de construção" width="1280" height="800" loading="lazy" decoding="async">
-                    <figcaption>Símbolo, logotipo, versões e grade de construção</figcaption>
+                    <img src="peca-logo-3.webp" alt="Logo Coco Brisa: um coco marrom com três olhos, uma folha de palmeira em dois verdes e um canudo laranja, com as versões colorida, sobre escuro e mono, e a aplicação num copo" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e aplicação</figcaption>
                   </figure>
 
                   <div class="detalhe-sobre">
-                    <p class="olho">Briefing imaginado</p>
+                    <p class="olho">Briefing</p>
                     <p>
-                      Escritório de advocacia de família que se apresenta como quem faz a travessia junto. Nada de balança nem de coluna grega.
+                      Quiosque de praia que vive de água de coco. Quer marca de desenho animado, sem ser infantil.
                     </p>
                     <p>
-                      <b>O P é a ponte</b>: o pilar da margem de cá, o arco e o segundo apoio. Garamond no nome, azul-tinta e um dourado só.
+                      <b>Coco, folha e canudo em três cores chapadas</b>, zero sombra. Os três olhos do coco são a cara da marca.
                     </p>
                     <p class="olho">Como fizemos</p>
                     <ul class="pilha">
-                      <li><b>Cormorant Garamond</b> no nome</li>
-                      <li><b>Manrope</b> no apoio</li>
-                      <li>Monograma <b>P</b> que é ponte</li>
-                      <li>Azul-tinta e <b>1</b> dourado</li>
-                      <li>Positivo, negativo e sobre o <b>dourado</b></li>
-                      <li>Grade de <b>construção</b></li>
+                      <li><b>Fredoka</b> no nome</li>
+                      <li>Verde-limão, laranja e <b>marrom</b></li>
+                      <li><b>3</b> cores, zero sombra</li>
+                      <li>Colorido, sobre escuro e <b>mono</b></li>
+                      <li>Aplicação no <b>copo</b></li>
                     </ul>
-                    <p class="nota-estudo">Projeto autoral para uma marca fictícia.</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="peca-logo-4.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t23">
+              <span class="item-num">04</span>
+              <span class="item-nome">Açaí da Ilha</span>
+              <span class="item-tag">Logo</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t23" role="region" aria-label="Açaí da Ilha">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="peca-logo-4.webp" alt="Logo Açaí da Ilha: uma tigela roxa como o mar com um sol amarelo e laranja se pondo atrás dela e uma colher como reflexo, com as versões colorida, sobre escuro e mono, e a aplicação numa tampa" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e aplicação</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing</p>
+                    <p>
+                      Açaiteria numa ilha turística: a tigela precisa lembrar o fim de tarde na praia, não a academia.
+                    </p>
+                    <p>
+                      <b>A tigela é o mar e o sol se põe atrás dela</b>; a colher é o reflexo na água. Roxo do açaí, amarelo do sol.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Poppins</b> extra-bold no nome</li>
+                      <li>Tigela que é <b>mar</b></li>
+                      <li>Roxo e <b>amarelo</b></li>
+                      <li>Colorido, sobre escuro e <b>mono</b></li>
+                      <li>Aplicação na <b>tampa</b></li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="peca-logo-5.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t24">
+              <span class="item-num">05</span>
+              <span class="item-nome">Sol a Sol</span>
+              <span class="item-tag">Logo</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t24" role="region" aria-label="Sol a Sol">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="peca-logo-5.webp" alt="Logo Sol a Sol: um sol de oito raios em gota com o centro vazado, em degradê laranja para rosa, com as versões colorida, sobre escuro e mono, e a aplicação num frasco" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e aplicação</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing</p>
+                    <p>
+                      Protetor solar de farmácia querendo parecer cosmético de praia. O nome diz do nascer ao pôr.
+                    </p>
+                    <p>
+                      <b>Oito raios em gota e o centro vazado</b>: a pele protegida. Degradê quente do laranja ao rosa; o "a" do nome em peso maior.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Outfit</b> no nome</li>
+                      <li>Sol de <b>oito raios</b></li>
+                      <li>Laranja para <b>rosa</b></li>
+                      <li>Colorido, sobre escuro e <b>mono</b></li>
+                      <li>Aplicação no <b>frasco</b></li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item sobe" data-previa="peca-logo-6.webp">
+          <h4>
+            <button class="item-cabeca" type="button" aria-expanded="false" aria-controls="t25">
+              <span class="item-num">06</span>
+              <span class="item-nome">Onda Swimwear</span>
+              <span class="item-tag">Logo</span>
+              <span class="item-mais" aria-hidden="true"></span>
+            </button>
+          </h4>
+          <div class="detalhe" id="t25" role="region" aria-label="Onda Swimwear">
+            <div>
+              <div class="detalhe-dentro">
+                <div class="detalhe-grade com-peca">
+
+                  <figure class="peca">
+                    <img src="peca-logo-6.webp" alt="Logo Onda Swimwear: um O cortado por uma linha de onda, azul-piscina em cima e coral embaixo, com as versões colorida, sobre escuro e mono, e a aplicação numa etiqueta" width="1280" height="800" loading="lazy" decoding="async">
+                    <figcaption>Símbolo, logotipo, versões e aplicação</figcaption>
+                  </figure>
+
+                  <div class="detalhe-sobre">
+                    <p class="olho">Briefing</p>
+                    <p>
+                      Marca de moda praia que vende online e precisa de uma etiqueta que se reconheça dobrada dentro da mala.
+                    </p>
+                    <p>
+                      <b>O O cortado pela linha d'água</b>: piscina em cima, coral embaixo. Letra espaçada, como etiqueta.
+                    </p>
+                    <p class="olho">Como fizemos</p>
+                    <ul class="pilha">
+                      <li><b>Josefin Sans</b> espaçada</li>
+                      <li>O cortado pela <b>onda</b></li>
+                      <li>Azul-piscina e <b>coral</b></li>
+                      <li>Colorido, sobre escuro e <b>mono</b></li>
+                      <li>Aplicação na <b>etiqueta</b></li>
+                    </ul>
                   </div>
 
                 </div>

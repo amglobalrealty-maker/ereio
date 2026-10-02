@@ -301,6 +301,14 @@
       grupo.classList.toggle('aberto', abrir);
       var cabeca = grupo.querySelector('.grupo-cabeca');
       if (cabeca) cabeca.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      // Abrir a frente JÁ É a entrada dos trabalhos dela: revela todos de
+      // uma vez. Antes cada um esperava o observador de rolagem, e dentro
+      // de uma frente que nasce com altura zero ele não disparava direito:
+      // a frente abria e os nomes ficavam invisíveis.
+      if (abrir) {
+        var escondidos = grupo.querySelectorAll('.sobe:not(.vista)');
+        for (var k = 0; k < escondidos.length; k++) revelar(escondidos[k]);
+      }
       var palcos = grupo.querySelectorAll('[data-carrossel]');
       Array.prototype.forEach.call(palcos, function (palco) {
         if (!palco.controleCarrossel) return;

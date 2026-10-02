@@ -967,8 +967,122 @@ body.travada { overflow: hidden; }
 .sem-js .slide-controles,
 .sem-js .slide-progresso { display: none; }
 
+/* ===================== a abertura de trabalhos =====================
+
+   Texto à esquerda; à direita o MURAL: cinco cartões (telas e peças)
+   inclinados e sobrepostos, flutuando devagar, que sobem ao passar o
+   mouse. Embaixo, uma FAIXA que rola com o nome dos 25 trabalhos. Cada
+   frente tem uma cor, usada nos resumos daqui e nas linhas do menu.
+   ==================================================================== */
+
+:root {
+  --cor-sites: #8468FF;
+  --cor-automacoes: #FF7C01;
+  --cor-key-visual: #FF4FA3;
+  --cor-logos: #2BB3A3;
+}
+
+[data-frente="sites"],      .grupo[data-grupo="sites"]      { --cor: var(--cor-sites); }
+[data-frente="automacoes"], .grupo[data-grupo="automacoes"] { --cor: var(--cor-automacoes); }
+[data-frente="key-visual"], .grupo[data-grupo="key-visual"] { --cor: var(--cor-key-visual); }
+[data-frente="logos"],      .grupo[data-grupo="logos"]      { --cor: var(--cor-logos); }
+
+.abertura-trabalhos .dentro {
+  max-width: var(--max);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .abertura-trabalhos .dentro { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+}
+
+.abertura-trabalhos h1 { max-width: 18ch; font-size: clamp(2rem, 1rem + 3.2vw, 3.4rem); }
+
+.mural {
+  position: relative;
+  height: clamp(15rem, 34vw, 25rem);
+}
+
+.mural img {
+  position: absolute;
+  width: clamp(9.5rem, 19vw, 14.5rem);
+  height: auto;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2rem 4rem -1.5rem rgba(0, 0, 0, 0.85);
+  /* rotate e translate separados: a rotação é fixa, a flutuação anima */
+  animation: boiar-cartao 9s var(--ambiente) infinite alternate;
+  transition: scale 0.5s var(--entra), box-shadow 0.5s var(--entra);
+}
+
+.mural img:nth-child(1) { left: 2%;  top: 6%;  rotate: -9deg; z-index: 1; animation-delay: 0s; }
+.mural img:nth-child(2) { left: 30%; top: 0;   rotate: 4deg;  z-index: 2; animation-delay: -2s; }
+.mural img:nth-child(3) { left: 56%; top: 10%; rotate: -3deg; z-index: 3; animation-delay: -4s; }
+.mural img:nth-child(4) { left: 14%; top: 44%; rotate: 6deg;  z-index: 4; animation-delay: -6s; }
+.mural img:nth-child(5) { left: 46%; top: 48%; rotate: -7deg; z-index: 5; animation-delay: -8s; }
+
+.mural img:hover {
+  z-index: 10;
+  scale: 1.08;
+  box-shadow: 0 2.5rem 5rem -1.5rem rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(132, 104, 255, 0.6);
+  animation-play-state: paused;
+}
+
+@keyframes boiar-cartao {
+  from { translate: 0 0; }
+  to   { translate: 0 -0.9rem; }
+}
+
+/* a faixa de nomes: sangra de borda a borda da seção e rola sem fim */
+.faixa-nomes {
+  position: relative;
+  z-index: 1;
+  margin: clamp(2.25rem, 5vh, 3.5rem) calc(-1 * var(--gut)) 0;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--linha);
+  border-bottom: 1px solid var(--linha);
+  overflow: hidden;
+  white-space: nowrap;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.faixa-trilho {
+  display: inline-flex;
+  animation: rolar 80s linear infinite;
+}
+
+.faixa-lote {
+  display: inline-flex;
+  gap: 2.4rem;
+  padding-right: 2.4rem;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+.faixa-lote span::before {
+  content: "";
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.3rem;
+  margin-right: 0.9rem;
+  border-radius: 50%;
+  background: var(--laranja);
+  vertical-align: 0.1em;
+}
+
+.faixa-nomes:hover .faixa-trilho { animation-play-state: paused; }
+
+@keyframes rolar { to { transform: translateX(-50%); } }
+
 /* o resumo das frentes na abertura de trabalhos: número grande, rótulo em
-   mono, cada um levando à frente certa */
+   mono, a cor da frente, cada um levando à frente certa */
 .resumo-frentes {
   display: flex;
   flex-wrap: wrap;
@@ -979,34 +1093,35 @@ body.travada { overflow: hidden; }
 }
 
 .resumo-frentes a {
+  --cor: var(--realce);
   display: inline-flex;
   align-items: baseline;
-  gap: 0.45rem;
-  padding: 0.55rem 0.95rem;
-  border: 1px solid var(--linha-viva);
+  gap: 0.5rem;
+  padding: 0.65rem 1.05rem;
+  border: 1px solid color-mix(in srgb, var(--cor) 55%, transparent);
   border-radius: 999px;
-  color: var(--texto-fraco);
+  color: var(--texto);
   text-decoration: none;
   font-family: var(--mono);
   font-size: 0.64rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: border-color 0.2s var(--sai), color 0.2s var(--sai), background 0.2s var(--sai);
+  transition: border-color 0.2s var(--sai), background 0.2s var(--sai), translate 0.2s var(--sai);
 }
 
 .resumo-frentes a b {
   font-family: var(--sans);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--texto);
+  color: var(--cor);
 }
 
 .resumo-frentes a:hover {
-  border-color: var(--realce);
-  background: rgba(132, 104, 255, 0.1);
-  color: var(--texto);
-  transition: border-color 0.3s var(--toque), color 0.3s var(--toque), background 0.3s var(--toque);
+  border-color: var(--cor);
+  background: color-mix(in srgb, var(--cor) 16%, transparent);
+  translate: 0 -2px;
+  transition: border-color 0.3s var(--toque), background 0.3s var(--toque), translate 0.4s var(--entra);
 }
 
 /* =============================== prova =============================== */
@@ -1084,11 +1199,17 @@ body.travada { overflow: hidden; }
 .grade-servicos {
   display: grid;
   gap: clamp(0.75rem, 1.5vw, 1.1rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  /* no máximo três colunas: são seis cartões, e seis divide por dois e
+     por três. Com a grade automática cabiam quatro e sobravam dois
+     buracos na segunda linha. */
+  grid-template-columns: 1fr;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
+@media (min-width: 40rem) { .grade-servicos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 60rem) { .grade-servicos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 .servico {
   position: relative;
@@ -1261,16 +1382,27 @@ body.travada { overflow: hidden; }
 
 .grupos { border-top: 2px solid var(--texto); }
 
-.grupo { border-bottom: 1px solid var(--linha); }
+.grupo {
+  --cor: var(--realce);
+  border-bottom: 1px solid var(--linha);
+  border-radius: 0;
+  transition: background 0.4s var(--toque), border-radius 0.4s var(--toque);
+}
+
+/* aberta, a frente ganha um fundo levíssimo na própria cor */
+.grupo.aberto {
+  background: color-mix(in srgb, var(--cor) 7%, transparent);
+  border-radius: 0.8rem;
+}
 
 .grupo-titulo { margin: 0; font-size: inherit; font-weight: inherit; }
 
 .grupo-cabeca {
   display: flex;
-  align-items: baseline;
-  gap: clamp(0.8rem, 2vw, 1.5rem);
+  align-items: center;
+  gap: clamp(0.7rem, 1.6vw, 1.25rem);
   width: 100%;
-  padding: clamp(1.1rem, 2.6vh, 1.6rem) clamp(0.5rem, 1.5vw, 1rem);
+  padding: clamp(1.1rem, 2.6vh, 1.6rem) clamp(0.6rem, 1.5vw, 1.1rem);
   border: 0;
   background: none;
   font: inherit;
@@ -1279,8 +1411,18 @@ body.travada { overflow: hidden; }
   cursor: pointer;
 }
 
+.grupo-num {
+  flex: none;
+  width: 2rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--cor);
+}
+
 .grupo-nome {
   flex: 1;
+  min-width: 0;
   font-size: clamp(1.5rem, 1rem + 2.4vw, 2.75rem);
   font-weight: 800;
   line-height: 1.05;
@@ -1289,9 +1431,52 @@ body.travada { overflow: hidden; }
   transition: color 0.25s var(--toque);
 }
 
-@media (hover: hover) { .grupo-cabeca:hover .grupo-nome { color: var(--realce); } }
+@media (hover: hover) { .grupo-cabeca:hover .grupo-nome { color: var(--cor); } }
 
-.grupo.aberto .grupo-nome { color: var(--realce); }
+.grupo.aberto .grupo-nome { color: var(--cor); }
+
+/* as três miniaturas em leque: telas ou peças daquela frente. Em
+   Automações, que não tem imagem, são três números. Abrem ao passar o
+   mouse e ficam abertas enquanto a frente está aberta. */
+.grupo-previas {
+  display: none;
+  align-items: center;
+  flex: none;
+  margin-right: 0.25rem;
+}
+
+@media (min-width: 52rem) { .grupo-previas { display: flex; } }
+
+.grupo-previas > * {
+  display: block;
+  width: 5.4rem;
+  height: 3.4rem;
+  margin-left: -1.9rem;
+  border: 1px solid var(--linha-viva);
+  border-radius: 0.4rem;
+  background: var(--cartao);
+  box-shadow: 0 0.6rem 1.4rem -0.7rem rgba(16, 16, 32, 0.5);
+  object-fit: cover;
+  object-position: top;
+  transition: margin 0.5s var(--entra), rotate 0.5s var(--entra), translate 0.5s var(--entra);
+}
+
+.grupo-previas > :nth-child(1) { margin-left: 0; rotate: -7deg; translate: 0 0.2rem; }
+.grupo-previas > :nth-child(2) { rotate: 2deg; translate: 0 -0.25rem; }
+.grupo-previas > :nth-child(3) { rotate: 7deg; translate: 0 0.15rem; }
+
+.grupo-cabeca:hover .grupo-previas > *,
+.grupo.aberto .grupo-previas > * { margin-left: 0.35rem; rotate: 0deg; translate: 0 0; }
+
+.grupo-previas b {
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--cor);
+}
 
 .grupo-conta {
   flex: none;
@@ -1302,20 +1487,19 @@ body.travada { overflow: hidden; }
   color: var(--texto-fraco);
 }
 
-/* o mesmo sinal de mais dos itens, um pouco maior */
+/* o mesmo sinal de mais dos itens, um pouco maior e na cor da frente */
 .grupo-mais {
   position: relative;
   flex: none;
-  align-self: center;
   width: 2rem;
   height: 2rem;
-  border: 1px solid var(--linha-viva);
+  border: 1px solid color-mix(in srgb, var(--cor) 50%, var(--linha-viva));
   border-radius: 50%;
   transition: background 0.25s var(--sai), border-color 0.25s var(--sai);
 }
 
 .grupo-cabeca:hover .grupo-mais,
-.grupo.aberto .grupo-mais { background: var(--realce); border-color: var(--realce); }
+.grupo.aberto .grupo-mais { background: var(--cor); border-color: var(--cor); }
 
 .grupo-mais::before,
 .grupo-mais::after {
@@ -1327,7 +1511,7 @@ body.travada { overflow: hidden; }
   height: 2px;
   margin: -1px 0 0 -0.4rem;
   border-radius: 2px;
-  background: var(--realce);
+  background: var(--cor);
   transition: transform 0.4s var(--entra), background 0.25s var(--sai);
 }
 
@@ -2021,5 +2205,7 @@ body.travada { overflow: hidden; }
   /* o slide troca sem deslizar, e nada roda sozinho (o script não agenda) */
   .topo, .marca img, .tela-slide, .ambiente img, .slide-seta, .slide-pontos button { transition: none; }
   .slide.rodando .tela-slide.ativa img, .slide.rodando .slide-progresso i { animation: none; }
-  .grupo-corpo, .grupo-mais, .grupo-mais::before, .grupo-mais::after { transition: none; }
+  .grupo-corpo, .grupo-mais, .grupo-mais::before, .grupo-mais::after, .grupo-previas > *, .grupo, .resumo-frentes a { transition: none; }
+  /* nada roda nem flutua sozinho */
+  .mural img, .faixa-trilho { animation: none; }
 }
