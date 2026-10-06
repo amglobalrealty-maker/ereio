@@ -11,6 +11,14 @@
 
   gtag('config', 'AW-18496788841');
 </script>
+<script>
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="web.whatsapp.com"]');
+    if (link && typeof gtag === 'function') {
+      gtag('event', 'conversion', {'send_to': 'AW-18496788841/vXQjCNLNvJMdEOmy-vNE'});
+    }
+  });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ereio.co</title>
 <meta name="description" content="Sites, UX e UI feitos sem template e sem plugin — por quem também constrói o sistema atrás deles.">
