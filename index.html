@@ -12,12 +12,28 @@
   gtag('config', 'AW-18496788841');
 </script>
 <script>
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="web.whatsapp.com"]');
-    if (link && typeof gtag === 'function') {
-      gtag('event', 'conversion', {'send_to': 'AW-18496788841/vXQjCNLNvJMdEOmy-vNE'});
+  /* Conversao do Google Ads (WhatsApp): UMA por navegador, e so quando a pagina de fato
+     sai para o WhatsApp depois do clique (19/10/2026: so o clique inflava a contagem,
+     14 conversoes para 2 conversas). O clique arma; a saida da aba (visibilitychange,
+     pagehide ou blur) ate 15 s depois dispara; o navegador guarda que ja contou. */
+  (function () {
+    var CHAVE = 'ereio-conversao-whatsapp', armado = 0;
+    function jaContou() { try { return localStorage.getItem(CHAVE) === '1'; } catch (e) { return false; } }
+    function marcar() { try { localStorage.setItem(CHAVE, '1'); } catch (e) {} }
+    function contar() {
+      if (jaContou() || typeof gtag !== 'function') return;
+      marcar();
+      gtag('event', 'conversion', {'send_to': 'AW-18496788841/vXQjCNLNvJMdEOmy-vNE', 'transport_type': 'beacon'});
     }
-  });
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="web.whatsapp.com"]');
+      if (link && !jaContou()) armado = Date.now();
+    });
+    function saiu() { if (armado && Date.now() - armado < 15000) { armado = 0; contar(); } }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) saiu(); });
+    window.addEventListener('pagehide', saiu);
+    window.addEventListener('blur', saiu);
+  })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ereio.co</title>
