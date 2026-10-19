@@ -2480,6 +2480,9 @@ body.travada { overflow: hidden; }
 .cliente img {
   display: block;
   width: 100%;
+  /* height: auto e obrigatorio: o atributo height="800" da imagem vence o aspect-ratio
+     sem ele, e os cartoes saiam com 800px de altura (19/10) */
+  height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: top;
