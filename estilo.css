@@ -2219,8 +2219,235 @@ body.travada { overflow: hidden; }
 .sem-js .servico::before,
 .sem-js .passo::after { transform: scaleX(1); }
 
+/* ============================ sobre (19/10/2026) ============================
+   A página de quem faz a ereio. Abertura em duas colunas: texto e o RETRATO
+   num cartão inclinado, com um brilho em cone que gira devagar atrás e dois
+   chips flutuando (código e design). Depois: a faixa violeta reaproveitada
+   com palavras no lugar de números, os cartões de serviço, a caixa de
+   ferramentas em etiquetas, uma janela de código e as duas formações.
+   Tudo lê dos tokens de seção; nada de cor fixa. */
+
+.abertura-sobre .dentro {
+  max-width: var(--max);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.25rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .abertura-sobre .dentro { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
+}
+
+.abertura-sobre h1 { max-width: 15ch; font-size: clamp(2.1rem, 1rem + 3.6vw, 3.6rem); }
+
+.retrato {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 22rem);
+  margin: 0;
+}
+
+/* o brilho atrás: cone violeta e laranja, desfocado, girando */
+.retrato::before {
+  content: "";
+  position: absolute;
+  inset: -1.5rem;
+  z-index: -1;
+  border-radius: 2.5rem;
+  background: conic-gradient(from 180deg, rgba(88, 56, 216, 0), rgba(132, 104, 255, 0.6), rgba(255, 124, 1, 0.5), rgba(88, 56, 216, 0));
+  filter: blur(30px);
+  opacity: 0.85;
+  animation: girar-brilho 16s linear infinite;
+}
+
+@keyframes girar-brilho { to { transform: rotate(360deg); } }
+
+.retrato-moldura {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: var(--cartao);
+  box-shadow: 0 2.2rem 4rem -1.5rem rgba(8, 8, 15, 0.95), 0 0 0 1px var(--linha-viva);
+  transform: rotate(-3deg);
+  transition: transform 0.9s var(--entra);
+}
+
+.retrato:hover .retrato-moldura { transform: rotate(0deg) scale(1.02); }
+
+.retrato-moldura img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.retrato-chip {
+  position: absolute;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--linha-viva);
+  background: var(--cartao-alto);
+  box-shadow: 0 0.7rem 1.5rem -0.6rem rgba(8, 8, 15, 0.85);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  animation: boiar-chip 6s var(--ambiente) infinite alternate;
+}
+
+.retrato-chip.codigo { left: -1.1rem; top: 12%; color: var(--violeta-alto); }
+.retrato-chip.design { right: -0.9rem; bottom: 15%; color: var(--laranja); animation-delay: -3s; }
+
+@keyframes boiar-chip {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-0.6rem); }
+}
+
+.retrato-legenda {
+  margin: 1rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+  text-align: center;
+}
+
+/* a caixa de ferramentas: quatro grupos de etiquetas */
+.ferramentas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+  margin: 0;
+}
+
+@media (min-width: 52rem) { .ferramentas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.ferramentas > div {
+  padding: clamp(1rem, 2vw, 1.4rem);
+  border: 1px solid var(--linha);
+  border-radius: 0.9rem;
+  background: var(--cartao);
+}
+
+.ferramentas dt {
+  margin: 0 0 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--realce);
+}
+
+.ferramentas dd { margin: 0; }
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.etiquetas li {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--linha-viva);
+  background: var(--cartao-alto);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--texto);
+}
+
+/* a janela de código */
+.janela-codigo {
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  overflow: hidden;
+  border: 1px solid var(--linha-viva);
+  border-radius: 0.9rem;
+  background: var(--tinta);
+  color: #E8E6F5;
+  box-shadow: 0 1.5rem 3rem -1.5rem rgba(8, 8, 15, 0.9);
+}
+
+.janela-codigo .barra-janela {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--linha);
+  background: var(--tinta-topo);
+}
+
+.janela-codigo .barra-janela i { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--linha-viva); }
+.janela-codigo .barra-janela i:first-child { background: var(--laranja); }
+.janela-codigo .barra-janela span { margin-left: auto; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--texto-fraco); }
+
+.janela-codigo pre {
+  margin: 0;
+  padding: 1rem 1.1rem 1.2rem;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.janela-codigo .k { color: var(--violeta-alto); }
+.janela-codigo .s { color: var(--laranja-alto); }
+.janela-codigo .c { color: #8B86B0; }
+
+/* as duas formações */
+.formacoes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+}
+
+@media (min-width: 52rem) { .formacoes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.formacao {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--linha);
+  border-radius: 1rem;
+  background: var(--cartao);
+}
+
+.formacao .num {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--realce);
+}
+
+.formacao h3 {
+  margin: 0.6rem 0 0.5rem;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.formacao p { margin: 0; font-size: 0.92rem; line-height: 1.6; color: var(--texto-fraco); }
+
+.formacao.design { border-color: rgba(255, 124, 1, 0.4); }
+.formacao.design .num { color: var(--laranja); }
+
+.manifesto-sobre {
+  max-width: 60ch;
+  margin: clamp(1.75rem, 3.5vw, 2.5rem) auto 0;
+  font-size: clamp(1.05rem, 1rem + 0.5vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.manifesto-sobre b { color: var(--realce); }
+
 @media (prefers-reduced-motion: reduce) {
   .sobe, .sobe.vista { opacity: 1; transform: none; transition: none; }
+  /* a página Sobre: o brilho não gira, os chips não flutuam, o retrato não vira */
+  .retrato::before, .retrato-chip { animation: none; }
+  .retrato-moldura, .retrato:hover .retrato-moldura { transition: none; transform: none; }
   .risco, .servico::before, .passo::after { transform: scaleX(1); transition: none; }
   .simbolo, .ponto { animation: none; }
   .servico, .item, .botao, .ir .seta-ir, .detalhe { transition: none; }
