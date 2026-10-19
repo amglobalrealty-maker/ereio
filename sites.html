@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18496788841"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18496788841');
+</script>
+<script>
+  /* Conversao do Google Ads (WhatsApp): UMA por navegador, e so quando a pagina de fato
+     sai para o WhatsApp depois do clique (19/10/2026). O clique arma; a saida da aba
+     (visibilitychange, pagehide ou blur) ate 15 s depois dispara; o navegador guarda que ja contou. */
+  (function () {
+    var CHAVE = 'ereio-conversao-whatsapp', armado = 0;
+    function jaContou() { try { return localStorage.getItem(CHAVE) === '1'; } catch (e) { return false; } }
+    function marcar() { try { localStorage.setItem(CHAVE, '1'); } catch (e) {} }
+    function contar() {
+      if (jaContou() || typeof gtag !== 'function') return;
+      marcar();
+      gtag('event', 'conversion', {'send_to': 'AW-18496788841/vXQjCNLNvJMdEOmy-vNE', 'transport_type': 'beacon'});
+    }
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="web.whatsapp.com"]');
+      if (link && !jaContou()) armado = Date.now();
+    });
+    function saiu() { if (armado && Date.now() - armado < 15000) { armado = 0; contar(); } }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) saiu(); });
+    window.addEventListener('pagehide', saiu);
+    window.addEventListener('blur', saiu);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Criação de sites profissionais · ereio.co</title>
+<meta name="description" content="Site profissional feito à mão para a sua empresa, sem template e sem plugin, por quem também programa o sistema atrás dele. Fale no WhatsApp e receba a proposta em 48 horas.">
+<meta name="theme-color" content="#08080F">
+<link rel="icon" type="image/png" href="icone-ereio.png">
+<link rel="apple-touch-icon" href="icone-ereio.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body class="sem-js">
+
+<!-- Os desenhos dos ícones, definidos UMA vez e reaproveitados por <use>. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-instagram" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.05 1.8.25 2.2.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.4.37 1 .42 2.2.07 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.05 1.2-.25 1.8-.42 2.2a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.4.17-1 .37-2.2.42-1.2.07-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.05-1.8-.25-2.2-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.05-1.2.25-1.8.42-2.2.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.02-4.73.09-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.07 1.23-.09 1.59-.09 4.73s.02 3.5.09 4.73c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.23.07 1.59.09 4.73.09s3.5-.02 4.73-.09c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.07-1.23.09-1.59.09-4.73s-.02-3.5-.09-4.73c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.02 15.14 4 12 4zm0 3.06a4.94 4.94 0 1 1 0 9.88 4.94 4.94 0 0 1 0-9.88zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zm5.14-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zm6.5 0h3.8v1.7h.05c.53-.95 1.82-1.95 3.75-1.95 4 0 4.75 2.5 4.75 5.76V21h-4v-5.6c0-1.34-.03-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.1 22l5.36-1.4a9.8 9.8 0 0 0 4.58 1.16c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.77 9.77 0 0 0 12.04 2zm0 1.8c2.15 0 4.17.84 5.69 2.36a7.99 7.99 0 0 1 2.36 5.69c0 4.44-3.61 8.04-8.05 8.04a8.1 8.1 0 0 1-4.1-1.12l-.3-.17-3.05.8.81-2.98-.19-.31a8 8 0 0 1-1.23-4.27c0-4.44 3.61-8.04 8.06-8.04zm-3.1 4.3c-.15 0-.4.06-.6.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.36c.11.15 1.6 2.44 3.88 3.42.54.23.97.37 1.3.48.55.17 1.05.15 1.44.09.44-.07 1.35-.55 1.54-1.09.19-.54.19-1 .13-1.1-.05-.1-.2-.15-.42-.26-.22-.11-1.35-.66-1.56-.74-.21-.08-.36-.11-.5.11-.16.22-.59.74-.72.89-.13.15-.26.17-.49.06-.22-.11-.94-.35-1.8-1.11a6.7 6.7 0 0 1-1.24-1.54c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.14-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.42z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+</svg>
+
+<!-- O CABEÇALHO: o mesmo das outras páginas. Esta é a página para onde o anúncio
+     manda; "Serviços" fica marcado como atual porque é a oferta de sites. -->
+<header class="topo" id="topo">
+  <div class="topo-dentro">
+    <a class="marca" href="index.html" aria-label="ereio.co, início">
+      <img src="logo-ereio-claro.png" alt="ereio.co" width="720" height="237">
+    </a>
+    <nav class="navega" aria-label="Navegação principal">
+      <ul class="links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#servicos" aria-current="page">Serviços</a></li>
+        <li><a href="trabalhos.html">Trabalhos</a></li>
+        <li><a href="index.html#processo">Processo</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
+      <span class="filete" aria-hidden="true"></span>
+      <ul class="redes">
+        <li><a href="https://www.instagram.com/ereio.co/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/luana-ereio-bb2b8624a/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+        <li><a href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a></li>
+        <li><a href="#" data-pendente="github" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a></li>
+      </ul>
+    </nav>
+    <a class="botao botao-laranja topo-falar" href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener">Falar</a>
+    <button class="gatilho" type="button" data-gatilho aria-expanded="false" aria-controls="menu">
+      Menu
+      <span class="gatilho-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<div class="veu" data-veu hidden></div>
+
+<aside class="painel" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="painel-dentro">
+    <p class="olho">Navegação</p>
+    <ul class="painel-links">
+      <li><a href="index.html"><span class="n">01</span><span class="t">Início</span></a></li>
+      <li><a href="index.html#servicos" aria-current="page"><span class="n">02</span><span class="t">Serviços</span></a></li>
+      <li><a href="trabalhos.html"><span class="n">03</span><span class="t">Trabalhos</span></a></li>
+      <li><a href="index.html#processo"><span class="n">04</span><span class="t">Como trabalhamos</span></a></li>
+      <li><a href="sobre.html"><span class="n">05</span><span class="t">Sobre</span></a></li>
+    </ul>
+    <div class="painel-pe">
+      <p class="dito">Sites, UX e UI sem template e sem plugin</p>
+      <a class="botao botao-laranja" href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener">Falar com a gente</a>
+      <ul class="redes">
+        <li><a href="https://www.instagram.com/ereio.co/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/luana-ereio-bb2b8624a/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+        <li><a href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a></li>
+        <li><a href="#" data-pendente="github" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<main id="inicio">
+
+  <!-- A ABERTURA (19/10/2026): a página para onde o anúncio do Google manda.
+       Repete o que a pessoa buscou ("criação de sites profissionais"), diz o
+       diferencial e dá o motivo para escrever agora. O WhatsApp daqui leva uma
+       mensagem pronta diferente ("vim pelo anúncio"), para separar quem veio do
+       anúncio de quem veio do site. -->
+  <section class="abertura abertura-curta abertura-sites escuro">
+    <div class="dentro">
+      <div class="abertura-texto">
+        <p class="olho sobe">Criação de sites profissionais</p>
+        <h1 class="sobe">Um site feito à mão para a sua empresa, <span class="destaque">sem template e sem plugin</span><span class="ponto" aria-hidden="true"></span></h1>
+        <p class="chamada sobe">
+          Desenhado para a sua marca e programado por quem também constrói o sistema
+          atrás dele: carrega rápido, funciona no celular e aparece no Google.
+          <b>Conte o que você precisa no WhatsApp e receba a proposta em 48 horas, com
+          prazo e valor fechados.</b>
+        </p>
+        <div class="acoes sobe">
+          <a class="botao botao-laranja" href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener">Receber a proposta no WhatsApp</a>
+          <a class="botao botao-vazio" href="trabalhos.html">Ver os trabalhos</a>
+        </div>
+        <ul class="selos sobe">
+          <li>Proposta em 48 horas</li>
+          <li>Sem template</li>
+          <li>Feito por quem programa</li>
+          <li>Código é seu</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OS NÚMEROS: os mesmos da home (passados por ela em 05/10/2026). -->
+  <section class="prova" aria-label="Números do trabalho">
+    <div class="dentro">
+      <div class="sobe"><b data-conta="482" data-sufixo="+">0</b><i class="risco"></i><span>sites entregues</span></div>
+      <div class="sobe"><b data-conta="200" data-sufixo="+">0</b><i class="risco"></i><span>projetos de automação</span></div>
+      <div class="sobe"><b data-conta="150" data-sufixo="+">0</b><i class="risco"></i><span>agentes de IA</span></div>
+      <div class="sobe"><b>0</b><i class="risco"></i><span>plugins instalados</span></div>
+    </div>
+  </section>
+
+  <section class="secao claro" id="recebe">
+    <div class="dentro">
+      <div class="cabeca sobe">
+        <p class="olho">O que você recebe</p>
+        <h2>Um site que trabalha pelo seu negócio, não só uma página bonita</h2>
+        <p>
+          Cada item abaixo é regra, não promessa: está no código de todos os sites
+          que entregamos.
+        </p>
+      </div>
+
+      <ul class="grade-servicos">
+        <li class="servico sobe">
+          <span class="num">01</span>
+          <h3>Desenho único para a sua marca</h3>
+          <p>
+            Nada de tema comprado. Tipografia, cor e espaçamento decididos a partir da
+            sua identidade, com o motivo de cada escolha registrado.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">02</span>
+          <h3>Rápido e visível no Google</h3>
+          <p>
+            Código leve, imagens otimizadas e as marcações que o Google lê. Site que
+            carrega em segundos e aparece na busca pelo que você vende.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">03</span>
+          <h3>Perfeito no celular</h3>
+          <p>
+            A maior parte das pessoas chega pelo telefone. Cada tela é desenhada e
+            testada primeiro no celular, depois no computador.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">04</span>
+          <h3>Sem plugin para quebrar</h3>
+          <p>
+            Sem WordPress, sem plugin, sem atualização de terceiro que derruba o site
+            num domingo. O que está no ar é só o que a gente escreveu.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">05</span>
+          <h3>WhatsApp e medição inclusos</h3>
+          <p>
+            Botão de WhatsApp em todas as seções e medição de onde as pessoas clicam
+            e até onde rolam, sem guardar dado que identifique ninguém.
+          </p>
+        </li>
+        <li class="servico sobe">
+          <span class="num">06</span>
+          <h3>O código é seu</h3>
+          <p>
+            Você recebe o código, o acesso e a documentação. Pode continuar com a
+            gente ou levar para outra pessoa, sem amarra escondida.
+          </p>
+        </li>
+      </ul>
+
+      <div class="convite sobe">
+        <p>Quer saber como a ereio trabalha, do primeiro contato à entrega? Está tudo no site.</p>
+        <a class="botao botao-cheio" href="index.html">Conhecer a ereio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao escuro" id="entregues">
+    <div class="dentro">
+      <div class="cabeca sobe">
+        <p class="olho">Sites que já entregamos</p>
+        <h2>Clientes reais, com nome e link</h2>
+        <p>
+          Construtora, arquitetura, clínica, confeitaria, escritório de advocacia.
+          Cada um abre na aba de trabalhos, com as telas e o que foi usado.
+        </p>
+      </div>
+
+      <ul class="clientes">
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t32"><img src="ad-tela-1.webp" alt="Tela inicial do site do Atelier Doce Amor" width="1280" height="800" loading="lazy" decoding="async"><span>Atelier Doce Amor<small>Confeitaria</small></span></a></li>
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t37"><img src="ss-tela-1.webp" alt="Tela inicial do site da Studio Side" width="1280" height="800" loading="lazy" decoding="async"><span>Studio Side<small>Interiores e reforma</small></span></a></li>
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t35"><img src="fm-tela-1.webp" alt="Tela inicial do site da Fernanda Marques Arquitetura" width="1280" height="800" loading="lazy" decoding="async"><span>Fernanda Marques<small>Arquitetura e design</small></span></a></li>
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t38"><img src="rv-tela-1.webp" alt="Tela inicial do site da Clínica Renata Vilela" width="1280" height="800" loading="lazy" decoding="async"><span>Clínica Renata Vilela<small>Estética</small></span></a></li>
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t34"><img src="ca-tela-1.webp" alt="Tela inicial do site da Caluê Arquitetura" width="1280" height="800" loading="lazy" decoding="async"><span>Caluê Arquitetura<small>Arquitetura</small></span></a></li>
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t2"><img src="dpr-tela-1.webp" alt="Tela inicial do site da DPR Construtora" width="1280" height="800" loading="lazy" decoding="async"><span>DPR Construtora<small>Construtora</small></span></a></li>
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t1"><img src="hz-tela-1.webp" alt="Tela inicial do site da Houzze Imobiliária" width="1280" height="800" loading="lazy" decoding="async"><span>Houzze Imobiliária<small>Imobiliária</small></span></a></li>
+        <li class="sobe"><a class="cliente" href="trabalhos.html#t30"><img src="tf-tela-1.webp" alt="Tela inicial do site do escritório TozziniFreire" width="1280" height="800" loading="lazy" decoding="async"><span>TozziniFreire<small>Advocacia</small></span></a></li>
+      </ul>
+
+      <div class="acoes sobe acoes-centro">
+        <a class="botao botao-claro" href="trabalhos.html">Ver todos os trabalhos</a>
+        <a class="botao botao-vazio" href="index.html">Ver o site da ereio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao claro" id="como">
+    <div class="dentro">
+      <div class="cabeca sobe">
+        <p class="olho">Como funciona</p>
+        <h2>Quatro passos, do WhatsApp ao site no ar</h2>
+        <p>
+          Sem reunião interminável e sem surpresa no fim. Você sabe o que vai receber,
+          quando e por quanto, antes de qualquer coisa começar.
+        </p>
+      </div>
+
+      <ol class="passos">
+        <li class="passo sobe">
+          <h3>Você conta o que precisa</h3>
+          <p>
+            Uma mensagem no WhatsApp com o que a empresa faz e o que o site tem que
+            fazer acontecer. Se já tiver um site, manda o endereço: a gente olha.
+          </p>
+        </li>
+        <li class="passo sobe">
+          <h3>Proposta em 48 horas</h3>
+          <p>
+            Escopo, prazo e valor fechados, por escrito. Sem taxa escondida e sem
+            mensalidade obrigatória.
+          </p>
+        </li>
+        <li class="passo sobe">
+          <h3>Desenho, aprovação e código</h3>
+          <p>
+            Você vê o desenho antes do código, aprova por etapa e acompanha num
+            endereço de teste. Nada muda no ar sem o seu ok.
+          </p>
+        </li>
+        <li class="passo sobe">
+          <h3>Site no ar, código seu</h3>
+          <p>
+            Publicação, medição ligada e a documentação na sua mão. Depois, você decide
+            se continua com a gente.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao escuro" id="perguntas">
+    <div class="dentro">
+      <div class="cabeca sobe">
+        <p class="olho">Perguntas rápidas</p>
+        <h2>O que todo mundo pergunta antes de fechar</h2>
+      </div>
+
+      <div class="perguntas sobe">
+        <details>
+          <summary>Quanto custa um site?</summary>
+          <p>Depende do tamanho: uma página de campanha é uma coisa, um site com várias seções, loja ou sistema atrás é outra. Por isso a proposta é feita para o seu caso, em 48 horas, com valor e prazo fechados. Sem mensalidade obrigatória.</p>
+        </details>
+        <details>
+          <summary>Em quanto tempo fica pronto?</summary>
+          <p>Uma página de campanha sai em poucos dias; um site institucional, em algumas semanas. O prazo exato vai na proposta e é cumprido por etapa, com você aprovando cada uma.</p>
+        </details>
+        <details>
+          <summary>Preciso já ter textos e fotos?</summary>
+          <p>Ajuda, mas não é obrigatório. A gente escreve os textos a partir de uma conversa com você e indica como resolver as fotos, com banco de imagens ou fotógrafo.</p>
+        </details>
+        <details>
+          <summary>E domínio e hospedagem?</summary>
+          <p>A gente configura tudo: domínio no seu nome, hospedagem rápida e certificado de segurança. Fica registrado na sua conta, não na nossa.</p>
+        </details>
+        <details>
+          <summary>Consigo mudar textos depois?</summary>
+          <p>Sim. Pequenas mudanças de texto e foto a gente faz; se você quiser autonomia total, montamos um painel simples para editar o conteúdo sem mexer no código.</p>
+        </details>
+        <details>
+          <summary>Por que não usar um construtor de sites?</summary>
+          <p>Construtor serve para começar. Quando o site precisa carregar rápido, aparecer no Google, funcionar sem plugin quebrando e conversar com o seu CRM ou a sua loja, código feito à mão sai mais barato ao longo do tempo.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="fecho" id="contato">
+    <div class="dentro">
+      <h2 class="sobe">Quer um site assim para a sua empresa?</h2>
+      <p class="sobe">
+        Conta o que você vende e para quem, pelo WhatsApp. A proposta chega em 48
+        horas, com prazo e valor fechados.
+      </p>
+      <div class="acoes sobe">
+        <a class="botao botao-laranja" href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener">Receber a proposta no WhatsApp</a>
+        <a class="botao botao-claro" href="index.html">Ver o site da ereio</a>
+      </div>
+      <p class="fecho-canal sobe">WhatsApp <a href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener">(11) 95994-3705</a> · Instagram <a href="https://www.instagram.com/ereio.co/" target="_blank" rel="noopener">@ereio.co</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="dentro">
+    <div class="rodape-grade">
+      <div class="rodape-marca">
+        <p class="enorme">ereio<span class="pt">.</span><span class="co">co</span></p>
+        <p class="rodape-frase">Sites, UX e UI feitos sem template e sem plugin. E quando o site precisa de sistema atrás, a gente constrói também.</p>
+      </div>
+      <nav class="rodape-coluna" aria-label="Navegação do rodapé">
+        <p class="rodape-titulo">Navegação</p>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#servicos">Serviços</a></li>
+          <li><a href="index.html#processo">Processo</a></li>
+          <li><a href="trabalhos.html">Trabalhos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-coluna" aria-label="Trabalhos por frente">
+        <p class="rodape-titulo">Trabalhos</p>
+        <ul>
+          <li><a href="trabalhos.html#g-sites">Sites</a></li>
+          <li><a href="trabalhos.html#g-automacoes">Automações e sistemas</a></li>
+          <li><a href="trabalhos.html#g-key-visual">Key visual</a></li>
+          <li><a href="trabalhos.html#g-logos">Logos</a></li>
+        </ul>
+      </nav>
+      <div class="rodape-coluna rodape-falar">
+        <p class="rodape-titulo">Falar</p>
+        <a class="botao botao-laranja" href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener">Começar uma conversa</a>
+        <p class="rodape-canal">WhatsApp <a href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener">(11) 95994-3705</a></p>
+        <ul class="redes">
+          <li><a href="https://www.instagram.com/ereio.co/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/in/luana-ereio-bb2b8624a/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+          <li><a href="https://wa.me/5511959943705?text=Ol%C3%A1!%20Vim%20pelo%20an%C3%BAncio%20da%20ereio%20e%20quero%20uma%20proposta%20de%20site." target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a></li>
+          <li><a href="#" data-pendente="github" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-pe">
+      <span class="assinatura">ereio.co · 2026 · feito à mão</span>
+      <a class="rodape-topo" href="#topo">Voltar ao topo <span aria-hidden="true">&uarr;</span></a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

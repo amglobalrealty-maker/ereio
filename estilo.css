@@ -2444,8 +2444,95 @@ body.travada { overflow: hidden; }
 
 .manifesto-sobre b { color: var(--realce); }
 
+/* ===================== sites.html, a página do anúncio (19/10/2026) =====================
+   Para onde o Google Ads manda. Abertura curta com a promessa, os números da home, os
+   cartões do que a pessoa recebe, a vitrine dos clientes (cartões com a tela de cada
+   site, levando ao trabalho), os quatro passos e as perguntas em sanfona. */
+
+.abertura-sites h1 { max-width: 20ch; }
+
+.acoes-centro { justify-content: center; margin-top: clamp(1.75rem, 3.5vw, 2.5rem); }
+
+.clientes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 52rem) { .clientes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.cliente {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  border-radius: 0.9rem;
+  background: var(--cartao);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.5s var(--entra), border-color 0.4s var(--toque);
+}
+
+.cliente:hover { transform: translateY(-4px); border-color: var(--linha-viva); }
+
+.cliente img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border-bottom: 1px solid var(--linha);
+}
+
+.cliente span {
+  display: block;
+  padding: 0.7rem 0.85rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.cliente small {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+.perguntas { display: grid; gap: 0.6rem; max-width: 46rem; }
+
+.perguntas details {
+  padding: 0 1.1rem;
+  border: 1px solid var(--linha);
+  border-radius: 0.9rem;
+  background: var(--cartao);
+}
+
+.perguntas summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.perguntas summary::-webkit-details-marker { display: none; }
+.perguntas summary::after { content: "+"; flex: none; color: var(--realce); font-weight: 500; }
+.perguntas details[open] summary::after { content: "\2212"; }
+.perguntas p { margin: 0 0 1rem; font-size: 0.92rem; line-height: 1.6; color: var(--texto-fraco); }
+
 @media (prefers-reduced-motion: reduce) {
   .sobe, .sobe.vista { opacity: 1; transform: none; transition: none; }
+  .cliente, .cliente:hover { transition: none; transform: none; }
   /* a página Sobre: o brilho não gira, os chips não flutuam, o retrato não vira */
   .retrato::before, .retrato-chip { animation: none; }
   .retrato-moldura, .retrato:hover .retrato-moldura { transition: none; transform: none; }
