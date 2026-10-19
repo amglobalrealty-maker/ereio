@@ -36,7 +36,7 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Criação de sites profissionais · ereio.co</title>
-<meta name="description" content="Site profissional feito à mão para a sua empresa, sem template e sem plugin, por quem também programa o sistema atrás dele. Fale no WhatsApp e receba a proposta em 48 horas.">
+<meta name="description" content="Site profissional para a sua empresa, com design exclusivo e feito por quem também programa o sistema atrás dele. Fale no WhatsApp e receba a proposta em 48 horas.">
 <meta name="theme-color" content="#08080F">
 <link rel="icon" type="image/png" href="icone-ereio.png">
 <link rel="apple-touch-icon" href="icone-ereio.png">
@@ -56,7 +56,7 @@
 </svg>
 
 <!-- O CABEÇALHO: o mesmo das outras páginas. Esta é a página para onde o anúncio
-     manda; "Criar um site" é o item dela no menu. -->
+     manda; "Sites" é o item dela no menu. -->
 <header class="topo" id="topo">
   <div class="topo-dentro">
     <a class="marca" href="index.html" aria-label="ereio.co, início">
@@ -65,7 +65,7 @@
     <nav class="navega" aria-label="Navegação principal">
       <ul class="links">
         <li><a href="index.html">Início</a></li>
-        <li><a href="sites.html" aria-current="page">Criar um site</a></li>
+        <li><a href="sites.html" aria-current="page">Sites</a></li>
         <li><a href="index.html#servicos">Serviços</a></li>
         <li><a href="trabalhos.html">Trabalhos</a></li>
         <li><a href="index.html#processo">Processo</a></li>
@@ -94,7 +94,7 @@
     <p class="olho">Navegação</p>
     <ul class="painel-links">
       <li><a href="index.html"><span class="n">01</span><span class="t">Início</span></a></li>
-      <li><a href="sites.html" aria-current="page"><span class="n">02</span><span class="t">Criar um site</span></a></li>
+      <li><a href="sites.html" aria-current="page"><span class="n">02</span><span class="t">Sites</span></a></li>
       <li><a href="index.html#servicos"><span class="n">03</span><span class="t">Serviços</span></a></li>
       <li><a href="trabalhos.html"><span class="n">04</span><span class="t">Trabalhos</span></a></li>
       <li><a href="index.html#processo"><span class="n">05</span><span class="t">Como trabalhamos</span></a></li>
@@ -120,11 +120,16 @@
        diferencial e dá o motivo para escrever agora. O WhatsApp daqui leva uma
        mensagem pronta diferente ("vim pelo anúncio"), para separar quem veio do
        anúncio de quem veio do site. -->
-  <section class="abertura abertura-curta abertura-sites escuro">
+  <section class="abertura abertura-slide abertura-sites escuro">
+    <!-- O AMBIENTE: a tela do slide, enorme e desfocada, atrás de tudo (como na home). -->
+    <div class="ambiente" aria-hidden="true" data-ambiente>
+      <img class="ativa" src="ad-tela-1.webp" alt="" width="1280" height="800">
+      <img src="ss-tela-1.webp" alt="" width="1280" height="800">
+    </div>
     <div class="dentro">
       <div class="abertura-texto">
         <p class="olho sobe">Criação de sites profissionais</p>
-        <h1 class="sobe">Um site feito à mão para a sua empresa, <span class="destaque">sem template e sem plugin</span><span class="ponto" aria-hidden="true"></span></h1>
+        <h1 class="sobe">Um site profissional para a sua empresa, <span class="destaque">desenhado para trazer clientes</span><span class="ponto" aria-hidden="true"></span></h1>
         <p class="chamada sobe">
           Desenhado para a sua marca e programado por quem também constrói o sistema
           atrás dele: carrega rápido, funciona no celular e aparece no Google.
@@ -137,10 +142,67 @@
         </div>
         <ul class="selos sobe">
           <li>Proposta em 48 horas</li>
-          <li>Sem template</li>
+          <li>Design exclusivo</li>
           <li>Feito por quem programa</li>
           <li>Código é seu</li>
         </ul>
+      </div>
+
+      <!-- O SLIDE: as telas de oito sites entregues, numa janela de navegador, como na home.
+           Troca sozinho a cada 5 segundos; para no mouse, quando a pessoa assume o controle
+           e quando a aba está escondida. -->
+      <div class="slide sobe" data-slide role="region" aria-roledescription="carrossel" aria-label="Telas de sites que entregamos">
+        <div class="janela">
+          <span class="janela-barra" aria-hidden="true"><i></i><i></i><i></i><span class="janela-endereco" data-slide-endereco>atelierdoceamor.com.br</span></span>
+          <ul class="telas-slide">
+            <li class="tela-slide ativa" data-cliente="Atelier Doce Amor" data-rotulo="Início" data-endereco="atelierdoceamor.com.br">
+              <img src="ad-tela-1.webp" alt="Tela inicial do site do Atelier Doce Amor" width="1280" height="800" decoding="async">
+            </li>
+            <li class="tela-slide" data-cliente="Studio Side" data-rotulo="Início" data-endereco="studioside.com.br">
+              <img src="ss-tela-1.webp" alt="Tela inicial do site da Studio Side" width="1280" height="800" loading="lazy" decoding="async">
+            </li>
+            <li class="tela-slide" data-cliente="Fernanda Marques Arquitetura" data-rotulo="Início" data-endereco="fernandamarques.com.br">
+              <img src="fm-tela-1.webp" alt="Tela inicial do site da Fernanda Marques Arquitetura" width="1280" height="800" loading="lazy" decoding="async">
+            </li>
+            <li class="tela-slide" data-cliente="Clínica Renata Vilela" data-rotulo="Início" data-endereco="clinicarenatavilela.com">
+              <img src="rv-tela-1.webp" alt="Tela inicial do site da Clínica Renata Vilela" width="1280" height="800" loading="lazy" decoding="async">
+            </li>
+            <li class="tela-slide" data-cliente="Caluê Arquitetura" data-rotulo="Início" data-endereco="caluearquitetura.com.br">
+              <img src="ca-tela-1.webp" alt="Tela inicial do site da Caluê Arquitetura" width="1280" height="800" loading="lazy" decoding="async">
+            </li>
+            <li class="tela-slide" data-cliente="DPR Construtora" data-rotulo="Início" data-endereco="construtoradpr.com.br">
+              <img src="dpr-tela-1.webp" alt="Tela inicial do site da DPR Construtora" width="1280" height="800" loading="lazy" decoding="async">
+            </li>
+            <li class="tela-slide" data-cliente="Houzze Imobiliária" data-rotulo="Início" data-endereco="houzzeimobiliaria.com">
+              <img src="hz-tela-1.webp" alt="Tela inicial do site da Houzze Imobiliária" width="1280" height="800" loading="lazy" decoding="async">
+            </li>
+            <li class="tela-slide" data-cliente="TozziniFreire" data-rotulo="Início" data-endereco="tozzinifreire.com.br">
+              <img src="tf-tela-1.webp" alt="Tela inicial do site do escritório TozziniFreire" width="1280" height="800" loading="lazy" decoding="async">
+            </li>
+          </ul>
+        </div>
+        <div class="slide-pe">
+          <p class="slide-legenda" aria-live="polite">
+            <span class="n" data-slide-n>01 / 08</span>
+            <b data-slide-cliente>Atelier Doce Amor</b>
+            <span class="t" data-slide-rotulo>Início</span>
+          </p>
+          <div class="slide-controles">
+            <button class="slide-seta" type="button" data-slide-seta="esq" aria-label="Tela anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <ol class="slide-pontos" aria-label="Ir para a tela">
+              <li><button type="button" data-slide-ponto="0" aria-label="Tela 1" aria-current="true"></button></li>
+              <li><button type="button" data-slide-ponto="1" aria-label="Tela 2" aria-current="false"></button></li>
+              <li><button type="button" data-slide-ponto="2" aria-label="Tela 3" aria-current="false"></button></li>
+              <li><button type="button" data-slide-ponto="3" aria-label="Tela 4" aria-current="false"></button></li>
+              <li><button type="button" data-slide-ponto="4" aria-label="Tela 5" aria-current="false"></button></li>
+              <li><button type="button" data-slide-ponto="5" aria-label="Tela 6" aria-current="false"></button></li>
+              <li><button type="button" data-slide-ponto="6" aria-label="Tela 7" aria-current="false"></button></li>
+              <li><button type="button" data-slide-ponto="7" aria-label="Tela 8" aria-current="false"></button></li>
+            </ol>
+            <button class="slide-seta" type="button" data-slide-seta="dir" aria-label="Próxima tela"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+        <span class="slide-progresso" aria-hidden="true"><i data-slide-barra></i></span>
       </div>
     </div>
   </section>
@@ -193,10 +255,10 @@
         </li>
         <li class="servico sobe">
           <span class="num">04</span>
-          <h3>Sem plugin para quebrar</h3>
+          <h3>Estável e seguro</h3>
           <p>
-            Sem WordPress, sem plugin, sem atualização de terceiro que derruba o site
-            num domingo. O que está no ar é só o que a gente escreveu.
+            Código próprio, sem depender de plugin de terceiro que quebra o site numa
+            atualização. O que está no ar é só o que a gente escreveu e testou.
           </p>
         </li>
         <li class="servico sobe">
@@ -361,7 +423,7 @@
         <p class="rodape-titulo">Navegação</p>
         <ul>
           <li><a href="index.html">Início</a></li>
-          <li><a href="sites.html">Criar um site</a></li>
+          <li><a href="sites.html">Sites</a></li>
           <li><a href="index.html#servicos">Serviços</a></li>
           <li><a href="index.html#processo">Processo</a></li>
           <li><a href="trabalhos.html">Trabalhos</a></li>
@@ -371,7 +433,7 @@
       <nav class="rodape-coluna" aria-label="Trabalhos por frente">
         <p class="rodape-titulo">Trabalhos</p>
         <ul>
-          <li><a href="trabalhos.html#g-sites">Sites</a></li>
+          <li><a href="trabalhos.html#g-sites">Sites entregues</a></li>
           <li><a href="trabalhos.html#g-automacoes">Automações e sistemas</a></li>
           <li><a href="trabalhos.html#g-key-visual">Key visual</a></li>
           <li><a href="trabalhos.html#g-logos">Logos</a></li>

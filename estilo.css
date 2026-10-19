@@ -2445,9 +2445,10 @@ body.travada { overflow: hidden; }
 .manifesto-sobre b { color: var(--realce); }
 
 /* ===================== sites.html, a página do anúncio (19/10/2026) =====================
-   Para onde o Google Ads manda. Abertura curta com a promessa, os números da home, os
-   cartões do que a pessoa recebe, a vitrine dos clientes (cartões com a tela de cada
-   site, levando ao trabalho), os quatro passos e as perguntas em sanfona. */
+   Para onde o Google Ads manda. Abertura com o slide da home (oito telas de sites
+   entregues), os números da home, os cartões do que a pessoa recebe, a vitrine dos
+   clientes (cartões com a tela de cada site, levando ao trabalho), os quatro passos e
+   as perguntas em sanfona. */
 
 .abertura-sites h1 { max-width: 20ch; }
 
