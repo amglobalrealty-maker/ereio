@@ -2265,7 +2265,8 @@ body.travada { overflow: hidden; }
 
 .retrato-moldura {
   position: relative;
-  aspect-ratio: 4 / 5;
+  /* a foto dela e quadrada (a do LinkedIn): o cartao tambem, para nao cortar o cabelo */
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 1.25rem;
   background: var(--cartao);
